@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\BrandProduct;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -66,3 +67,16 @@ Route::post('/update-product/{product_id}', [ProductController::class, 'update_p
 
 // Cart
 Route::post('/save-cart', [CartController::class, 'save_cart']);
+Route::get('/show-cart', [CartController::class, 'show_cart']);
+Route::get('/delete-to-cart/{rowId}', [CartController::class, 'delete_to_cart']);
+Route::post('/update-cart-quantity', [CartController::class, 'update_cart_quantity']);
+
+// Checkout
+Route::get('/login-checkout', [CheckoutController::class, 'login_checkout']);
+Route::get('/logout-checkout', [CheckoutController::class, 'logout_checkout']);
+Route::post('/add-customer', [CheckoutController::class, 'add_customer']);
+Route::get('/checkout', [CheckoutController::class, 'checkout']);
+Route::post('/save-checkout-customer', [CheckoutController::class, 'save_checkout_customer']);
+Route::post('/login-checkout-customer', [CheckoutController::class, 'login_checkout_customer']);
+Route::get('/payment', [CheckoutController::class, 'payment']);
+
