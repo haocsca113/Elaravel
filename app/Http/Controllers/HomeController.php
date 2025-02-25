@@ -21,8 +21,19 @@ class HomeController extends Controller
         // ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
         // ->orderby('tbl_product.product_id', 'desc')->get();
 
-        $all_product = DB::table('tbl_product')->where('product_status', '1')->orderby('product_id', 'desc')->limit(4)->get();
+        $all_product = DB::table('tbl_product')->where('product_status', '1')->orderby('product_id', 'desc')->limit(6)->get();
 
         return view('pages.home')->with('category', $cate_product)->with('brand', $brand_product)->with('all_product', $all_product);
+    }
+
+    public function search(Request $request)
+    {
+        $keywords = $request->keywords;
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
+        $search_product = DB::table('tbl_product')->where('product_name', 'like', '%'.$keywords.'%')->where('product_status', '1')->get();
+
+        return view('pages.product.search')->with('category', $cate_product)->with('brand', $brand_product)->with('search_product', $search_product);
     }
 }

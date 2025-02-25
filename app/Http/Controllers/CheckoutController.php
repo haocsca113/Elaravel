@@ -76,12 +76,108 @@ class CheckoutController extends Controller
 
     public function payment()
     {
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
+        return view('pages.checkout.payment')->with('category', $cate_product)->with('brand', $brand_product);
     }
 
     public function logout_checkout()
     {
         Session::flush();
         return Redirect::to('/');
+    }
+
+    public function order_place(Request $request)
+    {
+        // insert payment method
+        $data = array();
+        $data['payment_method'] = $request->payment_option;
+        $data['payment_status'] = 'Đang chờ xử lý';
+        $payment_id = DB::table('tbl_payment')->insertGetId($data);
+
+        // insert payment method
+        $order_data = array();
+        $order_data['customer_id'] = Session::get('customer_id');
+        $order_data['shipping_id'] = Session::get('shipping_id');
+        $order_data['payment_id'] = $payment_id;
+        $order_data['order_total'] = (Cart::total(0, ',', '.')).' '.'VNĐ';
+        $order_data['order_status'] = 'Đang chờ xử lý';
+        $order_id = DB::table('tbl_order')->insertGetId($order_data);
+
+        // insert order_details
+        $content = Cart::content();
+        foreach($content as $v_content)
+        {
+            $order_details_data = array();
+            $order_details_data['order_id'] = $order_id;
+            $order_details_data['product_id'] = $v_content->id;
+            $order_details_data['product_name'] = $v_content->name;
+            $order_details_data['product_price'] = $v_content->price;
+            $order_details_data['product_sales_quantity'] = $v_content->qty;
+            DB::table('tbl_order_details')->insert($order_details_data);
+        }
+
+        if($data['payment_method'] == 1)
+        {
+            echo 'Thanh toán thẻ ATM';
+        }
+        elseif($data['payment_method'] == 2)
+        {
+            $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+            $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+            Cart::destroy();
+            return view('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product);
+        }
+        else
+        {
+            echo 'Momo';
+        }
+        
+        // return Redirect::to('/payment');
+    }
+
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('admin_id');
+        if($admin_id)
+        {
+            return Redirect::to('dashboard');
+        }
+        else
+        {
+            return Redirect::to('admin')->send();
+        }
+    }
+
+    public function manage_order()
+    {
+        $this->AuthLogin();
+        $all_order = DB::table('tbl_order')
+        ->join('tbl_customer', 'tbl_customer.customer_id', '=', 'tbl_order.customer_id')
+        ->select('tbl_order.*', 'tbl_customer.customer_name')
+        ->orderby('tbl_order.order_id', 'desc')->get();
+        $manager_order = view('admin.manage_order')->with('all_order', $all_order);
+        return view('admin_layout')->with('admin.manage_order', $manager_order);
+    }
+
+    public function view_order($orderId)
+    {
+        $this->AuthLogin();
+        $order_by_id = DB::table('tbl_order')
+        ->join('tbl_customer', 'tbl_customer.customer_id', '=', 'tbl_order.customer_id')
+        ->join('tbl_shipping', 'tbl_shipping.shipping_id', '=', 'tbl_order.shipping_id')
+        // ->join('tbl_order_details', 'tbl_order_details.order_id', '=', 'tbl_order.order_id')
+        ->where('tbl_order.order_id', $orderId)
+        ->select('tbl_order.*', 'tbl_customer.*', 'tbl_shipping.*')->first();
+        // echo '<pre>';
+        // print_r($order_by_id);
+        // echo'</pre>';
+
+        $order_details = DB::table('tbl_order_details')
+        ->where('order_id', $orderId)
+        ->get();
+        $manager_order_by_id = view('admin.view_order')->with('order_by_id', $order_by_id)->with('order_details', $order_details);
+        return view('admin_layout')->with('admin.view_order', $manager_order_by_id);
     }
 }
