@@ -164,6 +164,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/scripts.js') }}"></script>
 <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
 <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
+<script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+<script>
+    // $(document).ready(function() {
+    //     $("#formProduct").validate({
+    //         rules : {
+    //             product_name: "required"
+    //         },
+    //         messages: {
+    //             product_name: "Vui lòng nhập tên"
+    //         }
+    //     });
+    // });
+    $("#formProduct").validate();
+</script>
+<script>
+    CKEDITOR.replace('ckeditor1');
+    CKEDITOR.replace('ckeditor2');
+</script>
+
+{{-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        CKEDITOR.replace('ckeditor1');
+    });
+</script> --}}
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="{{ asset('backend/js/jquery.scrollTo.js') }}"></script>
 <!-- morris JavaScript -->	

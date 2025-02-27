@@ -28,6 +28,11 @@
                             </textarea>
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputPassword1">Từ khóa danh mục</label>
+                            <textarea type="text" name="category_product_keywords" class="form-control" style="resize: none;" rows="5" id="exampleInputPassword1" placeholder="Nhập từ khóa danh mục">
+                            </textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputPassword1">Hiển thị</label>
                             <select name="category_product_status" class="form-control input-sm m-bot15">
                                 <option value="0">Ẩn</option>

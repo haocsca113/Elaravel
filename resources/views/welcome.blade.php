@@ -3,9 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="{{ $meta_desc }}">
+    <meta name="keywords" content="{{ $meta_keywords }}">
+    <meta name="robots" content="INDEX, FOLLOW">
+	<link rel="canonical" href="{{ $url_canonical }}">
     <meta name="author" content="">
-    <title>Home | E-Shopper</title>
+	<link rel="icon" type="image/x-icon" href="">
+    <title>{{ $meta_title }} </title>
+
+	{{-- <meta property="og:image" content=""> --}}
+	<meta property="og:site_name" content="http://localhost:8080/laravel/webbanhang_tutorial/public/">
+	<meta property="og:description" content="{{ $meta_desc }}">
+	<meta property="og:title" content="{{ $meta_title }}">
+	<meta property="og:url" content="{{ $url_canonical }}">
+	<meta property="og:type" content="website">
+	
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/prettyPhoto.css') }}" rel="stylesheet">
@@ -444,5 +456,8 @@
 	<script src="{{ asset('frontend/js/price-range.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v22.0"></script>
 </body>
 </html>

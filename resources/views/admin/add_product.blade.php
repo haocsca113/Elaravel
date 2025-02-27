@@ -16,11 +16,11 @@
                     }
                 ?>
                 <div class="position-center">
-                    <form role="form" action="{{ URL::to('/save-product') }}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{ URL::to('/save-product') }}" method="post" enctype="multipart/form-data" id="formProduct">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên sản phẩm</label>
-                            <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên sản phẩm">
+                            <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên sản phẩm" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá sản phẩm</label>
@@ -32,12 +32,12 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả sản phẩm</label>
-                            <textarea type="text" name="product_desc" class="form-control" style="resize: none;" rows="5" id="exampleInputPassword1" placeholder="Nhập mô tả sản phẩm">
+                            <textarea type="text" name="product_desc" class="form-control" style="resize: none;" rows="5" id="ckeditor1" placeholder="Nhập mô tả sản phẩm">
                             </textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Nội dung sản phẩm</label>
-                            <textarea type="text" name="product_content" class="form-control" style="resize: none;" rows="5" id="exampleInputPassword1" placeholder="Nhập nội dung sản phẩm">
+                            <textarea type="text" name="product_content" class="form-control" style="resize: none;" rows="5" id="ckeditor2" placeholder="Nhập nội dung sản phẩm">
                             </textarea>
                         </div>
                         <div class="form-group">

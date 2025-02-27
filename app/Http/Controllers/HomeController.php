@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mail;
 use DB;
 use Session;
 use App\Http\Requests;
@@ -11,8 +12,27 @@ session_start();
 
 class HomeController extends Controller
 {
-    public function index()
+    public function send_mail()
     {
+        $to_name = "Poghao2";
+        $to_email = "haocsca113@gmail.com";
+
+        $data = array("name" => "Mail từ tài khoản khách hàng", "body" => 'Mail về vấn đề hàng hóa');
+        Mail::send('pages.send_mail', $data, function($message) use($to_name, $to_email){
+            $message->to($to_email)->subject('Test gửi mail google');
+            $message->from($to_email, $to_name);
+        });
+        // return redirect::to('/')->with('message', '');
+    }
+
+    public function index(Request $request)
+    {
+        // Seo
+        $meta_desc = "Chuyên bán tay cầm, phụ kiện game, gaming gear cho pc laptop điện thoại | Địa chỉ mua bán tay cầm, phụ kiện game, gaming gear cho pc laptop điện thoại rẻ ở TP.HCM";
+        $meta_keywords = "tay cam, tay cầm chơi game, gaming gear cho pc laptop điện thoại";
+        $meta_title = "Tay Cầm Chơi Game PC Điện Thoại | Mua Tay Cầm Xbox 360 One S PS4 Giá Rẻ Ở Đâu Tại TPHCM";
+        $url_canonical = $request->url();
+
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
@@ -23,7 +43,7 @@ class HomeController extends Controller
 
         $all_product = DB::table('tbl_product')->where('product_status', '1')->orderby('product_id', 'desc')->limit(6)->get();
 
-        return view('pages.home')->with('category', $cate_product)->with('brand', $brand_product)->with('all_product', $all_product);
+        return view('pages.home')->with('category', $cate_product)->with('brand', $brand_product)->with('all_product', $all_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
     }
 
     public function search(Request $request)

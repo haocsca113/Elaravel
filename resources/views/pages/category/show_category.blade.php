@@ -2,6 +2,12 @@
 @section('content')
 
 <div class="features_items"><!--features_items-->
+    {{-- <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ $url_canonical }}https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+
+    <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="" data-action="" data-size="" data-share="false"></div> --}}
+
+    <div class="fb-like" data-href="{{ $url_canonical }}" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+
     @foreach($category_name as $key => $name)
     <h2 class="title text-center">{{ $name->category_name }}</h2>
     @endforeach
@@ -28,5 +34,7 @@
     </a>
     @endforeach
 </div><!--features_items-->
+
+<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>
 
 @endsection

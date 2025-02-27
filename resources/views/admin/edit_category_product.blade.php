@@ -29,6 +29,12 @@
                                 {{ $edit_value->category_desc }}
                             </textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Từ khóa danh mục</label>
+                            <textarea class="form-control" name="category_product_keywords" style="resize: none;" rows="5" id="exampleInputPassword1">
+                                {{ $edit_value->meta_keywords }}
+                            </textarea>
+                        </div>
                     
                         <button type="submit" name="update_category_product" class="btn btn-info">Cập nhật danh mục</button>
                     </form>
