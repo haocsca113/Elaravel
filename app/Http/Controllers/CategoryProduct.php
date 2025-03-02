@@ -45,7 +45,7 @@ class CategoryProduct extends Controller
         $data['category_name'] = $request->category_product_name;
         $data['category_desc'] = $request->category_product_desc;
         $data['category_status'] = $request->category_product_status;
-        $data['category_keywords'] = $request->category_product_keywords;
+        $data['meta_keywords'] = $request->category_product_keywords;
 
         DB::table('tbl_category_product')->insert($data);
         Session::put('message', 'Thêm danh mục sản phẩm thành công');

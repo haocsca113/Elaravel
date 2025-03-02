@@ -12,12 +12,18 @@ session_start();
 
 class CheckoutController extends Controller
 {
-    public function login_checkout()
+    public function login_checkout(Request $request)
     {
+        // SEO
+        $meta_desc = '';
+        $meta_keywords = '';
+        $meta_title = '';
+        $url_canonical = $request->url();
+
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.login_checkout')->with('category', $cate_product)->with('brand', $brand_product);
+        return view('pages.checkout.login_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
     }
 
     public function add_customer(Request $request)
@@ -52,12 +58,18 @@ class CheckoutController extends Controller
         }
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
+        // SEO
+        $meta_desc = '';
+        $meta_keywords = '';
+        $meta_title = '';
+        $url_canonical = $request->url();
+
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand', $brand_product);
+        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
     }
 
     public function save_checkout_customer(Request $request)
@@ -74,12 +86,18 @@ class CheckoutController extends Controller
         return Redirect::to('/payment');
     }
 
-    public function payment()
+    public function payment(Request $request)
     {
+        // SEO
+        $meta_desc = '';
+        $meta_keywords = '';
+        $meta_title = '';
+        $url_canonical = $request->url();
+
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.payment')->with('category', $cate_product)->with('brand', $brand_product);
+        return view('pages.checkout.payment')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
     }
 
     public function logout_checkout()
@@ -90,6 +108,12 @@ class CheckoutController extends Controller
 
     public function order_place(Request $request)
     {
+        // SEO
+        $meta_desc = '';
+        $meta_keywords = '';
+        $meta_title = '';
+        $url_canonical = $request->url();
+
         // insert payment method
         $data = array();
         $data['payment_method'] = $request->payment_option;
@@ -127,7 +151,7 @@ class CheckoutController extends Controller
             $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
             $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
             Cart::destroy();
-            return view('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product);
+            return view('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
         }
         else
         {
@@ -179,5 +203,13 @@ class CheckoutController extends Controller
         ->get();
         $manager_order_by_id = view('admin.view_order')->with('order_by_id', $order_by_id)->with('order_details', $order_details);
         return view('admin_layout')->with('admin.view_order', $manager_order_by_id);
+    }
+
+    public function delete_order($orderId)
+    {
+        $this->AuthLogin();
+        DB::table('tbl_order')->where('order_id', $orderId)->delete();
+        Session::put('message', 'Xóa thành công');
+        return Redirect::to('/manage-order');
     }
 }

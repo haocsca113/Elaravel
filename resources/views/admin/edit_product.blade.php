@@ -45,6 +45,12 @@
                             </textarea>
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputPassword1">Từ khóa sản phẩm</label>
+                            <textarea type="text" name="product_keywords" class="form-control" style="resize: none;" rows="5" id="exampleInputPassword1">
+                                {{ $pro->meta_keywords }}
+                            </textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputPassword1">Danh mục sản phẩm</label>
                             <select name="product_cate" class="form-control input-sm m-bot15">
                                 @foreach($cate_product as $key => $cate)

@@ -52,6 +52,7 @@ class ProductController extends Controller
         $data['product_content'] = $request->product_content;
         $data['product_price'] = $request->product_price;
         $data['product_status'] = $request->product_status;
+        $data['meta_keywords'] = $request->product_keywords;
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
 
@@ -109,6 +110,7 @@ class ProductController extends Controller
         $data['product_content'] = $request->product_content;
         $data['product_price'] = $request->product_price;
         $data['product_status'] = $request->product_status;
+        $data['meta_keywords'] = $request->product_keywords;
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
         $get_image = $request->file('product_image');
@@ -138,7 +140,7 @@ class ProductController extends Controller
     }
     // End Admin Page
 
-    public function detail_product($product_id)
+    public function detail_product(Request $request, $product_id)
     {
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
@@ -148,9 +150,19 @@ class ProductController extends Controller
         ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
         ->where('tbl_product.product_id', $product_id)->get();
 
+        $meta_desc = '';
+        $meta_keywords = '';
+        $meta_title = '';
+        $url_canonical = $request->url();
         foreach($detail_product as $key => $value)
         {
             $category_id = $value->category_id;
+
+            // Seo
+            $meta_desc = $value->product_desc;
+            $meta_keywords = $value->meta_keywords;
+            $meta_title = $value->product_name;
+            $url_canonical = $request->url();
         }
 
         // VD: Lay ra cac san pham co category = 3 tru san pham detail
@@ -159,6 +171,6 @@ class ProductController extends Controller
         ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
         ->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$product_id])->get();
 
-        return view('pages.product.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('detail_product', $detail_product)->with('related_product', $related_product);
+        return view('pages.product.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('detail_product', $detail_product)->with('related_product', $related_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
     }
 }
