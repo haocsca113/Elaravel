@@ -90,3 +90,13 @@ Route::get('/delete-order/{orderId}', [CheckoutController::class, 'delete_order'
 // Send mail
 Route::get('/send-mail', [HomeController::class, 'send_mail']);
 
+//Login facebook
+Route::get('/login-facebook', [AdminController::class, 'login_facebook']);
+Route::get('/admin/callback', [AdminController::class, 'callback_facebook']);
+
+//Login google
+Route::get('/login-google', [AdminController::class, 'login_google']);
+Route::get('/google/callback', [AdminController::class, 'callback_google']);
+
+
+
