@@ -98,5 +98,9 @@ Route::get('/admin/callback', [AdminController::class, 'callback_facebook']);
 Route::get('/login-google', [AdminController::class, 'login_google']);
 Route::get('/google/callback', [AdminController::class, 'callback_google']);
 
+// Cong thanh toan
+Route::post('/vnpay-payment', [CheckoutController::class, 'vnpay_payment']);
+Route::post('/momo-payment', [CheckoutController::class, 'momo_payment']);
+
 
 

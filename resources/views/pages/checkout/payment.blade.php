@@ -75,19 +75,33 @@
         <h4 style="margin: 40px 0; font-size: 20px;">Chọn hình thức thanh toán</h4>
         <form action="{{ URL::to('/order-place') }}" method="post">
             {{ csrf_field() }}
-            <div class="payment-options">
+            <div class="payment-options" style="margin-bottom: 20px;">
                 <span>
-                    <label><input type="checkbox" name="payment_option" value="1"> Trả bằng thẻ ATM</label>
+                    <label><input type="checkbox" name="payment_option" value="1"> Thanh toán thẻ ATM</label>
                 </span>
                 <span>
                     <label><input type="checkbox" name="payment_option" value="2"> Nhận tiền sau khi giao hàng</label>
                 </span>
-                <span>
+                {{-- <span>
                     <label><input type="checkbox" name="payment_option" value="3"> Thanh toán Momo</label>
-                </span>
+                </span> --}}
                 <input type="submit" name="send_order_place" value="Đặt hàng" class="btn btn-primary btn-sm" style="margin-top: 0;">
             </div>
         </form>
+
+        <div style="display: flex; gap: 10px;">
+            <form action="{{ URL::to('/vnpay-payment') }}" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="total_vnpay" value="{{ Cart::total() }}">
+                <button type="submit" class="btn btn-default" name="redirect" href="">Thanh toán VNPay</button>
+            </form>
+            <form action="{{ URL::to('/momo-payment') }}" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="total_momo" value="{{ Cart::total() }}">
+                <button type="submit" class="btn btn-default" name="payUrl" href="">Thanh toán Momo</button>
+            </form>
+        </div>
+        
         
     </div>
 </section> <!--/#cart_items-->

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Login;
 use App\Models\Social;
 use Laravel\Socialite\Facades\Socialite;
+use App\Rules\Captcha;
+use Validator;
 use DB;
 use Session;
 use App\Http\Requests;
@@ -138,12 +140,23 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
     {
-        $data = $request->all();
+        // $data = $request->all();
+        // dd($request->all());
+        $data = $request->validate([
+            'admin_email' => 'required',
+            'admin_password' => 'required',
+            'g-recaptcha-response' => ['required', new Captcha()],
+        ]);
+
+
         $admin_email = $data['admin_email'];
         $admin_password = md5($data['admin_password']);
-        $login = Login::where('admin_email', $admin_email)->where('admin_password', $admin_password)->first();
-        $login_count = $login->count();
-        if($login_count)
+        $login = Login::where('admin_email', $admin_email)
+                ->where('admin_password', $admin_password)
+                ->first();
+
+        // $login_count = $login->count();
+        if($login)
         {
             Session::put('admin_name', $login->admin_name);
             Session::put('admin_id', $login->admin_id);
@@ -154,21 +167,6 @@ class AdminController extends Controller
             Session::put('message', 'Mật khẩu hoặc tài khoản không hợp lệ. Vui lòng nhập lại!');
             return Redirect::to('/admin');
         }
-
-        // $admin_email = $request->admin_email;
-        // $admin_password = md5($request->admin_password);
-        // $result = DB::table('tbl_admin')->where('admin_email', $admin_email)->where('admin_password', $admin_password)->first();
-        // if($result)
-        // {
-        //     Session::put('admin_name', $result->admin_name);
-        //     Session::put('admin_id', $result->admin_id);
-        //     return Redirect::to('/dashboard');
-        // }
-        // else
-        // {
-        //     Session::put('message', 'Mật khẩu hoặc tài khoản không hợp lệ. Vui lòng nhập lại!');
-        //     return Redirect::to('/admin');
-        // }
     }
 
     public function logout()

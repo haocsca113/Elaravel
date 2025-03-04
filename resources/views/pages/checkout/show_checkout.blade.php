@@ -35,21 +35,23 @@
                 </div>		
             </div>
         </div>
-        <div class="review-payment">
+
+        {{-- <div class="review-payment">
             <h2>Xem lại giỏ hàng</h2>
         </div>
 
         <div class="payment-options">
-                <span>
-                    <label><input type="checkbox"> Direct Bank Transfer</label>
-                </span>
-                <span>
-                    <label><input type="checkbox"> Check Payment</label>
-                </span>
-                <span>
-                    <label><input type="checkbox"> Paypal</label>
-                </span>
-            </div>
+            <span>
+                <label><input type="checkbox"> Direct Bank Transfer</label>
+            </span>
+            <span>
+                <label><input type="checkbox"> Check Payment</label>
+            </span>
+            <span>
+                <label><input type="checkbox"> Paypal</label>
+            </span>
+        </div> --}}
+
     </div>
 </section> <!--/#cart_items-->
 

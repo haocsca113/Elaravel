@@ -26,16 +26,16 @@ class CartController extends Controller
         $data['weight'] = '123';
         $data['options']['image'] = $product_info->product_image;
         Cart::add($data);   
-        Cart::setGlobalTax(10); 
+        Cart::setGlobalTax(5); 
         return Redirect::to('/show-cart');
     }
 
     public function show_cart(Request $request)
     {
         // SEO
-        $meta_desc = '';
-        $meta_keywords = '';
-        $meta_title = '';
+        $meta_desc = 'Hiển thị giỏ hàng';
+        $meta_keywords = 'Hiển thị giỏ hàng';
+        $meta_title = 'Hiển thị giỏ hàng';
         $url_canonical = $request->url();
 
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
