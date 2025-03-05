@@ -102,5 +102,9 @@ Route::get('/google/callback', [AdminController::class, 'callback_google']);
 Route::post('/vnpay-payment', [CheckoutController::class, 'vnpay_payment']);
 Route::post('/momo-payment', [CheckoutController::class, 'momo_payment']);
 
+// Trang thanh toan vnpay & momo
+Route::get('/online-payment', [CheckoutController::class, 'online_payment']);
+Route::get('/online-payment-momo', [CheckoutController::class, 'online_payment_momo']);
+
 
 

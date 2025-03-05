@@ -130,6 +130,8 @@ class CheckoutController extends Controller
         $data = $request->all();
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
+        Session::put('payUrl', $request->payUrl); 
+
         $partnerCode = 'MOMOBKUN20180529';
         $accessKey = 'klm05TvNBzhg7h7j';
         $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
@@ -137,8 +139,10 @@ class CheckoutController extends Controller
         $amount = floatval(str_replace(',', '', $data['total_momo']));
         // $amount = "10000";
         $orderId = time() . "";
-        $redirectUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/payment";
-        $ipnUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/payment";
+        // $redirectUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/payment";
+        // $ipnUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/payment";
+        $redirectUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/online-payment-momo";
+        $ipnUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/online-payment-momo";
         $extraData = "";
 
         $requestId = time() . "";
@@ -166,16 +170,21 @@ class CheckoutController extends Controller
         // dd($result);
         $jsonResult = json_decode($result, true);  // decode json
 
-        //Just a example, please check more in there
         return redirect()->to($jsonResult['payUrl']);
+        // return redirect()->to($jsonResult['payment_option']);
     }
 
     public function vnpay_payment(Request $request)
     {
         $data = $request->all();
         $code_cart = rand(00, 9999);
+
+        // Lưu payment_option vào session để sử dụng sau khi quay lại từ VNPay
+        // Session::put('payment_option', $request->payment_option);
+
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://localhost:8080/laravel/webbanhang_tutorial/public/payment";
+        // $vnp_Returnurl = "http://localhost:8080/laravel/webbanhang_tutorial/public/payment";
+        $vnp_Returnurl = "http://localhost:8080/laravel/webbanhang_tutorial/public/online-payment";
         $vnp_TmnCode = "FY58L6R9";//Mã website tại VNPAY 
         $vnp_HashSecret = "L52E481P39WYAFKDAZUZPHHK0MIPQ4M6"; //Chuỗi bí mật
         
@@ -233,21 +242,149 @@ class CheckoutController extends Controller
         $returnData = array('code' => '00'
             , 'message' => 'success'
             , 'data' => $vnp_Url);
-            if (isset($_POST['redirect'])) {
-                header('Location: ' . $vnp_Url);
-                die();
-            } else {
+            // if (isset($_POST['redirect'])) {   
+            //     header('Location: ' . $vnp_Url);
+            //     die();
+            // } 
+            if ($request->has('payment_option')) {    
+                Session::put('payment_option', $request->payment_option); 
+                Session::save(); 
+                return redirect()->away($vnp_Url); 
+            }
+            else {
                 echo json_encode($returnData);
             }
-            // vui lòng tham khảo thêm tại code demo
+            // vui lòng tham khảo thêm tại code demo 
+    }
+
+    public function online_payment(Request $request)
+    {
+        // SEO
+        $meta_desc = 'Xác nhận đặt hàng VNPay';
+        $meta_keywords = 'Xác nhận đặt hàng VNPay';
+        $meta_title = 'Xác nhận đặt hàng VNPay';
+        $url_canonical = $request->url();
+
+        // Lấy payment_option từ Session
+        $payment_option = Session::get('payment_option');
+
+        // insert payment method
+        $data = array();
+        $data['payment_method'] = $payment_option;
+        $data['payment_status'] = 'Đang chờ xử lý';
+        $payment_id = DB::table('tbl_payment')->insertGetId($data);
+
+        // insert order
+        $order_data = array();
+        $order_data['customer_id'] = Session::get('customer_id');
+        $order_data['shipping_id'] = Session::get('shipping_id');
+        $order_data['payment_id'] = $payment_id;
+        $order_data['order_total'] = (Cart::total(0, ',', '.')).' '.'VNĐ';
+        $order_data['order_status'] = 'Đang chờ xử lý';
+        $order_id = DB::table('tbl_order')->insertGetId($order_data);
+
+        // insert order_details
+        $content = Cart::content();
+        foreach($content as $v_content)
+        {
+            $order_details_data = array();
+            $order_details_data['order_id'] = $order_id;
+            $order_details_data['product_id'] = $v_content->id;
+            $order_details_data['product_name'] = $v_content->name;
+            $order_details_data['product_price'] = $v_content->price;
+            $order_details_data['product_sales_quantity'] = $v_content->qty;
+            DB::table('tbl_order_details')->insert($order_details_data);
+        }
+
+        if($payment_option == 3)
+        {
+            $vnpay_data = array();
+            $vnpay_data['vnp_amount'] = $request->query('vnp_Amount');
+            $vnpay_data['vnp_bankcode'] = $request->query('vnp_BankCode');
+            $vnpay_data['vnp_banktranno'] = $request->query('vnp_BankTranNo');
+            $vnpay_data['vnp_cardtype'] = $request->query('vnp_CardType');
+            $vnpay_data['vnp_orderinfo'] = $request->query('vnp_OrderInfo');
+            $vnpay_data['vnp_paydate'] = $request->query('vnp_PayDate');
+            $vnpay_data['vnp_tmncode'] = $request->query('vnp_TmnCode');
+            $vnpay_data['vnp_transactionno'] = $request->query('vnp_TransactionNo');
+            $vnpay_data['code_cart'] = $request->query('vnp_TxnRef');
+            DB::table('tbl_vnpay')->insert($vnpay_data);
+
+            $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+            $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
+            // Cart::destroy();
+
+            return view('pages.checkout.ttvnpay')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
+        } 
+    }
+
+    public function online_payment_momo(Request $request)
+    {
+        // SEO
+        $meta_desc = 'Xác nhận đặt hàng Momo';
+        $meta_keywords = 'Xác nhận đặt hàng Momo';
+        $meta_title = 'Xác nhận đặt hàng Momo';
+        $url_canonical = $request->url();
+
+        // Lấy payment_option từ Session
+        $payUrl = Session::get('payUrl');
+
+        // insert payment method
+        $data = array();
+        $data['payment_method'] = $payUrl;
+        $data['payment_status'] = 'Đang chờ xử lý';
+        $payment_id = DB::table('tbl_payment')->insertGetId($data);
+
+        // insert order
+        $order_data = array();
+        $order_data['customer_id'] = Session::get('customer_id');
+        $order_data['shipping_id'] = Session::get('shipping_id');
+        $order_data['payment_id'] = $payment_id;
+        $order_data['order_total'] = (Cart::total(0, ',', '.')).' '.'VNĐ';
+        $order_data['order_status'] = 'Đang chờ xử lý';
+        $order_id = DB::table('tbl_order')->insertGetId($order_data);
+
+        // insert order_details
+        $content = Cart::content();
+        foreach($content as $v_content)
+        {
+            $order_details_data = array();
+            $order_details_data['order_id'] = $order_id;
+            $order_details_data['product_id'] = $v_content->id;
+            $order_details_data['product_name'] = $v_content->name;
+            $order_details_data['product_price'] = $v_content->price;
+            $order_details_data['product_sales_quantity'] = $v_content->qty;
+            DB::table('tbl_order_details')->insert($order_details_data);
+        }
+
+        if($payUrl == 4)
+        {
+            $momo_data = array();
+            $momo_data['partner_code'] = $request->query('partnerCode');
+            $momo_data['order_id'] = $request->query('orderId');
+            $momo_data['amount'] = $request->query('amount');
+            $momo_data['order_info'] = $request->query('orderInfo');
+            $momo_data['order_type'] = $request->query('orderType');
+            $momo_data['trans_id'] = $request->query('transId');
+            $momo_data['pay_type'] = $request->query('payType');
+            DB::table('tbl_momo')->insert($momo_data);
+
+            $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+            $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
+            // Cart::destroy();
+
+            return view('pages.checkout.ttmomo')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
+        } 
     }
 
     public function order_place(Request $request)
     {
         // SEO
-        $meta_desc = '';
-        $meta_keywords = '';
-        $meta_title = '';
+        $meta_desc = 'Xác nhận đặt hàng';
+        $meta_keywords = 'Xác nhận đặt hàng';
+        $meta_title = 'Xác nhận đặt hàng';
         $url_canonical = $request->url();
 
         // insert payment method
@@ -256,7 +393,7 @@ class CheckoutController extends Controller
         $data['payment_status'] = 'Đang chờ xử lý';
         $payment_id = DB::table('tbl_payment')->insertGetId($data);
 
-        // insert payment method
+        // insert order
         $order_data = array();
         $order_data['customer_id'] = Session::get('customer_id');
         $order_data['shipping_id'] = Session::get('shipping_id');
@@ -286,15 +423,15 @@ class CheckoutController extends Controller
         {
             $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
             $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
             Cart::destroy();
+            
             return view('pages.checkout.handcash')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
         }
         else
         {
             echo 'Momo';
         }
-        
-        // return Redirect::to('/payment');
     }
 
     public function AuthLogin()

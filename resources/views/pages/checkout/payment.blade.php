@@ -93,12 +93,14 @@
             <form action="{{ URL::to('/vnpay-payment') }}" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="total_vnpay" value="{{ Cart::total() }}">
-                <button type="submit" class="btn btn-default" name="redirect" href="">Thanh toán VNPay</button>
+                {{-- <button type="submit" class="btn btn-default" name="redirect" href="">Thanh toán VNPay</button> --}}
+                <button type="submit" class="btn btn-default" name="payment_option" value="3" href="">Thanh toán VNPay</button>
             </form>
             <form action="{{ URL::to('/momo-payment') }}" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="total_momo" value="{{ Cart::total() }}">
-                <button type="submit" class="btn btn-default" name="payUrl" href="">Thanh toán Momo</button>
+                <button type="submit" class="btn btn-default" name="payUrl" value="4" href="">Thanh toán Momo</button>
+                {{-- <button type="submit" class="btn btn-default" name="payment_option" value="4" href="">Thanh toán Momo</button> --}}
             </form>
         </div>
         
