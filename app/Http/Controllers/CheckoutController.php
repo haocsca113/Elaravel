@@ -139,10 +139,11 @@ class CheckoutController extends Controller
         $amount = floatval(str_replace(',', '', $data['total_momo']));
         // $amount = "10000";
         $orderId = time() . "";
-        // $redirectUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/payment";
-        // $ipnUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/payment";
         $redirectUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/online-payment-momo";
         $ipnUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/online-payment-momo";
+
+        // $redirectUrl = "https://pogshop.online/online-payment-momo";
+        // $ipnUrl = "https://pogshop.online/online-payment-momo";
         $extraData = "";
 
         $requestId = time() . "";
@@ -171,7 +172,6 @@ class CheckoutController extends Controller
         $jsonResult = json_decode($result, true);  // decode json
 
         return redirect()->to($jsonResult['payUrl']);
-        // return redirect()->to($jsonResult['payment_option']);
     }
 
     public function vnpay_payment(Request $request)
@@ -183,8 +183,10 @@ class CheckoutController extends Controller
         // Session::put('payment_option', $request->payment_option);
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        // $vnp_Returnurl = "http://localhost:8080/laravel/webbanhang_tutorial/public/payment";
+
         $vnp_Returnurl = "http://localhost:8080/laravel/webbanhang_tutorial/public/online-payment";
+        // $vnp_Returnurl = "https://pogshop.online/online-payment";
+        
         $vnp_TmnCode = "FY58L6R9";//Mã website tại VNPAY 
         $vnp_HashSecret = "L52E481P39WYAFKDAZUZPHHK0MIPQ4M6"; //Chuỗi bí mật
         

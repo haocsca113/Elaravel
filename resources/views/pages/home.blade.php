@@ -4,15 +4,25 @@
 <div class="features_items"><!--features_items-->
     <h2 class="title text-center">Sản phẩm mới nhất</h2>
     @foreach($all_product as $key => $product)
-    <a href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id) }}">
         <div class="col-sm-4">
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                        <img src="{{ URL::to('upload/product/'.$product->product_image) }}" alt="" />
-                        <h2>{{ number_format($product->product_price).' '.'VNĐ' }}</h2>
-                        <p>{{ $product->product_name }}</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <form action="">
+                            {{ csrf_field() }}
+                            <input type="hidden" class="cart_product_id_{{ $product->product_id }}" value="{{ $product->product_id }}">
+                            <input type="hidden" class="cart_product_name_{{ $product->product_id }}" value="{{ $product->product_name }}">
+                            <input type="hidden" class="cart_product_image_{{ $product->product_id }}" value="{{ $product->product_image }}">
+                            <input type="hidden" class="cart_product_price_{{ $product->product_id }}" value="{{ $product->product_price }}">
+                            <input type="hidden" class="cart_product_qty_{{ $product->product_id }}" value="1">
+
+                            <a href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id) }}">
+                                <img src="{{ URL::to('upload/product/'.$product->product_image) }}" alt="" />
+                                <h2>{{ number_format($product->product_price, 0, ',', '.').' VNĐ' }}</h2>
+                                <p>{{ $product->product_name }}</p>
+                            </a>
+                            <button type="button" class="btn btn-default add-to-cart" data-id="{{ $product->product_id }}" name="add-to-cart">Thêm giỏ hàng</button>
+                        </form>
                     </div>
                 </div>
                 <div class="choose">
@@ -23,7 +33,6 @@
                 </div>
             </div>
         </div>
-    </a>
     @endforeach
 </div><!--features_items-->
 

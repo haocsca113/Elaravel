@@ -1,5 +1,6 @@
 @extends('welcome')
 @section('content')
+
 @foreach($detail_product as $key => $value)
 <div class="product-details"><!--product-details-->
     <div class="col-sm-5">
