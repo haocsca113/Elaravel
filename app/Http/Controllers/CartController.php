@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Coupon;
 use DB;
 use Session;
 use Cart;
@@ -13,6 +14,48 @@ session_start();
 class CartController extends Controller
 {
     // Cart Ajax
+    public function check_coupon(Request $request)
+    {
+        $data = $request->all();
+        $coupon = Coupon::where('coupon_code', $data['coupon'])->first();
+        if($coupon == true)
+        {
+            $count_coupon = $coupon->count();
+            if($count_coupon > 0)
+            {
+                $coupon_session = Session::get('coupon'); // Tao session coupon
+                if($coupon_session == true) // Neu da nhap giam gia
+                {   
+                    $is_available = 0;
+                    if($is_available == 0)
+                    {
+                        $cou[] = array(
+                            'coupon_code' => $coupon->coupon_code,
+                            'coupon_condition' => $coupon->coupon_condition,
+                            'coupon_number' => $coupon->coupon_number,
+                        );
+                        Session::put('coupon', $cou); // Dat session coupon bang $cou
+                    }
+                }
+                else // Nguoc lai neu chua nhap giam gia
+                {
+                    $cou[] = array(
+                        'coupon_code' => $coupon->coupon_code,
+                        'coupon_condition' => $coupon->coupon_condition,
+                        'coupon_number' => $coupon->coupon_number,
+                    );
+                    Session::put('coupon', $cou); 
+                }
+                Session::save();
+                return redirect()->back()->with('message', 'Thêm mã giảm giá thành công');
+            }
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Mã giảm giá không đúng');
+        }
+    }
+
     public function gio_hang(Request $request)
     {
         // SEO
@@ -159,6 +202,7 @@ class CartController extends Controller
         if($cart == true)
         {
             Session::forget('cart');
+            Session::forget('coupon');
             return Redirect::to('/gio-hang')->with('message', 'Xóa hết sản phẩm giỏ hàng thành công');
         }
     }
