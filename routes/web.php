@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\DeliveryController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -87,6 +88,9 @@ Route::get('/delete-coupon/{coupon_id}', [CouponController::class, 'delete_coupo
 Route::get('/delete-cart-coupon', [CouponController::class, 'delete_cart_coupon']);
 
 // Checkout
+Route::get('/del-fee', [CheckoutController::class, 'del_fee']);
+Route::post('/calculate-fee', [CheckoutController::class, 'calculate_fee']);
+Route::post('/select-delivery-home', [CheckoutController::class, 'select_delivery_home']);
 Route::get('/login-checkout', [CheckoutController::class, 'login_checkout']);
 Route::get('/logout-checkout', [CheckoutController::class, 'logout_checkout']);
 Route::post('/add-customer', [CheckoutController::class, 'add_customer']);
@@ -119,6 +123,15 @@ Route::post('/momo-payment', [CheckoutController::class, 'momo_payment']);
 // Trang thanh toan vnpay & momo
 Route::get('/online-payment', [CheckoutController::class, 'online_payment']);
 Route::get('/online-payment-momo', [CheckoutController::class, 'online_payment_momo']);
+
+// Delivery
+Route::get('/delivery', [DeliveryController::class, 'delivery']);
+Route::post('/select-delivery', [DeliveryController::class, 'select_delivery']);
+Route::post('/insert-delivery', [DeliveryController::class, 'insert_delivery']);
+Route::post('/select-feeship', [DeliveryController::class, 'select_feeship']); 
+Route::post('/update-delivery', [DeliveryController::class, 'update_delivery']);
+
+
 
 
 

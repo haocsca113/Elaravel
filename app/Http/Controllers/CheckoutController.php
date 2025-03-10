@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\City;
+use App\Models\Province;
+use App\Models\Ward;
+use App\Models\Feeship;
 use DB;
 use Session;
 use Cart;
@@ -12,6 +16,76 @@ session_start();
 
 class CheckoutController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('admin_id');
+        if($admin_id)
+        {
+            return Redirect::to('dashboard');
+        }
+        else
+        {
+            return Redirect::to('admin')->send();
+        }
+    }
+
+    public function del_fee()
+    {
+        Session::forget('fee');
+        return redirect()->back();
+    }
+
+    public function calculate_fee(Request $request)
+    {
+        $data = $request->all();
+        if($data['matp'])
+        {
+            $feeship = Feeship::where('fee_matp', $data['matp'])->where('fee_maqh', $data['maqh'])->where('fee_xaid', $data['xaid'])->get();
+            foreach($feeship as $key => $fee)
+            {
+                Session::put('fee', $fee->fee_feeship);
+                Session::save();
+            }
+        }
+    }
+
+    public function select_delivery_home(Request $request)
+    {
+        $data = $request->all();
+        if($data['action'])
+        {
+            $output = '';
+            if($data['action'] == 'city')
+            {
+                $select_province = Province::where('matp', $data['ma_id'])->orderBy('maqh', 'asc')->get();
+                if ($select_province->isEmpty()) {
+                    return response()->json(['error' => 'Không có quận huyện nào.']);
+                }
+
+                $output.='<option>-----Chọn quận huyện-----</option>';
+                foreach($select_province as $key => $province)
+                {
+                    $output.='<option value="'.$province->maqh.'">'.$province->name_quanhuyen.'</option>';
+                }
+            }
+            elseif($data['action'] == 'province')
+            {
+                $select_ward = Ward::where('maqh', $data['ma_id'])->orderBy('xaid', 'asc')->get();
+                if ($select_ward->isEmpty()) {
+                    return response()->json(['error' => 'Không có xã phường nào.']);
+                }
+
+                $output.='<option>-----Chọn xã phường-----</option>';
+                foreach($select_ward as $key => $ward)
+                {
+                    $output.='<option value="'.$ward->xaid.'">'.$ward->name_xaphuong.'</option>';
+                }
+            }
+        }
+
+        echo $output;
+    }
+
     public function login_checkout(Request $request)
     {
         // SEO
@@ -61,15 +135,17 @@ class CheckoutController extends Controller
     public function checkout(Request $request)
     {
         // SEO
-        $meta_desc = '';
-        $meta_keywords = '';
-        $meta_title = '';
+        $meta_desc = 'Đăng nhập thanh toán';
+        $meta_keywords = 'Đăng nhập thanh toán';
+        $meta_title = 'Đăng nhập thanh toán';
         $url_canonical = $request->url();
 
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
+        $city = City::orderBy('matp', 'asc')->get();
+
+        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('city', $city);
     }
 
     public function save_checkout_customer(Request $request)
@@ -436,19 +512,7 @@ class CheckoutController extends Controller
         }
     }
 
-    public function AuthLogin()
-    {
-        $admin_id = Session::get('admin_id');
-        if($admin_id)
-        {
-            return Redirect::to('dashboard');
-        }
-        else
-        {
-            return Redirect::to('admin')->send();
-        }
-    }
-
+    // Trang Admin
     public function manage_order()
     {
         $this->AuthLogin();

@@ -509,6 +509,74 @@
 		});
 	</script>
 
+	<script>
+		$(document).ready(function(){
+			$('.choose').on('change', function(event){
+				event.preventDefault();
+				var action = $(this).attr('id');
+				var ma_id = $(this).val();
+				var _token = $('input[name="_token"]').val();
+				var result = '';
+			   
+				if(action == 'city')
+				{
+					result = 'province';
+				}
+				else
+				{
+					result = 'ward';
+				}
+	
+				$.ajax({
+					url: '{{ url('/select-delivery-home') }}',
+					method: 'POST',
+					data: {
+						action: action,
+						ma_id: ma_id,
+						_token: _token,
+					},
+					success: function(data){
+						$('#' + result).html(data);
+					},
+				});
+			});
+		});
+	</script>
+
+	<script>
+		$(document).ready(function(){
+			$('.calculate_delivery').click(function(){
+				console.log('Button clicked!');
+				var matp = $('.city').val();
+				var maqh = $('.province').val();
+				var xaid = $('.ward').val();
+				var _token = $('input[name="_token"]').val();
+
+				console.log('matp:', matp, 'maqh:', maqh, 'xaid:', xaid);
+				if(matp == '' && maqh == '' && xaid == '')
+				{
+					alert('Làm ơn chọn để tính phí vận chuyển');
+				}
+				else
+				{
+					$.ajax({
+						url: '{{ url('/calculate-fee') }}',
+						method: 'POST',
+						data: {
+							matp: matp,
+							maqh: maqh,
+							xaid: xaid,
+							_token: _token,
+						},
+						success: function(data){
+							location.reload();
+						},
+					}); 
+				}
+			});
+		});
+	</script>
+
 	<div id="fb-root"></div>
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v22.0"></script>
 </body>

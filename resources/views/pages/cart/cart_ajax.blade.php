@@ -146,27 +146,29 @@
     </div>
 </section> <!--/#cart_items-->
 
-{{-- <section id="do_action">
+<section id="do_action">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <div class="total_area">
-                    <ul>
-                        <li>Tổng tiền <span>{{ number_format($total, 0, ',', '.').' VNĐ' }}</span></li>
-                        <li>Thuế <span></span></li>
-                        <li>Phí vận chuyển <span>Free</span></li>
-                        <li>Tiền sau giảm <span></span></li>
-                    </ul>
-                    
-                    <a class="btn btn-default check_out">Thanh toán</a>
-                
-                    <a class="btn btn-default check_out">Tính mã giảm giá</a>
-
-                    
+                <div class="total_area1">
+                    <?php
+                        $customer_id = Session::get('customer_id');
+                        if($customer_id !== NULL){
+                    ?>
+                        <a class="btn btn-default check_out" href="{{ URL::to('/checkout') }}">Thanh toán</a>
+                    <?php
+                        }
+                        else{
+                    ?>
+                        <a class="btn btn-default check_out" href="{{ URL::to('/login-checkout') }}">Thanh toán</a>
+                    <?php
+                        }
+                    ?>
+                        
                 </div>
             </div>
         </div>
     </div>
-</section> --}}
+</section><!--/#do_action-->
 
 @endsection
