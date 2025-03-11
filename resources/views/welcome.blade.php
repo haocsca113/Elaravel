@@ -469,6 +469,63 @@
 
 	<script>
 		$(document).ready(function(){
+			$('.send_order').click(function(){
+				swal({
+					title: "Xác nhận đơn hàng",
+					text: "Bạn có chắc chắn muốn đặt hàng không?",
+					type: "warning",
+					showCancelButton: true,
+					cancelButtonText: "Không mua",
+					confirmButtonClass: "btn-danger",
+					confirmButtonText: "Cảm ơn, mua hàng",
+					closeOnConfirm: false
+				},
+				function(isConfirm){
+					if (isConfirm) {
+						var shipping_email = $('.shipping_email').val();
+						var shipping_name = $('.shipping_name').val();
+						var shipping_address = $('.shipping_address').val();
+						var shipping_phone = $('.shipping_phone').val();
+						var shipping_note = $('.shipping_note').val();
+						var shipping_method = $('.payment_select').val();
+						var order_fee = $('.order_fee').val();
+						var order_coupon = $('.order_coupon').val();
+						var _token = $('input[name="_token"]').val();
+						
+						$.ajax({
+							url: '{{ url('/confirm-order') }}',
+							method: 'POST',
+							data: {
+								shipping_email: shipping_email,
+								shipping_name: shipping_name,
+								shipping_address: shipping_address,
+								shipping_phone: shipping_phone,
+								shipping_note: shipping_note,
+								shipping_method: shipping_method,
+								order_fee: order_fee,
+								order_coupon: order_coupon,
+								_token: _token,
+							},
+							success: function(data){
+								swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
+							},
+						});
+
+						window.setTimeout(function(){
+							location.reload();
+						}, 3000);
+					}
+					else
+					{
+						swal("Đóng", "Đơn hàng chưa được gửi, làm ơn hoàn tất đơn hàng", "error");
+					}
+				});
+			});
+		});
+	</script>
+
+	<script>
+		$(document).ready(function(){
 			$('.add-to-cart').click(function(){
 				var id = $(this).data('id');
 				var cart_product_id = $('.cart_product_id_' + id).val();

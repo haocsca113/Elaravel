@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\OrderController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -99,11 +100,15 @@ Route::post('/save-checkout-customer', [CheckoutController::class, 'save_checkou
 Route::post('/login-checkout-customer', [CheckoutController::class, 'login_checkout_customer']);
 Route::get('/payment', [CheckoutController::class, 'payment']);
 Route::post('/order-place', [CheckoutController::class, 'order_place']);
+Route::post('/confirm-order', [CheckoutController::class, 'confirm_order']);
 
 // Order
-Route::get('/manage-order', [CheckoutController::class, 'manage_order']);
-Route::get('/view-order/{orderId}', [CheckoutController::class, 'view_order']);
-Route::get('/delete-order/{orderId}', [CheckoutController::class, 'delete_order']);
+// Route::get('/manage-order', [CheckoutController::class, 'manage_order']);
+// Route::get('/view-order/{orderId}', [CheckoutController::class, 'view_order']);
+// Route::get('/delete-order/{orderId}', [CheckoutController::class, 'delete_order']);
+
+Route::get('/manage-order2', [OrderController::class, 'manage_order2']);
+Route::get('/view-order/{order_code}', [OrderController::class, 'view_order']);
 
 // Send mail
 Route::get('/send-mail', [HomeController::class, 'send_mail']);

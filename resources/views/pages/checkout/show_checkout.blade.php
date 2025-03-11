@@ -20,14 +20,39 @@
                     <div class="bill-to">
                         <p>Điền thông tin gửi hàng</p>
                         <div class="form-one">
-                            <form action="{{ URL::to('/save-checkout-customer') }}" method="post">
-                                {{ csrf_field() }}
-                                <input type="text" name="shipping_email" placeholder="Email">
-                                <input type="text" name="shipping_name" placeholder="Họ và tên">
-                                <input type="text" name="shipping_address" placeholder="Địa chỉ">
-                                <input type="text" name="shipping_phone" placeholder="Số điện thoại">
-                                <textarea name="shipping_note" placeholder="Ghi chú đơn hàng của bạn" rows="5"></textarea>
-                                <input type="submit" name="send_order" value="Xác nhận đơn hàng" class="btn btn-primary btn-sm">
+                            <form action="" method="post">
+                                @csrf
+                                <input type="text" name="shipping_email" class="shipping_email" placeholder="Email">
+                                <input type="text" name="shipping_name" class="shipping_name" placeholder="Họ và tên">
+                                <input type="text" name="shipping_address" class="shipping_address" placeholder="Địa chỉ">
+                                <input type="text" name="shipping_phone" class="shipping_phone" placeholder="Số điện thoại">
+                                <textarea name="shipping_note" class="shipping_note" placeholder="Ghi chú đơn hàng của bạn" rows="5"></textarea>
+
+                                @if(Session::get('fee'))
+                                    <input type="hidden" name="order_fee" class="order_fee" value="{{ Session::get('fee') }}">
+                                @else
+                                    <input type="hidden" name="order_fee" class="order_fee" value="20000">
+                                @endif
+
+                                @if(Session::get('coupon'))
+                                    @foreach(Session::get('coupon') as $key => $cou)
+                                        <input type="hidden" name="order_coupon" class="order_coupon" value="{{ $cou['coupon_code'] }}">
+                                    @endforeach
+                                @else
+                                        <input type="hidden" name="order_coupon" class="order_coupon" value="no">
+                                @endif
+                                
+                                <div class="">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Chọn hình thức thanh toán</label>
+                                        <select name="payment_select" class="form-control input-sm m-bot15 payment_select">
+                                            <option value="0">Chuyển khoản</option>
+                                            <option value="1">Tiền mặt</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <input type="button" name="send_order" value="Xác nhận đơn hàng" class="btn btn-primary btn-sm send_order">
                             </form>
 
                             <form>

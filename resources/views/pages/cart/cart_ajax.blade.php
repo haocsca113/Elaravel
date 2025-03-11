@@ -83,6 +83,14 @@
                                         <a class="btn btn-default check_out" href="{{ URL::to('/delete-cart-coupon') }}">Xóa mã khuyến mãi</a>
                                     @endif
                                 </td>
+
+                                <td>
+                                    @if(Session::get('customer_id'))
+                                        <a class="btn btn-default check_out" href="{{ URL::to('/checkout') }}">Đặt hàng</a>
+                                    @else
+                                        <a class="btn btn-default check_out" href="{{ URL::to('/login-checkout') }}">Đặt hàng</a>
+                                    @endif
+                                </td>
                                 
                                 <td>
                                     <ul>
@@ -146,29 +154,17 @@
     </div>
 </section> <!--/#cart_items-->
 
-<section id="do_action">
+{{-- <section id="do_action">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
                 <div class="total_area1">
-                    <?php
-                        $customer_id = Session::get('customer_id');
-                        if($customer_id !== NULL){
-                    ?>
-                        <a class="btn btn-default check_out" href="{{ URL::to('/checkout') }}">Thanh toán</a>
-                    <?php
-                        }
-                        else{
-                    ?>
-                        <a class="btn btn-default check_out" href="{{ URL::to('/login-checkout') }}">Thanh toán</a>
-                    <?php
-                        }
-                    ?>
+                    
                         
                 </div>
             </div>
         </div>
     </div>
-</section><!--/#do_action-->
+</section><!--/#do_action--> --}}
 
 @endsection
