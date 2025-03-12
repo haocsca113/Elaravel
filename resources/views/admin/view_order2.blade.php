@@ -108,6 +108,7 @@
                         <th>Thứ tự</th>
                         <th>Tên sản phẩm</th>
                         <th>Mã giảm giá</th>
+                        <th>Phí ship</th>
                         <th>Số lượng</th>
                         <th>Giá sản phẩm</th>
                         <th>Tổng tiền</th>
@@ -134,6 +135,7 @@
                                 Không mã
                             @endif
                         </td>
+                        <td>{{ number_format($details->product_feeship). ' VNĐ' }}</td>
                         <td>{{ $details->product_sales_quantity }}</td>
                         <td>{{ number_format($details->product_price, 0, ',', '.'). ' VNĐ' }}</td>
                         <td>{{ number_format($subtotal, 0, ',', '.'). ' VNĐ' }}</td>
@@ -145,27 +147,31 @@
                             @if($coupon_condition == 1)
                                 Tổng giảm: {{ $coupon_number }}%
                                 <br>
-                                Thanh toán:
                                 @php
                                     $total_after_coupon = ($total * $coupon_number) / 100;
                                     $total-=$total_after_coupon;
                                 @endphp
-                                {{ number_format($total, 0, ',', '.'). ' VNĐ' }}
                             @elseif($coupon_condition == 2)
                                 Tổng giảm: {{ number_format($coupon_number, 0, ',', '.'). ' VNĐ' }}
                                 <br>
-                                Thanh toán:
                                 @php
                                     $total-=$coupon_number;
                                 @endphp
-                                {{ number_format($total, 0, ',', '.'). ' VNĐ' }}
                             @elseif($coupon_condition == 0)
-                                Thanh toán: {{ number_format($total, 0, ',', '.'). ' VNĐ' }}
+                                @php
+                                    $total = $total;
+                                @endphp
                             @endif
+
+                            Phí ship: {{ number_format($details->product_feeship). ' VNĐ' }}
+                            <br>
+                            Thanh toán: {{ number_format($total + $details->product_feeship, 0, ',', '.'). ' VNĐ' }}
                         </td>
                     </tr>
                 </tbody>
             </table>
+
+            <a target="_blank" href="{{ url('/print-order/'.$details->order_code) }}">In đơn hàng</a>
         </div>
     </div>
 </div>

@@ -109,6 +109,7 @@ Route::post('/confirm-order', [CheckoutController::class, 'confirm_order']);
 
 Route::get('/manage-order2', [OrderController::class, 'manage_order2']);
 Route::get('/view-order/{order_code}', [OrderController::class, 'view_order']);
+Route::get('/print-order/{checkout_code}', [OrderController::class, 'print_order']);
 
 // Send mail
 Route::get('/send-mail', [HomeController::class, 'send_mail']);

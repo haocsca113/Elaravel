@@ -9,7 +9,7 @@
                 <div class="single-products">
                     <div class="productinfo text-center">
                         <form action="">
-                            {{ csrf_field() }}
+                            @csrf
                             <input type="hidden" class="cart_product_id_{{ $product->product_id }}" value="{{ $product->product_id }}">
                             <input type="hidden" class="cart_product_name_{{ $product->product_id }}" value="{{ $product->product_name }}">
                             <input type="hidden" class="cart_product_image_{{ $product->product_id }}" value="{{ $product->product_image }}">

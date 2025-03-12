@@ -150,9 +150,9 @@ class ProductController extends Controller
         ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
         ->where('tbl_product.product_id', $product_id)->get();
 
-        $meta_desc = '';
-        $meta_keywords = '';
-        $meta_title = '';
+        $meta_desc = 'Chi tiết sản phẩm';
+        $meta_keywords = 'Chi tiết sản phẩm';
+        $meta_title = 'Chi tiết sản phẩm';
         $url_canonical = $request->url();
         foreach($detail_product as $key => $value)
         {

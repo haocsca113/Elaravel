@@ -44,11 +44,6 @@ class BrandProduct extends Controller
     public function save_brand_product(Request $request)
     {
         $this->AuthLogin();
-        // $data = array();
-        // $data['brand_name'] = $request->brand_product_name;
-        // $data['brand_desc'] = $request->brand_product_desc;
-        // $data['brand_status'] = $request->brand_product_status;
-        // DB::table('tbl_brand_product')->insert($data);
 
         $data = $request->all();
         $brand = new Brand();
@@ -116,9 +111,9 @@ class BrandProduct extends Controller
     public function show_brand_home(Request $request, $brand_id)
     {
         // SEO
-        $meta_desc = '';
-        $meta_keywords = '';
-        $meta_title = '';
+        $meta_desc = 'Thương hiệu sản phẩm';
+        $meta_keywords = 'Thương hiệu sản phẩm';
+        $meta_title = 'Thương hiệu sản phẩm';
         $url_canonical = $request->url();
 
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();

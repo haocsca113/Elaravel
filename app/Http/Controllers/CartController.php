@@ -74,44 +74,31 @@ class CartController extends Controller
     {
         $data = $request->all();
         $session_id = substr(md5(microtime()), rand(0, 26), 5);
-        $cart = Session::get('cart');
-        if($cart == true) // Neu co ton tai session gio hang
-        {
-            $is_available = 0;
-            foreach($cart as $key => $val)
-            {
-                if($val['product_id'] == $data['cart_product_id'])
-                {
-                    $is_available++;
-                }
-            }
-            if($is_available == 0)
-            {
-                $cart[] = array(
-                    'session_id' => $session_id,
-                    'product_id' => $data['cart_product_id'],
-                    'product_name' => $data['cart_product_name'],
-                    'product_image' => $data['cart_product_image'],
-                    'product_price' => $data['cart_product_price'],
-                    'product_qty' => $data['cart_product_qty'],
-                );
-                Session::put('cart', $cart);
+
+        $cart = Session::get('cart') ?? [];
+
+        $is_available = false;
+        foreach ($cart as $key => $val) {
+            if ($val['product_id'] == $data['cart_product_id']) {
+                $is_available = true;
+                break;
             }
         }
-        else
-        {
-            $cart[] = array(
+
+        if (!$is_available) {
+            $cart[] = [
                 'session_id' => $session_id,
                 'product_id' => $data['cart_product_id'],
                 'product_name' => $data['cart_product_name'],
                 'product_image' => $data['cart_product_image'],
                 'product_price' => $data['cart_product_price'],
                 'product_qty' => $data['cart_product_qty'],
-            );
+            ];
+            Session::put('cart', $cart);
+            Session::save();
         }
 
-        Session::put('cart', $cart);
-        Session::save();
+        return response()->json(['success' => 'Thêm vào giỏ hàng thành công!']);
     }
 
     public function save_cart(Request $request)
