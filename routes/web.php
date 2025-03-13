@@ -11,6 +11,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BannerController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -136,6 +137,15 @@ Route::post('/select-delivery', [DeliveryController::class, 'select_delivery']);
 Route::post('/insert-delivery', [DeliveryController::class, 'insert_delivery']);
 Route::post('/select-feeship', [DeliveryController::class, 'select_feeship']); 
 Route::post('/update-delivery', [DeliveryController::class, 'update_delivery']);
+
+// Banner
+Route::get('/manage-banner', [BannerController::class, 'manage_banner']);
+Route::get('/add-banner', [BannerController::class, 'add_banner']);
+Route::post('/save-banner', [BannerController::class, 'save_banner']);
+Route::get('/unactive-banner/{banner_id}', [BannerController::class, 'unactive_banner']);
+Route::get('/active-banner/{banner_id}', [BannerController::class, 'active_banner']);
+
+
 
 
 

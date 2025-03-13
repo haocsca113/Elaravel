@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Brand;
+use App\Models\Banner;
 use DB;
 use Session;
 use App\Http\Requests;
@@ -110,6 +111,9 @@ class BrandProduct extends Controller
 
     public function show_brand_home(Request $request, $brand_id)
     {
+        // Banner
+        $banner = Banner::orderBy('banner_id', 'desc')->take(4)->get();
+
         // SEO
         $meta_desc = 'Thương hiệu sản phẩm';
         $meta_keywords = 'Thương hiệu sản phẩm';
@@ -123,6 +127,6 @@ class BrandProduct extends Controller
 
         $brand_name = DB::table('tbl_brand_product')->where('tbl_brand_product.brand_id', $brand_id)->limit(1)->get();
 
-        return view('pages.brand.show_brand')->with('category', $cate_product)->with('brand', $brand_product)->with('brand_by_id', $brand_by_id)->with('brand_name', $brand_name)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
+        return view('pages.brand.show_brand')->with('category', $cate_product)->with('brand', $brand_product)->with('brand_by_id', $brand_by_id)->with('brand_name', $brand_name)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner);
     }
 }
