@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Banner;
+use App\Models\Category;
+use App\Imports\ExcelImport;
+use App\Exports\ExcelExport;
+use Excel;
 use DB;
 use Session;
 use App\Http\Requests;
@@ -95,6 +99,18 @@ class CategoryProduct extends Controller
         DB::table('tbl_category_product')->where('category_id', $category_product_id)->delete();
         Session::put('message', 'Xóa danh mục sản phẩm thành công');
         return Redirect::to('all-category-product');
+    }
+
+    public function import_csv(Request $request)
+    {
+        $path = $request->file('file')->getRealPath();
+        Excel::import(new ExcelImport, $path);
+        return back();
+    }
+
+    public function export_csv()
+    {
+        return Excel::download(new ExcelExport, 'category_product.xlsx');
     }
     // End Function Admin Page
 

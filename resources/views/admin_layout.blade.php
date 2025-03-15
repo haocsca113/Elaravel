@@ -201,6 +201,90 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 
 <script>
+    $('.update_quantity_order').click(function(){
+        var order_product_id = $(this).data('product_id');
+        var order_qty = $('.order_qty_' + order_product_id).val();
+        var order_code = $('.order_code').val();
+        var _token = $('input[name="_token"]').val();
+
+        $.ajax({
+            url: '{{ url('/update-qty') }}',
+            method: 'POST',
+            data: {
+                order_product_id: order_product_id,
+                order_qty: order_qty,
+                order_code: order_code,
+                _token: _token,
+            },
+            success: function(data){
+                alert('Cập nhật số lượng thành công');
+                location.reload();
+            },
+        });
+    });
+</script>
+
+<script>
+    $('.order_details').on('change', function(){
+        var order_status = $(this).val();
+        var order_id = $(this).children(":selected").attr("id");
+        var _token = $('input[name="_token"]').val();
+
+        // Lay ra so luong
+        var quantity = [];
+        $("input[name='product_sales_quantity']").each(function(){
+            quantity.push($(this).val());
+        }) ;
+
+        // Lay ra product id
+        var order_product_id = [];
+        $("input[name='order_product_id']").each(function(){
+            order_product_id.push($(this).val());
+        }) ;
+
+        temp = 0;
+        for(i = 0; i < order_product_id.length; i++)
+        {
+            // So luong khach dat
+            var order_qty = $('.order_qty_' + order_product_id[i]).val();
+
+            // So luong ton kho
+            var order_qty_storage = $('.order_qty_storage_' + order_product_id[i]).val();
+            
+            if(parseInt(order_qty) > parseInt(order_qty_storage))
+            {
+                temp++;
+                if(temp == 1)
+                { 
+                    alert('Số lượng bán trong kho không đủ');
+                }
+                $('.color_qty_' + order_product_id[i]).css('background', '#000');
+            }
+        }
+
+        if(temp == 0) // so luong dat hang < so luong kho => thi moi thuc hien ajax
+        {
+            $.ajax({
+                url: '{{ url('/update-order-qty') }}',
+                method: 'POST',
+                data: {
+                    order_status: order_status,
+                    order_id: order_id,
+                    quantity: quantity,
+                    order_product_id: order_product_id,
+                    _token: _token,
+                },
+                success: function(data){
+                    alert('Thay đổi tình trạng đơn hàng thành công');
+                    location.reload();
+                },
+            });
+        }
+        
+    });
+</script>
+
+<script>
     $(document).ready(function(){
         fetch_delivery();
 

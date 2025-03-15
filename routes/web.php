@@ -42,6 +42,9 @@ Route::get('/active-category-product/{category_product_id}', [CategoryProduct::c
 Route::post('/save-category-product', [CategoryProduct::class, 'save_category_product']);
 Route::post('/update-category-product/{category_product_id}', [CategoryProduct::class, 'update_category_product']);
 
+Route::post('/import-csv', [CategoryProduct::class, 'import_csv']);
+Route::post('/export-csv', [CategoryProduct::class, 'export_csv']);
+
 
 // Brand Product
 Route::get('/add-brand-product', [BrandProduct::class, 'add_brand_product']);
@@ -111,6 +114,8 @@ Route::post('/confirm-order', [CheckoutController::class, 'confirm_order']);
 Route::get('/manage-order2', [OrderController::class, 'manage_order2']);
 Route::get('/view-order/{order_code}', [OrderController::class, 'view_order']);
 Route::get('/print-order/{checkout_code}', [OrderController::class, 'print_order']);
+Route::post('/update-order-qty', [OrderController::class, 'update_order_qty']);
+Route::post('/update-qty', [OrderController::class, 'update_qty']);
 
 // Send mail
 Route::get('/send-mail', [HomeController::class, 'send_mail']);

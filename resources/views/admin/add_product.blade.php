@@ -17,11 +17,17 @@
                 ?>
                 <div class="position-center">
                     <form role="form" action="{{ URL::to('/save-product') }}" method="post" enctype="multipart/form-data" id="formProduct">
-                        {{ csrf_field() }}
+                        @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên sản phẩm</label>
                             <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên sản phẩm" required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Số lượng sản phẩm</label>
+                            <input type="text" name="product_quantity" class="form-control" id="exampleInputEmail1" placeholder="Nhập số lượng sản phẩm" required>
+                        </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Giá sản phẩm</label>
                             <input type="text" name="product_price" class="form-control" id="exampleInputEmail1" placeholder="Nhập giá sản phẩm">

@@ -10,6 +10,7 @@ use App\Models\Feeship;
 use App\Models\Shipping;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\Banner;
 use DB;
 use Session;
 use Cart;
@@ -149,6 +150,9 @@ class CheckoutController extends Controller
 
     public function login_checkout(Request $request)
     {
+        // Banner
+        $banner = Banner::orderBy('banner_id', 'desc')->take(4)->get();
+
         // SEO
         $meta_desc = '';
         $meta_keywords = '';
@@ -158,7 +162,7 @@ class CheckoutController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.login_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical);
+        return view('pages.checkout.login_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner);
     }
 
     public function add_customer(Request $request)
@@ -195,6 +199,9 @@ class CheckoutController extends Controller
 
     public function checkout(Request $request)
     {
+        // Banner
+        $banner = Banner::orderBy('banner_id', 'desc')->take(4)->get();
+
         // SEO
         $meta_desc = 'Đăng nhập thanh toán';
         $meta_keywords = 'Đăng nhập thanh toán';
@@ -206,7 +213,7 @@ class CheckoutController extends Controller
 
         $city = City::orderBy('matp', 'asc')->get();
 
-        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('city', $city);
+        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('city', $city)->with('banner', $banner);
     }
 
     public function save_checkout_customer(Request $request)
