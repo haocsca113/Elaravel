@@ -128,20 +128,33 @@
 								{{-- <li><a href="{{ URL::to('/show-cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li> --}}
 								<li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 
+								<li><a href="{{ URL::to('/order-tracking') }}"><i class="fa fa-truck"></i> Theo dõi đơn hàng</a></li>
+
 								<?php
 									$customer_id = Session::get('customer_id');
-									if($customer_id !== NULL){
+									$customer_name = Session::get('customer_name');
 								?>
-									<li><a href="{{ URL::to('/logout-checkout') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
-								<?php
-									}
-									else{
-								?>
-									<li><a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-								<?php
-									}
-								?>
-								
+
+								<li class="dropdown">
+									<?php
+										if($customer_id != NULL){
+									?>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="fa fa-user"></i> {{ $customer_name }} <b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="{{ URL::to('/my-order') }}"><i class="fa fa-list"></i> Đơn hàng của tôi</a></li>
+										<li><a href="{{ URL::to('/logout-checkout') }}"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
+									</ul>
+
+									<?php
+										}else{
+									?>
+										<li><a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+									<?php
+										}
+									?>
+								</li>	
 							</ul>
 						</div>
 					</div>
