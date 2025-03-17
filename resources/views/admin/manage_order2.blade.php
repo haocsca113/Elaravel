@@ -43,8 +43,10 @@
                     <td>
                         @if($ord->order_status == 1)
                             Đơn hàng mới
-                        @else
+                        @elseif($ord->order_status == 2)
                             Đã xử lý
+                        @elseif($ord->order_status == 3)
+                            Hủy đơn hàng
                         @endif
                     </td>
                    

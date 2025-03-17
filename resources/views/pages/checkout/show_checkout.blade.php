@@ -234,8 +234,11 @@
                                                                 echo '<span>'.number_format($total_after, 0, ',', '.'). ' VNĐ'. '</span>';
                                                             }
                                                         @endphp
+
+                                                        @php
+                                                            Session::put('total_after', $total_after);
+                                                        @endphp
                                                     </li>
-                                                   
                                                 </ul>
                                             </td>
                                         </tr>

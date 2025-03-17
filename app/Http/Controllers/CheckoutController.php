@@ -11,6 +11,8 @@ use App\Models\Shipping;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Banner;
+use App\Models\Category;
+use App\Models\Brand;
 use DB;
 use Session;
 use Cart;
@@ -31,6 +33,23 @@ class CheckoutController extends Controller
         {
             return Redirect::to('admin')->send();
         }
+    }
+
+    public function payment_info(Request $request)
+    {
+        // Banner
+        $banner = Banner::orderBy('banner_id', 'desc')->take(4)->get();
+
+        // SEO
+        $meta_desc = 'Đơn hàng của tôi';
+        $meta_keywords = 'Đơn hàng của tôi';
+        $meta_title = 'Đơn hàng của tôi';
+        $url_canonical = $request->url();
+
+        $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
+        return view('pages.payment.payment_info')->with(compact('category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
     }
 
     public function confirm_order(Request $request)
@@ -71,6 +90,9 @@ class CheckoutController extends Controller
                 $order_details->save();
             }
         }
+
+        Session::put('order_code', $checkout_code);
+        Session::put('order_fee', $data['order_fee']);
 
         Session::forget('coupon');
         Session::forget('fee');
@@ -606,13 +628,5 @@ class CheckoutController extends Controller
         ->get();
         $manager_order_by_id = view('admin.view_order')->with('order_by_id', $order_by_id)->with('order_details', $order_details);
         return view('admin_layout')->with('admin.view_order', $manager_order_by_id);
-    }
-
-    public function delete_order($orderId)
-    {
-        $this->AuthLogin();
-        DB::table('tbl_order')->where('order_id', $orderId)->delete();
-        Session::put('message', 'Xóa thành công');
-        return Redirect::to('/manage-order');
     }
 }

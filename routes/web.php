@@ -106,11 +106,14 @@ Route::get('/payment', [CheckoutController::class, 'payment']);
 Route::post('/order-place', [CheckoutController::class, 'order_place']);
 Route::post('/confirm-order', [CheckoutController::class, 'confirm_order']);
 
+Route::get('/payment-info', [CheckoutController::class, 'payment_info']);
+
 // Order
 // Route::get('/manage-order', [CheckoutController::class, 'manage_order']);
 // Route::get('/view-order/{orderId}', [CheckoutController::class, 'view_order']);
 // Route::get('/delete-order/{orderId}', [CheckoutController::class, 'delete_order']);
 
+Route::get('/delete-order/{order_code}', [OrderController::class, 'delete_order']);
 Route::get('/manage-order2', [OrderController::class, 'manage_order2']);
 Route::get('/view-order/{order_code}', [OrderController::class, 'view_order']);
 Route::get('/print-order/{checkout_code}', [OrderController::class, 'print_order']);
@@ -120,6 +123,7 @@ Route::post('/update-qty', [OrderController::class, 'update_qty']);
 Route::get('/my-order', [OrderController::class, 'my_order']);
 Route::get('/my-order-detail/{order_code}', [OrderController::class, 'my_order_detail']);
 Route::get('/order-tracking', [OrderController::class, 'order_tracking']);
+Route::post('/cancel-order/{order_code}', [OrderController::class, 'cancel_order']);
 
 // Send mail
 Route::get('/send-mail', [HomeController::class, 'send_mail']);

@@ -190,7 +190,7 @@
                                         <select class="form-control order_details">
                                             <option value="">------Chọn hình thức đơn hàng------</option>
                                             <option id="{{ $or->order_id }}" value="1" selected>Chưa xử lý</option>
-                                            <option id="{{ $or->order_id }}" value="2">Đã giao hàng</option>
+                                            <option id="{{ $or->order_id }}" value="2">Đã xử lý</option>
                                             <option id="{{ $or->order_id }}" value="3">Hủy đơn hàng</option>
                                         </select>
                                     </form>
@@ -200,7 +200,7 @@
                                         <select class="form-control order_details">
                                             <option value="">------Chọn hình thức đơn hàng------</option>
                                             <option id="{{ $or->order_id }}" value="1">Chưa xử lý</option>
-                                            <option id="{{ $or->order_id }}" value="2" selected>Đã giao hàng</option>
+                                            <option id="{{ $or->order_id }}" value="2" selected>Đã xử lý</option>
                                             <option id="{{ $or->order_id }}" value="3">Hủy đơn hàng</option>
                                         </select>
                                     </form>
@@ -210,7 +210,7 @@
                                         <select class="form-control order_details">
                                             <option value="">------Chọn hình thức đơn hàng------</option>
                                             <option id="{{ $or->order_id }}" value="1">Chưa xử lý</option>
-                                            <option id="{{ $or->order_id }}" value="2">Đã giao hàng</option>
+                                            <option id="{{ $or->order_id }}" value="2">Đã xử lý</option>
                                             <option id="{{ $or->order_id }}" value="3" selected>Hủy đơn hàng</option>
                                         </select>
                                     </form>

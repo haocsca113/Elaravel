@@ -21,6 +21,19 @@ session_start();
 
 class OrderController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('admin_id');
+        if($admin_id)
+        {
+            return redirect()->to('dashboard');
+        }
+        else
+        {
+            return redirect()->to('admin')->send();
+        }
+    }
+
     public function print_order($checkout_code)
     {
         $pdf = \App::make('dompdf.wrapper');
@@ -323,8 +336,30 @@ class OrderController extends Controller
         $order = Order::orderBy('created_at', 'desc')->get();
         return view('admin.manage_order2')->with(compact('order'));
     }
+
+    public function delete_order($order_code)
+    {
+        $this->AuthLogin();
+        $order = Order::where('order_code', $order_code)->delete();
+        Session::put('message', 'Xóa thành công');
+        // return Redirect::to('/manage-order');
+        return redirect()->back();
+    }
     // End Admin Page
 
+
+    public function cancel_order(Request $request, $order_code)
+    {
+        $order = Order::where('order_code', $order_code)->first();
+
+        if ($order && $order->order_status == 1) { 
+            $order->order_status = 3; 
+            $order->save();
+            return redirect()->back()->with('success', 'Đơn hàng đã được hủy.');
+        }
+
+        return redirect()->back()->with('error', 'Không thể hủy đơn hàng này.');
+    }
 
     public function my_order(Request $request)
     {
