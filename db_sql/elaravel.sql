@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 17, 2025 lúc 03:37 AM
+-- Thời gian đã tạo: Th3 18, 2025 lúc 03:49 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -165,7 +165,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('udqAWY96o8gB25BRp19YXiRMVj7hJnNI8HCGhSVI', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo3OntzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo2NjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2xhcmF2ZWwvd2ViYmFuaGFuZ190dXRvcmlhbC9wdWJsaWMvdHJhbmctY2h1Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo2OiJfdG9rZW4iO3M6NDA6IndUN0pyYTB5QTJZZXp1RjNrN0tSdjZidHZuM212Rkl0VkdiUmFzdWEiO3M6MTE6ImN1c3RvbWVyX2lkIjtpOjQ7czoxMzoiY3VzdG9tZXJfbmFtZSI7czoxMDoieGF2aWVycGVuYSI7czoxMDoiYWRtaW5fbmFtZSI7czo2OiJQb2doYW8iO3M6ODoiYWRtaW5faWQiO2k6MTt9', 1742178912);
+('VD2ZBUawzNglMaPg6exe9xB8eNMJfcJ4F9a8gCkp', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YToxNDp7czo2OiJfdG9rZW4iO3M6NDA6IjR4bFlkc0hoY3VhSUxnRDEyT205b3Z1ZFUwOTRvUXdWZXMzTnZQNlEiO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjY2OiJodHRwOi8vbG9jYWxob3N0OjgwODAvbGFyYXZlbC93ZWJiYW5oYW5nX3R1dG9yaWFsL3B1YmxpYy90cmFuZy1jaHUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjExOiJjdXN0b21lcl9pZCI7aTo1O3M6MTM6ImN1c3RvbWVyX25hbWUiO3M6MTA6ImhlaXNlbmJlcmciO3M6MTA6ImFkbWluX25hbWUiO3M6NjoiUG9naGFvIjtzOjg6ImFkbWluX2lkIjtpOjE7czoxMToidG90YWxfYWZ0ZXIiO2k6Njk5MDAwO3M6MTA6Im9yZGVyX2NvZGUiO3M6NToiNTE2MTUiO3M6OToib3JkZXJfZmVlIjtzOjU6IjIwMDAwIjtzOjE0OiJwYXltZW50X29wdGlvbiI7czoxOiIyIjtzOjQ6ImNhcnQiO2E6MTp7aTowO2E6Njp7czoxMDoic2Vzc2lvbl9pZCI7czo1OiI4MDdhZSI7czoxMDoicHJvZHVjdF9pZCI7czoxOiI2IjtzOjEyOiJwcm9kdWN0X25hbWUiO3M6MzA6IlRheSBD4bqnbSBTb255IER1YWxTaG9jayA0IFBTNCI7czoxMzoicHJvZHVjdF9pbWFnZSI7czoxMzoicHM0Mm5kOTguanBlZyI7czoxMzoicHJvZHVjdF9wcmljZSI7czo2OiI3OTkwMDAiO3M6MTE6InByb2R1Y3RfcXR5IjtzOjE6IjEiO319czoxNToic2hpcHBpbmdfbWV0aG9kIjtzOjE6IjMiO3M6NjoicGF5VXJsIjtzOjk6InVuZGVmaW5lZCI7fQ==', 1742266040);
 
 -- --------------------------------------------------------
 
@@ -313,9 +313,8 @@ CREATE TABLE `tbl_customer` (
 --
 
 INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`, `created_at`, `updated_at`) VALUES
-(1, 'Hào Trương Huỳnh', 'hth@gmail.com', '123456789', '0111111111', NULL, NULL),
-(3, 'heisenberg', 'heisenberg@gmail.com', '123456789', '0222222222', NULL, NULL),
-(4, 'xavierpena', 'pena@gmail.com', '25f9e794323b453885f5181f1b624d0b', '123456789', NULL, NULL);
+(4, 'xavierpena', 'pena@gmail.com', '25f9e794323b453885f5181f1b624d0b', '123456789', NULL, NULL),
+(5, 'heisenberg', 'heisenberg@gmail.com', '25f9e794323b453885f5181f1b624d0b', '012345678', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -367,7 +366,8 @@ CREATE TABLE `tbl_momo` (
 --
 
 INSERT INTO `tbl_momo` (`momo_id`, `partner_code`, `order_id`, `amount`, `order_info`, `order_type`, `trans_id`, `pay_type`, `created_at`, `updated_at`) VALUES
-(1, 'MOMOBKUN20180529', '1741160898', '1468950', 'Thanh toán qua ATM MoMo', 'momo_wallet', '4360126790', 'napas', NULL, NULL);
+(1, 'MOMOBKUN20180529', '1741160898', '1468950', 'Thanh toán qua ATM MoMo', 'momo_wallet', '4360126790', 'napas', NULL, NULL),
+(2, 'MOMOBKUN20180529', '1742265926', '719000', 'Thanh toán qua ATM MoMo', 'momo_wallet', '4368941424', 'napas', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -399,7 +399,12 @@ INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status
 (26, 4, 19, '1', '377a1', '2025-03-11 02:36:30', NULL),
 (27, 4, 20, '1', '4d2e1', '2025-03-11 07:43:32', NULL),
 (28, 4, 21, '2', '34183', '2025-03-11 08:18:31', NULL),
-(29, 4, 22, '2', '89147', '2025-03-13 03:17:39', NULL);
+(29, 4, 22, '2', '89147', '2025-03-13 03:17:39', NULL),
+(30, 5, 23, '1', 'c5404', '2025-03-17 07:10:02', NULL),
+(31, 5, 24, '1', '94479', '2025-03-17 07:15:20', NULL),
+(36, 5, 29, '2', '89baa', '2025-03-17 09:19:44', NULL),
+(58, 5, 51, '1', '84a13', '2025-03-18 02:24:34', NULL),
+(60, 5, 53, '1', '51615', '2025-03-18 02:45:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -446,7 +451,38 @@ INSERT INTO `tbl_order_details` (`order_details_id`, `order_code`, `product_id`,
 (43, '4d2e1', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 2, 'no', '20000', NULL, NULL),
 (44, '4d2e1', 5, 'Tay Cầm Xbox One X', 1090000, 2, 'no', '20000', NULL, NULL),
 (45, '34183', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'VN30T4', '20000', NULL, NULL),
-(46, '89147', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 1, 'no', '20000', NULL, NULL);
+(46, '89147', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 1, 'no', '20000', NULL, NULL),
+(47, 'c5404', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 3, 'VN30T4', '20000', NULL, NULL),
+(48, 'c5404', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 2, 'VN30T4', '20000', NULL, NULL),
+(49, '94479', 7, 'Tay Cầm PS5 30th Anniversary', 3050000, 1, 'ANI2025', '30000', NULL, NULL),
+(50, '94479', 5, 'Tay Cầm Xbox One X', 1090000, 2, 'ANI2025', '30000', NULL, NULL),
+(51, '94479', 11, 'Tay Cầm Xbox 360', 479000, 5, 'ANI2025', '30000', NULL, NULL),
+(52, '94479', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 3, 'ANI2025', '30000', NULL, NULL),
+(53, 'ebc01', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'no', '20000', NULL, NULL),
+(54, '49ad0', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'no', '20000', NULL, NULL),
+(55, '08c66', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'ANI2025', '20000', NULL, NULL),
+(56, 'b80a7', 11, 'Tay Cầm Xbox 360', 479000, 1, 'ANI2025', '20000', NULL, NULL),
+(57, '89baa', 11, 'Tay Cầm Xbox 360', 479000, 1, 'ANI2025', '20000', NULL, NULL),
+(58, '8ada5', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 1, 'ANI2025', '20000', NULL, NULL),
+(59, '270de', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'no', '20000', NULL, NULL),
+(60, '8b61e', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'no', '20000', NULL, NULL),
+(61, '661e2', 11, 'Tay Cầm Xbox 360', 479000, 1, 'no', '20000', NULL, NULL),
+(62, '61362', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 1, 'no', '20000', NULL, NULL),
+(63, '18956', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(64, '2a29f', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(65, '6c899', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(66, 'eb206', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(67, 'ffc3b', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(68, 'ab699', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'ANI2025', '20000', NULL, NULL),
+(69, '0e873', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(70, 'ababa', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(71, 'ce436', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(72, '4f21f', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(73, '10c88', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(74, '7892a', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(75, '84a13', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
+(76, '62eb7', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'ANI2025', '20000', NULL, NULL),
+(77, '51615', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'ANI2025', '20000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -519,7 +555,7 @@ INSERT INTO `tbl_product` (`product_id`, `category_id`, `brand_id`, `product_nam
 (7, 4, 6, 'Tay Cầm PS5 30th Anniversary', '12', 5, 'Tay Cầm PS5 30th Anniversary Controller Chĩnh Hãng Chơi Game Cho PC / FCO / FIFA / PS5 | HÀNG NHẬP KHẨU', 'Tay Cầm PS5 30th Anniversary Controller Chĩnh Hãng Chơi Game Cho PC / FCO / FIFA / PS5 | HÀNG NHẬP KHẨU', '3050000', 'ps530thanniversary60.jpg', 1, 'ps5, tay cam ps5, ps5 ki niem 30 nam', NULL, NULL),
 (9, 4, 6, 'Tay Cầm Sony DualSense 5 PS5', '43', 22, 'Tay Cầm Sony DualSense 5 PS5 Chính Hãng + Top Gamepad Chơi Game Tối Ưu Cho PC / FO4 / FIFA | HÀNG NHẬP KHẨU', 'Tay Cầm Sony DualSense 5 PS5 Chính Hãng + Top Gamepad Chơi Game Tối Ưu Cho PC / FO4 / FIFA | HÀNG NHẬP KHẨU', '1399000', 'ps5trang47.jpg', 1, 'ps5, tay cam ps5, ps5 chinh hang', NULL, NULL),
 (10, 2, 1, 'Tay Cầm Xbox One S Cũ 2ND', '24', 19, 'Tay Cầm Xbox One S Cũ 2ND + Cáp Cable USB Chơi Game Tối Ưu Cho FC ONLINE / FIFA / PC / LAPTOP | NOBOX – MÀU TRẮNG', 'Tay Cầm Xbox One S Cũ 2ND + Cáp Cable USB Chơi Game Tối Ưu Cho FC ONLINE / FIFA / PC / LAPTOP | NOBOX – MÀU TRẮNG', '699000', 'xboxones2nd52.jpg', 1, 'tay cam, tay cam xbox, xbox one s', NULL, NULL),
-(11, 3, 1, 'Tay Cầm Xbox 360', '60', 0, 'Tay Cầm Xbox 360 C&oacute; D&acirc;y Chĩnh H&atilde;ng Chơi Game Tối Ưu Cho PC / FO3 / FO4 | TOP B&Aacute;N CHẠY', 'Tay Cầm Xbox 360 C&oacute; D&acirc;y Chĩnh H&atilde;ng Chơi Game Tối Ưu Cho PC / FO3 / FO4 | TOP B&Aacute;N CHẠY', '479000', 'xobx36013.jpg', 1, 'xbox, xbox 360, tay cam choi game', NULL, NULL);
+(11, 3, 1, 'Tay Cầm Xbox 360', '59', 1, 'Tay Cầm Xbox 360 C&oacute; D&acirc;y Chĩnh H&atilde;ng Chơi Game Tối Ưu Cho PC / FO3 / FO4 | TOP B&Aacute;N CHẠY', 'Tay Cầm Xbox 360 C&oacute; D&acirc;y Chĩnh H&atilde;ng Chơi Game Tối Ưu Cho PC / FO3 / FO4 | TOP B&Aacute;N CHẠY', '479000', 'xobx36013.jpg', 1, 'xbox, xbox 360, tay cam choi game', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1286,7 +1322,16 @@ INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_email`, `s
 (19, 'Hào TH', 'haoth@gmail.com', 'test3', 'Phú Yên', '0988820943', 1, NULL, NULL),
 (20, 'Xavier Pena', 'pena@gmail.com', 'test4', 'Colombia', '987654321', 1, NULL, NULL),
 (21, 'Xavier Pena', 'pena@gmail.com', 'test5', 'Colombia', '987654321', 1, NULL, NULL),
-(22, 'Xavier Pena', 'pena@gmail.com', 'test 13/3/2025', 'Colombia', '0988820943', 0, NULL, NULL);
+(22, 'Xavier Pena', 'pena@gmail.com', 'test 13/3/2025', 'Colombia', '0988820943', 0, NULL, NULL),
+(23, 'Walter White', 'heisenb@gmail.com', 'john stone 1', 'Albuquerque', '012345678', 1, NULL, NULL),
+(24, 'Walter White', 'heisenb@gmail.com', 'john stone 2', 'Phú Yên', '012345678', 1, NULL, NULL),
+(25, 'Walter White', 'heisenb@gmail.com', 'john stone 3', 'Albuquerque', '012345678', 0, NULL, NULL),
+(26, 'Walter White', 'heisenb@gmail.com', 'john stone 4', 'Albuquerque', '0988820943', 0, NULL, NULL),
+(27, 'Walter White', 'heisenb@gmail.com', 'john stone 5', 'Albuquerque', '0988820943', 0, NULL, NULL),
+(28, 'Walter White', 'heisenb@gmail.com', 'stone 6', 'Albuquerque', '987654321', 0, NULL, NULL),
+(29, 'Walter White', 'heisenb@gmail.com', 'stone 7', 'Albuquerque', '0988820943', 0, NULL, NULL),
+(51, 'Walter White', 'heisenb@gmail.com', 'stone 8', 'Albuquerque', '0988820943', 2, NULL, NULL),
+(53, 'Walter White', 'heisenb@gmail.com', 'stone 9', 'Albuquerque', '987654321', 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1418,7 +1463,8 @@ CREATE TABLE `tbl_vnpay` (
 --
 
 INSERT INTO `tbl_vnpay` (`vnpay_id`, `vnp_amount`, `vnp_bankcode`, `vnp_banktranno`, `vnp_cardtype`, `vnp_orderinfo`, `vnp_paydate`, `vnp_tmncode`, `vnp_transactionno`, `code_cart`, `created_at`, `updated_at`) VALUES
-(1, '83895000', 'NCB', 'VNP14830689', 'ATM', 'Thanh toán đơn hàng test', '20250305091636', 'FY58L6R9', '14830689', '1374', NULL, NULL);
+(1, '83895000', 'NCB', 'VNP14830689', 'ATM', 'Thanh toán đơn hàng test', '20250305091636', 'FY58L6R9', '14830689', '1374', NULL, NULL),
+(2, '81900000', 'NCB', 'VNP14851375', 'ATM', 'Thanh toán đơn hàng test', '20250318092447', 'FY58L6R9', '14851375', '6396', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -12853,7 +12899,7 @@ ALTER TABLE `tbl_coupon`
 -- AUTO_INCREMENT cho bảng `tbl_customer`
 --
 ALTER TABLE `tbl_customer`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_feeship`
@@ -12865,19 +12911,19 @@ ALTER TABLE `tbl_feeship`
 -- AUTO_INCREMENT cho bảng `tbl_momo`
 --
 ALTER TABLE `tbl_momo`
-  MODIFY `momo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `momo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  MODIFY `order_details_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `order_details_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_payment`
@@ -12895,7 +12941,7 @@ ALTER TABLE `tbl_product`
 -- AUTO_INCREMENT cho bảng `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
-  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_social`
@@ -12907,7 +12953,7 @@ ALTER TABLE `tbl_social`
 -- AUTO_INCREMENT cho bảng `tbl_vnpay`
 --
 ALTER TABLE `tbl_vnpay`
-  MODIFY `vnpay_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `vnpay_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `users`

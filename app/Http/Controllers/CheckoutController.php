@@ -99,7 +99,7 @@ class CheckoutController extends Controller
 
         Session::forget('coupon');
         Session::forget('fee');
-        // Session::forget('cart');
+        Session::forget('cart');
     }
 
     public function del_fee()

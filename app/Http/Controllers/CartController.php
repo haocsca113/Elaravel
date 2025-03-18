@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
 use App\Models\Banner;
+use App\Models\Product;
 use DB;
 use Session;
 use Cart;
@@ -150,16 +151,27 @@ class CartController extends Controller
                 {
                     if($val['session_id'] == $key)
                     {
-                        $cart[$session]['product_qty'] = $qty; // Update so luong cua cart mang session do bang $qty
+                        $product = Product::where('product_id', $val['product_id'])->first();
+                        if($product)
+                        {
+                            if($qty > $product->product_quantity)
+                            {
+                                return redirect()->back()->with('error', 'Số lượng sản phẩm "'.$val['product_name'].'" trong kho không đủ!');
+                            }
+                            else
+                            {
+                                $cart[$session]['product_qty'] = $qty; // Update so luong sp cua cart session do = $qty
+                            }
+                        }
                     }
                 }
             }
             Session::put('cart', $cart);
-            return Redirect::to('/gio-hang')->with('message', 'Cập nhật số lượng thành công');
+            return redirect()->back()->with('message', 'Cập nhật số lượng thành công');
         }
         else
         {
-            return Redirect::to('/gio-hang')->with('message', 'Cập nhật số lượng thất bại');    
+            return redirect()->back()->with('error', 'Cập nhật số lượng thất bại');
         }
     }
 
