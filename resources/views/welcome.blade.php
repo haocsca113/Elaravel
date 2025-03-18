@@ -501,15 +501,34 @@
 								_token: _token,
 							},
 							success: function(data){
-								// swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
 								if (shipping_method == 0) {
 									window.location.href = "{{ url('/payment-info') }}";
-								} else {
+								} 
+								else if(shipping_method == 1) 
+								{
 									swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
 									setTimeout(function(){
 										location.reload();
 									}, 3000);
 								}
+								else if(shipping_method == 2)
+								{
+									var form = $('<form action="{{ url('/vnpay-payment') }}" method="POST"></form>');
+									form.append('@csrf');
+									form.append('<input type="hidden" name="vnp_Url" value="' + data.data + '">');
+
+									$('body').append(form);
+									form.submit();
+								} 
+								else if(shipping_method == 3)
+								{
+									var form = $('<form action="{{ url('/momo-payment') }}" method="POST"></form>');
+									form.append('@csrf');
+									form.append('<input type="hidden" name="payUrl" value="' + data.data + '">');
+
+									$('body').append(form);
+									form.submit();
+								} 
 							},
 						});
 					}

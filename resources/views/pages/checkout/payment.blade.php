@@ -100,7 +100,6 @@
                 {{ csrf_field() }}
                 <input type="hidden" name="total_momo" value="{{ Cart::total() }}">
                 <button type="submit" class="btn btn-default" name="payUrl" value="4" href="">Thanh toán Momo</button>
-                {{-- <button type="submit" class="btn btn-default" name="payment_option" value="4" href="">Thanh toán Momo</button> --}}
             </form>
         </div>
         

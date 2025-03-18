@@ -48,7 +48,9 @@
                                         <select name="payment_select" class="form-control input-sm m-bot15 payment_select">
                                             <option value="0">Chuyển khoản</option>
                                             <option value="1">Tiền mặt</option>
-                                        </select>
+                                            <option value="2">VN Pay</option>
+                                            <option value="3">Momo</option>
+                                        </select> 
                                     </div>
                                 </div>
 

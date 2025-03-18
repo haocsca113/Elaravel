@@ -108,6 +108,14 @@ Route::post('/confirm-order', [CheckoutController::class, 'confirm_order']);
 
 Route::get('/payment-info', [CheckoutController::class, 'payment_info']);
 
+// Cong thanh toan
+Route::post('/vnpay-payment', [CheckoutController::class, 'vnpay_payment']);
+Route::post('/momo-payment', [CheckoutController::class, 'momo_payment']);
+
+// Trang thanh toan vnpay & momo
+Route::get('/vnpay-online-payment', [CheckoutController::class, 'vnpay_online_payment']);
+Route::get('/momo-online-payment', [CheckoutController::class, 'momo_online_payment']);
+
 // Order
 // Route::get('/manage-order', [CheckoutController::class, 'manage_order']);
 // Route::get('/view-order/{orderId}', [CheckoutController::class, 'view_order']);
@@ -135,14 +143,6 @@ Route::get('/admin/callback', [AdminController::class, 'callback_facebook']);
 //Login google
 Route::get('/login-google', [AdminController::class, 'login_google']);
 Route::get('/google/callback', [AdminController::class, 'callback_google']);
-
-// Cong thanh toan
-Route::post('/vnpay-payment', [CheckoutController::class, 'vnpay_payment']);
-Route::post('/momo-payment', [CheckoutController::class, 'momo_payment']);
-
-// Trang thanh toan vnpay & momo
-Route::get('/online-payment', [CheckoutController::class, 'online_payment']);
-Route::get('/online-payment-momo', [CheckoutController::class, 'online_payment_momo']);
 
 // Delivery
 Route::get('/delivery', [DeliveryController::class, 'delivery']);
