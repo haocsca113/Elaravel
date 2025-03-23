@@ -12,6 +12,7 @@ use DB;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 session_start();
 
 class AdminController extends Controller
@@ -116,7 +117,8 @@ class AdminController extends Controller
 
     public function AuthLogin()
     {
-        $admin_id = Session::get('admin_id');
+        // $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
         if($admin_id)
         {
             return Redirect::to('dashboard');
@@ -155,7 +157,6 @@ class AdminController extends Controller
                 ->where('admin_password', $admin_password)
                 ->first();
 
-        // $login_count = $login->count();
         if($login)
         {
             Session::put('admin_name', $login->admin_name);

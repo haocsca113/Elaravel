@@ -12,6 +12,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\AuthController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -72,6 +73,9 @@ Route::get('/active-product/{product_id}', [ProductController::class, 'active_pr
 
 Route::post('/save-product', [ProductController::class, 'save_product']);
 Route::post('/update-product/{product_id}', [ProductController::class, 'update_product']);
+
+Route::post('/import-csv-product', [ProductController::class, 'import_csv_product']);
+Route::post('/export-csv-product', [ProductController::class, 'export_csv_product']);
 
 // Cart
 Route::post('/save-cart', [CartController::class, 'save_cart']);
@@ -157,6 +161,14 @@ Route::get('/add-banner', [BannerController::class, 'add_banner']);
 Route::post('/save-banner', [BannerController::class, 'save_banner']);
 Route::get('/unactive-banner/{banner_id}', [BannerController::class, 'unactive_banner']);
 Route::get('/active-banner/{banner_id}', [BannerController::class, 'active_banner']);
+
+// Authentication roles
+Route::get('/register-auth', [AuthController::class, 'register_auth']);
+Route::get('/login-auth', [AuthController::class, 'login_auth']);
+Route::get('/logout-auth', [AuthController::class, 'logout_auth']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
 
 
 

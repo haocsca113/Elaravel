@@ -124,7 +124,7 @@ return [
     ],
 
     // 'providers' => [
-    //     Laravel\Socialite\SocialiteServiceProvider::class,   
+    //     App\Providers\CustomUserProvider::class,
     // ],
 
     // 'aliases' => [

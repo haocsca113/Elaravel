@@ -43,19 +43,20 @@
                 <input type="hidden" class="cart_product_name_{{ $value->product_id }}" value="{{ $value->product_name }}">
                 <input type="hidden" class="cart_product_image_{{ $value->product_id }}" value="{{ $value->product_image }}">
                 <input type="hidden" class="cart_product_price_{{ $value->product_id }}" value="{{ $value->product_price }}">
-                <input type="hidden" class="cart_product_qty_{{ $value->product_id }}" value="1">
+                <input type="hidden" class="cart_product_quantity_{{ $value->product_id }}" value="{{ $value->product_quantity }}">
+                {{-- <input type="hidden" class="cart_product_qty_{{ $value->product_id }}" value="1"> --}}
             
                 <span>
                     <span>{{ number_format($value->product_price).' '.'VNĐ' }}</span>
                     <label>Quantity:</label>
-                    <input type="number" name="qty" min="1" value="1" />
+                    <input type="number" class="cart_product_qty_{{ $value->product_id }}" name="qty" min="1" value="1" />
                     <input type="hidden" name="productid_hidden" min="1" value="{{ $value->product_id }}" />
                     
-                    <button type="button" class="btn btn-default add-to-cart" data-id="{{ $value->product_id }}" name="add-to-cart">
-                        <i class="fa fa-shopping-cart"></i>
-                        Thêm giỏ hàng
-                    </button>
                 </span>
+                <button type="button" class="btn btn-default add-to-cart" data-id="{{ $value->product_id }}" name="add-to-cart">
+                    <i class="fa fa-shopping-cart"></i>
+                    Thêm giỏ hàng
+                </button>
             </form>
             <p><b>Tình trạng:</b> Còn hàng</p>
             <p><b>Điệu kiện:</b> Mới 100%</p>

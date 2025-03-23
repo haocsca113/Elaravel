@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
 <head>
-<title>Admin Page</title>
+<title>Đăng nhập Auth</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -29,7 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <div class="log-w3">
 <div class="w3layouts-main">
-	<h2>Đăng nhập</h2>
+	<h2>Đăng nhập Auth</h2>
 	<?php
 		$message = Session::get('message');
 		if($message)
@@ -38,15 +38,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			Session::put('message', null);
 		}
 	?>
-		<form action="{{ URL::to('/admin-dashboard') }}" method="post">
-			{{ csrf_field() }}
+		<form action="{{ url('/login') }}" method="post">
+			@csrf
 			@foreach($errors->all() as $val)
 				<ul>
 					<li>{{ $val }}</li>
 				</ul>
 			@endforeach
-			<input type="email" class="ggg" name="admin_email" placeholder="Nhập Email" >
-			<input type="password" class="ggg" name="admin_password" placeholder="Nhập Password" >
+			<input type="email" class="ggg" name="admin_email" placeholder="Nhập email">
+			
+			<input type="password" class="ggg" name="admin_password" placeholder="Nhập password">
 			<span><input type="checkbox" />Remember Me</span>
 			<h6><a href="#">Quên mật khẩu?</a></h6>
 			<div class="clearfix"></div>
@@ -67,7 +68,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<a href="{{ URL::to('/login-google') }}">Login Google</a> |
 		<a href="{{ URL::to('/register-auth') }}">Đăng ký Auth</a> |
 		<a href="{{ URL::to('/login-auth') }}">Đăng nhập Auth</a>
-
 		{{-- <p>Don't Have an Account ?<a href="registration.html">Create an account</a></p> --}}
 </div>
 </div>

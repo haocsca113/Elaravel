@@ -378,6 +378,25 @@ class OrderController extends Controller
         $customer_id = Session::get('customer_id');
         $orders = Order::where('customer_id', $customer_id)->orderBy('created_at', 'desc')->get();
 
+        // foreach ($orders as $order) {
+        //     $total_after = OrderDetails::where('order_code', $order->order_code)
+        //         ->selectRaw('SUM(product_price * product_sales_quantity) as total')
+        //         ->value('total');
+        //     $total_after = intval($total_after);
+    
+        //     if ($total_after >= 1000000 && $total_after < 3000000) {
+        //         $coupon = Coupon::where('coupon_condition', 2)->first();
+        //     } 
+        //     else if ($total_after >= 3000000) 
+        //     {
+        //         $coupon = Coupon::where('coupon_condition', 1)->first();
+        //     }
+        //     else
+        //     {
+        //         $coupon = null;
+        //     }
+        // }
+
         return view('pages.order.my_order')->with(compact('orders', 'category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
     }
 

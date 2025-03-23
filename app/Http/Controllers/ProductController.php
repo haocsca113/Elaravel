@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Imports\ExcelImportProduct;
+use App\Exports\ExcelExportProduct;
+use Excel;
 use App\Models\Banner;
 use DB;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
+
 session_start();
 
 class ProductController extends Controller
 {
     public function AuthLogin()
     {
-        $admin_id = Session::get('admin_id');
+        // $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
         if($admin_id)
         {
             return Redirect::to('dashboard');
@@ -140,6 +146,18 @@ class ProductController extends Controller
         DB::table('tbl_product')->where('product_id', $product_id)->delete();
         Session::put('message', 'Xóa sản phẩm thành công');
         return Redirect::to('all-product');
+    }
+
+    public function import_csv_product(Request $request)
+    {
+        $path = $request->file('file')->getRealPath();
+        Excel::import(new ExcelImportProduct, $path);
+        return back();
+    }
+
+    public function export_csv_product()
+    {
+        return Excel::download(new ExcelExportProduct, 'product.xlsx');
     }
     // End Admin Page
 
