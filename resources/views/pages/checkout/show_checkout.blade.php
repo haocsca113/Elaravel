@@ -2,7 +2,7 @@
 @section('content')
 
 <section id="cart_items">
-    <div class="container">
+    <div class="container-fluid">
         <div class="breadcrumbs">
             <ol class="breadcrumb">
               <li><a href="{{ URL::to('/') }}">Trang chủ</a></li>
@@ -163,7 +163,7 @@
                                                 @endif
                                             </td>
                                             
-                                            <td>
+                                            <td colspan="2">
                                                 <ul>
                                                     <li>Tổng tiền: <span>{{ number_format($total, 0, ',', '.').' VNĐ' }}</span></li>
                                 

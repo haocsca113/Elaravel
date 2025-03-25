@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Admin;
 use App\Models\Roles;
+use DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class UsersTableSeeder extends Seeder
     public function run(): void
     {
         Admin::truncate();
+        DB::table('admin_roles')->truncate();
 
         $adminRoles = Roles::where('name', 'admin')->first();
         $authorRoles = Roles::where('name', 'author')->first();
@@ -44,5 +46,7 @@ class UsersTableSeeder extends Seeder
         $admin->roles()->attach($adminRoles);
         $author->roles()->attach($authorRoles);
         $user->roles()->attach($userRoles);
+
+        \App\Models\Admin::factory()->count(10)->create();
     }
 }

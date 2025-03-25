@@ -15,6 +15,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\VNPay;
 use App\Models\Momo;
+use App\Models\Coupon;
 use DB;
 use Session;
 use Cart;
@@ -91,6 +92,15 @@ class CheckoutController extends Controller
                 $order_details->product_feeship = $data['order_fee'];
                 $order_details->save();
             }
+        }
+
+        $coupon = Coupon::where('coupon_code', $data['order_coupon'])->first();
+        if($coupon)
+        {
+            $coupon_time = $coupon->coupon_time;
+            $coupon_remain = $coupon_time - 1;
+            $coupon->coupon_time = $coupon_remain;
+            $coupon->save();
         }
 
         Session::put('order_code', $checkout_code);

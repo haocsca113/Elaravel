@@ -13,6 +13,7 @@ use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -62,8 +63,10 @@ Route::post('/update-brand-product/{brand_product_id}', [BrandProduct::class, 'u
 
 
 // Product
-Route::get('/add-product', [ProductController::class, 'add_product']);
-Route::get('/edit-product/{product_id}', [ProductController::class, 'edit_product']);
+Route::group(['middleware' => 'auth.roles'], function(){
+    Route::get('/add-product', [ProductController::class, 'add_product']);
+    Route::get('/edit-product/{product_id}', [ProductController::class, 'edit_product']);
+});
 Route::get('/delete-product/{product_id}', [ProductController::class, 'delete_product']);
 
 Route::get('/all-product', [ProductController::class, 'all_product']);
@@ -168,6 +171,14 @@ Route::get('/login-auth', [AuthController::class, 'login_auth']);
 Route::get('/logout-auth', [AuthController::class, 'logout_auth']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
+// User
+Route::get('/users', [UserController::class, 'index'])->middleware('auth.roles')->middleware('impersonate');
+Route::get('/add-users', [UserController::class, 'add_users'])->middleware('auth.roles');
+Route::post('/assign-roles', [UserController::class, 'assign_roles'])->middleware('auth.roles');
+Route::post('/store-users', [UserController::class, 'store_users'])->middleware('auth.roles');
+Route::get('/delete-user-roles/{admin_id}', [UserController::class, 'delete_user_roles'])->middleware('auth.roles');
+Route::get('/impersonate/{admin_id}', [UserController::class, 'impersonate'])->middleware('impersonate');
 
 
 
