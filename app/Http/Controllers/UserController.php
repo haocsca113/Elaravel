@@ -20,16 +20,27 @@ class UserController extends Controller
     public function impersonate($admin_id)
     {
         $user = Admin::where('admin_id', $admin_id)->first();
-        if($user)
-        {
+        if ($user) {
+            if (!session()->has('original_user')) {
+                session()->put('original_user', Auth::id()); // Lưu ID tài khoản gốc
+            }
             session()->put('impersonate', $user->admin_id);
+            return redirect('/users')->with('message', 'Chuyển quyền thành công!');
         }
-        return redirect()->to('/users');
+        return redirect('/dashboard')->with('message', 'Người dùng không tồn tại!');
     }
 
-    public function impersonate_destroy($admin_id)
+    public function impersonate_destroy()
     {
-        
+        if (session()->has('impersonate') && session()->has('original_user')) {
+            $originalUserId = session()->get('original_user');
+            session()->forget('impersonate');
+            session()->forget('original_user');
+            Auth::loginUsingId($originalUserId); // Đăng nhập lại tài khoản gốc
+            return redirect('/dashboard')->with('message', 'Đã quay lại tài khoản gốc!');
+        }
+    
+        return redirect('/dashboard')->with('message', 'Không có quyền để quay lại!');
     }
 
     public function add_users()

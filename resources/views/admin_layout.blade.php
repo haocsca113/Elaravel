@@ -183,6 +183,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </li>
                 @endhasrole
+
+                {{-- @impersonate
+                <li class="sub-menu">
+                    <a href="{{ url('/impersonate-destroy') }}">
+                        <i class="fa fa-book"></i>
+                        <span>Stop chuyển quyền</span>
+                    </a>
+                </li>
+                @endimpersonate --}}
+
+                @if(session()->has('impersonate'))
+                    <li class="sub-menu">
+                        <a href="{{ url('/impersonate-destroy') }}">Dừng chuyển quyền</a>
+                    </li>
+                @endif
             </ul>            
         </div>
         <!-- sidebar menu end-->

@@ -15,7 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         // Đăng ký middleware toàn cục (Global Middleware)
         // $middleware->append(AccessPermission::class); // se ap dung cho tat ca cac route
-        $middleware->append(Impersonate::class);
+        // $middleware->append(Impersonate::class);
 
         // Đăng ký middleware bằng alias
         $middleware->alias([
