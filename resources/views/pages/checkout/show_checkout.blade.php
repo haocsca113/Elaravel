@@ -22,7 +22,7 @@
                         <div class="form-one">
                             <form action="" method="post">
                                 @csrf
-                                <input type="text" name="shipping_email" class="shipping_email" placeholder="Email">
+                                <input type="text" name="shipping_email" class="shipping_email" placeholder="Email" value="{{ old('shipping_email') }}">
                                 <input type="text" name="shipping_name" class="shipping_name" placeholder="Họ và tên">
                                 <input type="text" name="shipping_address" class="shipping_address" placeholder="Địa chỉ">
                                 <input type="text" name="shipping_phone" class="shipping_phone" placeholder="Số điện thoại">

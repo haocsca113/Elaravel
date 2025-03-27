@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\Models\City;
 use App\Models\Province;
 use App\Models\Ward;
@@ -11,6 +13,7 @@ use App\Models\Shipping;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Banner;
+use App\Models\CategoryPost;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\VNPay;
@@ -27,7 +30,9 @@ class CheckoutController extends Controller
 {
     public function AuthLogin()
     {
-        $admin_id = Session::get('admin_id');
+        // $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
+
         if($admin_id)
         {
             return Redirect::to('dashboard');
@@ -110,6 +115,18 @@ class CheckoutController extends Controller
         Session::forget('coupon');
         Session::forget('fee');
         Session::forget('cart');
+    }
+
+    public function validation(Request $request)
+    {
+        return $this->validate($request, [
+            'shipping_name' => 'required|max:255',
+            'shipping_email' => 'required|email|max:255',
+            'shipping_note' => 'required|max:255',
+            'shipping_address' => 'required|max:255',
+            'shipping_note' => 'required|max:255',
+            'shipping_phone' => 'required|max:255',
+        ]);
     }
 
     public function del_fee()
@@ -197,7 +214,9 @@ class CheckoutController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.checkout.login_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner);
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+
+        return view('pages.checkout.login_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post);
     }
 
     public function add_customer(Request $request)
@@ -246,9 +265,11 @@ class CheckoutController extends Controller
         $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+
         $city = City::orderBy('matp', 'asc')->get();
 
-        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('city', $city)->with('banner', $banner);
+        return view('pages.checkout.show_checkout')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('city', $city)->with('banner', $banner)->with('cate_post', $cate_post);
     }
 
     public function save_checkout_customer(Request $request)

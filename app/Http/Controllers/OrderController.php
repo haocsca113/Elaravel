@@ -12,6 +12,7 @@ use App\Models\Customer;
 use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\Banner;
+use App\Models\CategoryPost;
 use App\Models\Category;
 use App\Models\Brand;
 use PDF;
@@ -23,7 +24,9 @@ class OrderController extends Controller
 {
     public function AuthLogin()
     {
-        $admin_id = Session::get('admin_id');
+        // $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
+
         if($admin_id)
         {
             return redirect()->to('dashboard');
@@ -375,29 +378,12 @@ class OrderController extends Controller
         $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+
         $customer_id = Session::get('customer_id');
         $orders = Order::where('customer_id', $customer_id)->orderBy('created_at', 'desc')->get();
 
-        // foreach ($orders as $order) {
-        //     $total_after = OrderDetails::where('order_code', $order->order_code)
-        //         ->selectRaw('SUM(product_price * product_sales_quantity) as total')
-        //         ->value('total');
-        //     $total_after = intval($total_after);
-    
-        //     if ($total_after >= 1000000 && $total_after < 3000000) {
-        //         $coupon = Coupon::where('coupon_condition', 2)->first();
-        //     } 
-        //     else if ($total_after >= 3000000) 
-        //     {
-        //         $coupon = Coupon::where('coupon_condition', 1)->first();
-        //     }
-        //     else
-        //     {
-        //         $coupon = null;
-        //     }
-        // }
-
-        return view('pages.order.my_order')->with(compact('orders', 'category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
+        return view('pages.order.my_order')->with(compact('orders', 'category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'cate_post'));
     }
 
     public function my_order_detail(Request $request, $order_code)
@@ -413,6 +399,8 @@ class OrderController extends Controller
 
         $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
 
         $customer_id = Session::get('customer_id');
         $orders = Order::where('customer_id', $customer_id)->orderBy('created_at', 'desc')->get();
@@ -435,7 +423,7 @@ class OrderController extends Controller
             $coupon_number = 0;
         }
 
-        return view('pages.order.my_order_detail')->with(compact('orders', 'category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'order_details', 'coupon_condition', 'coupon_number'));
+        return view('pages.order.my_order_detail')->with(compact('orders', 'category', 'brand', 'banner', 'cate_post', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'order_details', 'coupon_condition', 'coupon_number'));
     }
 
     public function order_tracking(Request $request)
@@ -452,12 +440,14 @@ class OrderController extends Controller
         $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+
         $order = null;
         if($request->has('order_code'))
         {
             $order = Order::where('order_code', $request->order_code)->first();
         }
 
-        return view('pages.order.order_tracking')->with(compact('order', 'category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
+        return view('pages.order.order_tracking')->with(compact('order', 'category', 'brand', 'banner', 'cate_post', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
     }
 }

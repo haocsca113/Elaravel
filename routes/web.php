@@ -14,6 +14,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryPostController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -30,6 +31,15 @@ Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/dashboard', [AdminController::class, 'show_dashboard']);
 Route::get('/logout', [AdminController::class, 'logout']);
 Route::post('/admin-dashboard', [AdminController::class, 'dashboard']);
+
+// Category Post
+Route::get('/add-category-post', [CategoryPostController::class, 'add_category_post']);
+Route::get('/all-category-post', [CategoryPostController::class, 'all_category_post']);
+Route::post('/save-category-post', [CategoryPostController::class, 'save_category_post']);
+Route::get('/unactive-cate-post/{cate_post_id}', [CategoryPostController::class, 'unactive_cate_post']);
+Route::get('/active-cate-post/{cate_post_id}', [CategoryPostController::class, 'active_cate_post']);
+Route::get('/danh-muc-bai-viet/{cate_post_slug}', [CategoryPostController::class, 'danh_muc_bai_viet']);
+
 
 // Category Product
 Route::get('/add-category-product', [CategoryProduct::class, 'add_category_product']);
@@ -180,6 +190,8 @@ Route::post('/store-users', [UserController::class, 'store_users'])->middleware(
 Route::get('/delete-user-roles/{admin_id}', [UserController::class, 'delete_user_roles'])->middleware('auth.roles');
 Route::get('/impersonate/{admin_id}', [UserController::class, 'impersonate'])->middleware('impersonate');
 Route::get('/impersonate-destroy', [UserController::class, 'impersonate_destroy'])->middleware('impersonate');
+
+
 
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 23, 2025 lúc 01:05 PM
+-- Thời gian đã tạo: Th3 27, 2025 lúc 09:08 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -40,9 +40,19 @@ CREATE TABLE `admin_roles` (
 --
 
 INSERT INTO `admin_roles` (`id_admin_roles`, `admin_admin_id`, `roles_id_roles`, `created_at`, `updated_at`) VALUES
-(4, 1, 1, NULL, NULL),
-(5, 2, 2, NULL, NULL),
-(6, 3, 3, NULL, NULL);
+(1, 1, 1, NULL, NULL),
+(3, 3, 3, NULL, NULL),
+(5, 5, 3, NULL, NULL),
+(6, 6, 3, NULL, NULL),
+(7, 7, 3, NULL, NULL),
+(8, 8, 3, NULL, NULL),
+(9, 9, 3, NULL, NULL),
+(10, 10, 3, NULL, NULL),
+(11, 11, 3, NULL, NULL),
+(12, 12, 3, NULL, NULL),
+(16, 2, 2, NULL, NULL),
+(17, 14, 3, NULL, NULL),
+(20, 13, 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -157,7 +167,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2025_03_13_012244_create_tbl_banner_table', 14),
 (20, '2025_03_20_013906_create_tbl_roles_table', 15),
 (21, '2025_03_20_120926_create_tbl_admin_roles_table', 16),
-(22, '2025_03_20_123816_create_admin_roles_table', 17);
+(22, '2025_03_20_123816_create_admin_roles_table', 17),
+(23, '2025_03_27_010259_create_tbl_category_post_table', 18);
 
 -- --------------------------------------------------------
 
@@ -191,8 +202,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('02p5aW8YJCwvSyPKwMh0tCGwdl4MgegWEBOsJvD5', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZXRONGRobVNYV2w4WmxSYmROWUxDOHhXYXdsdEk0czRZcjVrNTByaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9sYXJhdmVsL3dlYmJhbmhhbmdfdHV0b3JpYWwvcHVibGljL3RyYW5nLWNodSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MTE6ImN1c3RvbWVyX2lkIjtpOjU7czoxMzoiY3VzdG9tZXJfbmFtZSI7czoxMDoiaGVpc2VuYmVyZyI7fQ==', 1742731504),
-('fkKDSTzWD0lEa5o1A16bUJzi6Oe2JvAhalf9xSHf', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YToxMDp7czo2OiJfdG9rZW4iO3M6NDA6ImxDSmF6bEFnam8yblowd0NrZW5XZnVMMGtDcTdVUkgxOUpiUFNPcjQiO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjY1OiJodHRwOi8vbG9jYWxob3N0OjgwODAvbGFyYXZlbC93ZWJiYW5oYW5nX3R1dG9yaWFsL3B1YmxpYy9teS1vcmRlciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxMToiY3VzdG9tZXJfaWQiO2k6NTtzOjEzOiJjdXN0b21lcl9uYW1lIjtzOjEwOiJoZWlzZW5iZXJnIjtzOjExOiJ0b3RhbF9hZnRlciI7aToxMjk5MDAwO3M6MTA6Im9yZGVyX2NvZGUiO3M6NToiYmU0N2UiO3M6OToib3JkZXJfZmVlIjtzOjU6IjIwMDAwIjtzOjE1OiJzaGlwcGluZ19tZXRob2QiO3M6MToiMCI7fQ==', 1742608856);
+('bOzZ7pR0CeLQHuRtYcQY2bIfn01EFqxSGXg2BAIP', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVVJPTVVLaHIwZkhUQ01LNzFOU1Zua0l5UGFCUDVubVhKdXlPMVNBVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9sYXJhdmVsL3dlYmJhbmhhbmdfdHV0b3JpYWwvcHVibGljL215LW9yZGVyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMToiY3VzdG9tZXJfaWQiO2k6NTtzOjEzOiJjdXN0b21lcl9uYW1lIjtzOjEwOiJoZWlzZW5iZXJnIjt9', 1743062615),
+('qTugQFGWCbn6bsgdb4k0x1KYNRjR09dUI6oAX7my', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoieWhQVjF5bkxBdkZHQWlPUlkyR3RyYU5vY1pNVkNWZ1lhY3BGU21HVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9sYXJhdmVsL3dlYmJhbmhhbmdfdHV0b3JpYWwvcHVibGljL3RyYW5nLWNodSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxMToiY3VzdG9tZXJfaWQiO2k6NTtzOjEzOiJjdXN0b21lcl9uYW1lIjtzOjEwOiJoZWlzZW5iZXJnIjt9', 1743042538),
+('QvnsM9fNTo6ikDud4zLmpWoK2ms7PNgTKTrFMcWO', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiTHRpSzdpTlBzdjNvWktTbVNWU3NZRjBJcDdqU2QxN3h3SU1PN1B0MiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9sYXJhdmVsL3dlYmJhbmhhbmdfdHV0b3JpYWwvcHVibGljL215LW9yZGVyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czoxMToiY3VzdG9tZXJfaWQiO2k6NTtzOjEzOiJjdXN0b21lcl9uYW1lIjtzOjEwOiJoZWlzZW5iZXJnIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1743062898);
 
 -- --------------------------------------------------------
 
@@ -217,7 +229,17 @@ CREATE TABLE `tbl_admin` (
 INSERT INTO `tbl_admin` (`admin_id`, `admin_email`, `admin_password`, `admin_name`, `admin_phone`, `created_at`, `updated_at`) VALUES
 (1, 'poghao@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'Poghao', '0988820943', NULL, NULL),
 (2, 'ibradong@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'Dong', '2988820943', NULL, NULL),
-(3, 'lukebuu@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'Buu', '3988820943', NULL, NULL);
+(3, 'lukebuu@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'Buu', '3988820943', NULL, NULL),
+(5, 'shania.prohaska@example.org', '25f9e794323b453885f5181f1b624d0b', 'Tierra Feil Sr.', '0988820943', NULL, NULL),
+(6, 'schulist.alessandra@example.net', '25f9e794323b453885f5181f1b624d0b', 'Marcella Gusikowski', '0988820943', NULL, NULL),
+(7, 'okon.gilberto@example.net', '25f9e794323b453885f5181f1b624d0b', 'Ola Kassulke', '0988820943', NULL, NULL),
+(8, 'armstrong.octavia@example.com', '25f9e794323b453885f5181f1b624d0b', 'Dr. Courtney Hermann III', '0988820943', NULL, NULL),
+(9, 'jace22@example.net', '25f9e794323b453885f5181f1b624d0b', 'Tyree Schaefer', '0988820943', NULL, NULL),
+(10, 'rlubowitz@example.com', '25f9e794323b453885f5181f1b624d0b', 'Miss Jacklyn Carter II', '0988820943', NULL, NULL),
+(11, 'jennie21@example.org', '25f9e794323b453885f5181f1b624d0b', 'Dr. Golda Senger', '0988820943', NULL, NULL),
+(12, 'bveum@example.org', '25f9e794323b453885f5181f1b624d0b', 'Carole Botsford', '0988820943', NULL, NULL),
+(13, 'cathy.jast@example.org', '25f9e794323b453885f5181f1b624d0b', 'Seamus Sipes', '0988820943', NULL, NULL),
+(14, 'ronalhoan@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'Ronalhoan', '987654321', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -272,6 +294,30 @@ INSERT INTO `tbl_brand_product` (`brand_id`, `brand_name`, `brand_desc`, `brand_
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `tbl_category_post`
+--
+
+CREATE TABLE `tbl_category_post` (
+  `cate_post_id` int(10) UNSIGNED NOT NULL,
+  `cate_post_name` varchar(255) NOT NULL,
+  `cate_post_desc` varchar(255) NOT NULL,
+  `cate_post_status` int(11) NOT NULL,
+  `cate_post_slug` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_category_post`
+--
+
+INSERT INTO `tbl_category_post` (`cate_post_id`, `cate_post_name`, `cate_post_desc`, `cate_post_status`, `cate_post_slug`, `created_at`, `updated_at`) VALUES
+(1, 'Giới thiệu về tay cầm PS4', 'Giới thiệu về tay cầm PS4', 1, 'gioi-thieu-ve-tay-cam-ps4', NULL, NULL),
+(2, 'Tin thể thao', 'Tin tức về thể thao hôm nay', 1, 'tin-the-thao', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `tbl_category_product`
 --
 
@@ -291,8 +337,7 @@ CREATE TABLE `tbl_category_product` (
 
 INSERT INTO `tbl_category_product` (`category_id`, `category_name`, `category_desc`, `category_status`, `meta_keywords`, `created_at`, `updated_at`) VALUES
 (1, 'PS4', 'Tay cầm PS4', 1, 'ps4, tay cam ps4, tay cam choi game', NULL, NULL),
-(2, 'Xbox one', 'Tay cầm Xbox one', 1, 'xbox, xbox one, tay cam xbox', NULL, NULL),
-(3, 'Xbox 360', 'Tay cầm Xbox 360', 1, 'xbox, xbox one, tay cam xbox 360', NULL, NULL),
+(2, 'Xbox', 'Tay cầm Xbox', 1, 'xbox, xbox one, xbox 360, tay cam xbox', NULL, NULL),
 (4, 'PS5', 'Tay cầm PS5', 1, 'ps5, tay cam ps5', NULL, NULL),
 (6, 'Vader', 'Tay cầm Vader', 1, 'vader, tay cam vader, tay cam choi game', NULL, NULL),
 (7, 'EasySMX', 'Tay cầm XMS', 1, 'xms, easy xms, tay cam choi game', NULL, NULL);
@@ -421,29 +466,7 @@ CREATE TABLE `tbl_order` (
 --
 
 INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status`, `order_code`, `created_at`, `updated_at`) VALUES
-(20, 4, 13, '1', 'c95ac', '2025-03-10 17:50:57', NULL),
-(21, 4, 14, '1', 'fc03c', '2025-03-10 17:53:57', NULL),
-(22, 4, 15, '1', '4d0d0', '2025-03-10 17:54:57', NULL),
-(23, 4, 16, '1', '943a9', '2025-03-11 00:57:11', NULL),
-(24, 4, 17, '1', '9e75f', '2025-03-11 01:18:47', NULL),
-(25, 4, 18, '1', 'f40b8', '2025-03-11 01:23:05', NULL),
-(26, 4, 19, '1', '377a1', '2025-03-11 02:36:30', NULL),
-(27, 4, 20, '1', '4d2e1', '2025-03-11 07:43:32', NULL),
-(28, 4, 21, '2', '34183', '2025-03-11 08:18:31', NULL),
-(29, 4, 22, '2', '89147', '2025-03-13 03:17:39', NULL),
-(30, 5, 23, '1', 'c5404', '2025-03-17 07:10:02', NULL),
-(31, 5, 24, '1', '94479', '2025-03-17 07:15:20', NULL),
-(36, 5, 29, '2', '89baa', '2025-03-17 09:19:44', NULL),
-(58, 5, 51, '1', '84a13', '2025-03-18 02:24:34', NULL),
-(60, 5, 53, '1', '51615', '2025-03-18 02:45:25', NULL),
-(62, 5, 55, '1', 'bf2ca', '2025-03-18 08:21:40', NULL),
-(63, 5, 56, '1', 'f4779', '2025-03-21 07:04:31', NULL),
-(64, 5, 57, '1', 'f68a9', '2025-03-21 07:07:11', NULL),
-(65, 5, 58, '1', '94026', '2025-03-21 07:08:07', NULL),
-(66, 5, 59, '2', '36c77', '2025-03-21 07:11:43', NULL),
-(67, 5, 60, '2', '537ff', '2025-03-22 00:58:21', NULL),
-(68, 5, 61, '2', 'd11e1', '2025-03-22 01:03:35', NULL),
-(69, 5, 62, '2', 'be47e', '2025-03-22 02:00:22', NULL);
+(72, 5, 65, '2', 'ff870', '2025-03-26 02:46:04', NULL);
 
 -- --------------------------------------------------------
 
@@ -533,7 +556,10 @@ INSERT INTO `tbl_order_details` (`order_details_id`, `order_code`, `product_id`,
 (86, '537ff', 16, 'Tay Cầm EasySMX X10', 699000, 2, 'no', '20000', NULL, NULL),
 (87, '537ff', 17, 'Tay Cầm EasySMX D05', 629000, 5, 'no', '20000', NULL, NULL),
 (88, 'd11e1', 17, 'Tay Cầm EasySMX D05', 629000, 1, 'no', '20000', NULL, NULL),
-(89, 'be47e', 12, 'Tay Cầm Flydigi VADER 4 PRO', 1299000, 1, 'no', '20000', NULL, NULL);
+(89, 'be47e', 12, 'Tay Cầm Flydigi VADER 4 PRO', 1299000, 1, 'no', '20000', NULL, NULL),
+(91, '79f66', 15, 'Tay Cầm EasySMX X05', 439000, 1, 'ANI2025', '20000', NULL, NULL),
+(92, 'ff870', 32, 'Tay Cầm EasySMX X10', 699000, 5, 'no', '20000', NULL, NULL),
+(93, 'ff870', 29, 'Tay Cầm Flydigi APEX 4', 1899000, 1, 'no', '20000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -601,18 +627,22 @@ CREATE TABLE `tbl_product` (
 --
 
 INSERT INTO `tbl_product` (`product_id`, `category_id`, `brand_id`, `product_name`, `product_quantity`, `product_sold`, `product_desc`, `product_content`, `product_price`, `product_image`, `product_status`, `meta_keywords`, `created_at`, `updated_at`) VALUES
-(5, 2, 1, 'Tay Cầm Xbox One X', '20', 27, 'Tay Cầm Xbox One X / Xbox Seri X Chính Hãng Đen Carbon Black + Tặng Kèm Cáp Cable USB Chơi Game Tối Ưu Cho FO4 / FIFA / PC', 'Tay Cầm Xbox One X / Xbox Seri X Chính Hãng Đen Carbon Black + Tặng Kèm Cáp Cable USB Chơi Game Tối Ưu Cho FO4 / FIFA / PC', '1090000', 'xboxonex42.jpg', 1, 'tay cam, tay cam xbox, xbox one, xbox one x', NULL, NULL),
-(6, 1, 6, 'Tay Cầm Sony DualShock 4 PS4', '20', 6, 'Tay Cầm Sony DualShock 4 PS4 Cũ 2nd + Kèm Cáp USB Chơi Game Tối Ưu Cho PC / FO4 / FIFA | HÀNG MỚI VỀ', 'Tay Cầm Sony DualShock 4 PS4 Cũ 2nd + Kèm Cáp USB Chơi Game Tối Ưu Cho PC / FO4 / FIFA | HÀNG MỚI VỀ', '799000', 'ps42nd98.jpeg', 1, 'ps4, tay cam ps4, ps4 2nd, ps4 mau den', NULL, NULL),
-(7, 4, 6, 'Tay Cầm PS5 30th Anniversary', '11', 6, 'Tay Cầm PS5 30th Anniversary Controller Chĩnh Hãng Chơi Game Cho PC / FCO / FIFA / PS5 | HÀNG NHẬP KHẨU', 'Tay Cầm PS5 30th Anniversary Controller Chĩnh Hãng Chơi Game Cho PC / FCO / FIFA / PS5 | HÀNG NHẬP KHẨU', '3050000', 'ps530thanniversary60.jpg', 1, 'ps5, tay cam ps5, ps5 ki niem 30 nam', NULL, NULL),
-(9, 4, 6, 'Tay Cầm Sony DualSense 5 PS5', '43', 22, 'Tay Cầm Sony DualSense 5 PS5 Chính Hãng + Top Gamepad Chơi Game Tối Ưu Cho PC / FO4 / FIFA | HÀNG NHẬP KHẨU', 'Tay Cầm Sony DualSense 5 PS5 Chính Hãng + Top Gamepad Chơi Game Tối Ưu Cho PC / FO4 / FIFA | HÀNG NHẬP KHẨU', '1399000', 'ps5trang47.jpg', 1, 'ps5, tay cam ps5, ps5 chinh hang', NULL, NULL),
-(10, 2, 1, 'Tay Cầm Xbox One S Cũ 2ND', '24', 19, 'Tay Cầm Xbox One S Cũ 2ND + Cáp Cable USB Chơi Game Tối Ưu Cho FC ONLINE / FIFA / PC / LAPTOP | NOBOX – MÀU TRẮNG', 'Tay Cầm Xbox One S Cũ 2ND + Cáp Cable USB Chơi Game Tối Ưu Cho FC ONLINE / FIFA / PC / LAPTOP | NOBOX – MÀU TRẮNG', '699000', 'xboxones2nd52.jpg', 1, 'tay cam, tay cam xbox, xbox one s', NULL, NULL),
-(11, 3, 1, 'Tay Cầm Xbox 360', '59', 1, 'Tay Cầm Xbox 360 C&oacute; D&acirc;y Chĩnh H&atilde;ng Chơi Game Tối Ưu Cho PC / FO3 / FO4 | TOP B&Aacute;N CHẠY', 'Tay Cầm Xbox 360 C&oacute; D&acirc;y Chĩnh H&atilde;ng Chơi Game Tối Ưu Cho PC / FO3 / FO4 | TOP B&Aacute;N CHẠY', '479000', 'xobx36013.jpg', 1, 'xbox, xbox 360, tay cam choi game', NULL, NULL),
-(12, 6, 7, 'Tay Cầm Flydigi VADER 4 PRO', '29', 1, 'Tay Cầm Flydigi VADER 4 PRO – Tay Cầm Chơi Game Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', 'Tay Cầm Flydigi VADER 4 PRO – Tay Cầm Chơi Game Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', '1299000', 'vader4_pro.jpg', 1, 'tay cam, tay cam flydigi, vader, tay cam vader, vader 4 pro', NULL, NULL),
-(13, 6, 7, 'Tay Cầm Flydigi APEX 4', '30', NULL, 'Tay Cầm Flydigi APEX 4 – Tay Cầm Bluetooth Wireless Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', 'Tay Cầm Flydigi APEX 4 – Tay Cầm Bluetooth Wireless Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', '1899000', 'apex4.jpg', 1, 'tay cam, tay cam flydigi, apex, tay cam apex, apex 4', NULL, NULL),
-(14, 6, 7, 'Tay Cầm Flydigi APEX 4 WUKONG Bản Giới Hạn ', '20', NULL, 'Tay Cầm Flydigi APEX 4 WUKONG Bản Giới Hạn – Top Tay Cầm Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG ĐẶT TRƯỚC', 'Tay Cầm Flydigi APEX 4 WUKONG Bản Giới Hạn – Top Tay Cầm Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG ĐẶT TRƯỚC', '3099000', 'apex4_wukong.jpg', 1, 'tay cam, tay cam flydigi, apex, tay cam apex, apex 4 wukong', NULL, NULL),
-(15, 7, 8, 'Tay Cầm EasySMX X05', '50', NULL, 'Tay Cầm EasySMX X05 Chính Hãng Không Dây 2.4G, Hall Effect Joysticks Chơi FCO, PC, IOS, Android, Switch – MÀU ĐEN', 'Tay Cầm EasySMX X05 Chính Hãng Không Dây 2.4G, Hall Effect Joysticks Chơi FCO, PC, IOS, Android, Switch – MÀU ĐEN', '439000', 'x05den.jpg', 1, 'tay cam, tay cam choi game, tay cam easysmx, X05, easysmx X05 mau den', NULL, NULL),
-(16, 7, 8, 'Tay Cầm EasySMX X10', '38', 2, 'Tay Cầm EasySMX X10 Chính Hãng Không Dây 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch – MÀU XÁM SILVER', 'Tay Cầm EasySMX X10 Chính Hãng Không Dây 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch – MÀU XÁM SILVER', '699000', 'x10.jpg', 1, 'tay cam, tay cam choi game, tay cam easysmx, X10, easysmx X10 ', NULL, NULL),
-(17, 7, 8, 'Tay Cầm EasySMX D05', '24', 6, 'Tay Cầm EasySMX D05 Chính Hãng Không Dây 2.4G, 1000Hz, Hall Effect, Led RGB Chơi FCO, PC, IOS, Android, Switch', 'Tay Cầm EasySMX D05 Chính Hãng Không Dây 2.4G, 1000Hz, Hall Effect, Led RGB Chơi FCO, PC, IOS, Android, Switch', '629000', 'd05.jpg', 1, 'tay cam, tay cam choi game, tay cam easysmx, D05, easysmx D05 ', NULL, NULL);
+(18, 2, 1, 'Tay Cầm Xbox One S Cũ 2ND', '40', NULL, 'Tay Cầm Xbox One S Cũ 2ND + Cáp Cable USB Chơi Game Tối Ưu Cho FC ONLINE / FIFA / PC / LAPTOP | NOBOX – MÀU TRẮNG', 'Tay Cầm Xbox One S Cũ 2ND + Cáp Cable USB Chơi Game Tối Ưu Cho FC ONLINE / FIFA / PC / LAPTOP | NOBOX – MÀU TRẮNG', '699000', 'xboxones2ndtrang.jpg', 1, 'tay cam, tay cam choi game, xbox, tay cam xbox, xbox one, xbox one s', NULL, NULL),
+(19, 2, 1, 'Tay Cầm Xbox One S Đen Cũ 2ND', '40', NULL, 'Tay Cầm Xbox One S Cũ 2ND + Cáp Cable USB Chơi Game Tối Ưu Cho FC ONLINE / FIFA / PC / LAPTOP | NOBOX – MÀU ĐEN', 'Tay Cầm Xbox One S Cũ 2ND + Cáp Cable USB Chơi Game Tối Ưu Cho FC ONLINE / FIFA / PC / LAPTOP | NOBOX – MÀU ĐEN', '699000', 'xboxones2ndden.jpg', 1, 'tay cam, tay cam choi game, xbox, tay cam xbox, xbox one, xbox one s', NULL, NULL),
+(20, 2, 1, 'Tay Cầm Xbox One X / Xbox Series X Chính Hãng Màu Xanh Sky', '40', NULL, 'Tay Cầm Xbox One X / Xbox Series X Chính Hãng Màu Xanh Sky Cipher Special Edition Chơi Game FC Online / FIFA / PC | HÀNG MỚI VỀ', 'Tay Cầm Xbox One X / Xbox Series X Chính Hãng Màu Xanh Sky Cipher Special Edition Chơi Game FC Online / FIFA / PC | HÀNG MỚI VỀ', '1190000', 'xboxseriesxxanh.jpg', 1, 'tay cam, tay cam choi game, xbox, tay cam xbox, xbox one, xbox one x, xbox series x', NULL, NULL),
+(21, 2, 1, 'Tay Cầm Chơi Game Xbox Elite', '40', NULL, 'Tay Cầm Chơi Game Xbox Elite Wireless Controller Series 2 Chính Hãng | Xbox Elite 2 Không Dây', 'Tay Cầm Chơi Game Xbox Elite Wireless Controller Series 2 Chính Hãng | Xbox Elite 2 Không Dây', '2799000', 'xboxelite.jpg', 1, 'tay cam, tay cam choi game, xbox, tay cam xbox, xbox elite', NULL, NULL),
+(22, 2, 1, 'Tay Cầm Xbox One X / Seri X Bản Thường', '40', NULL, 'Tay Cầm Xbox One X / Seri X Bản Thường Có Dây Màu Xanh Lá Tối Ưu Chơi Game Cho FO4 / FIFA / PC / Laptop FullBox | HÀNG MỚI VỀ', 'Tay Cầm Xbox One X / Seri X Bản Thường Có Dây Màu Xanh Lá Tối Ưu Chơi Game Cho FO4 / FIFA / PC / Laptop FullBox | HÀNG MỚI VỀ', '549000', 'xboxonexxanhla.jpg', 1, 'tay cam, tay cam choi game, xbox, tay cam xbox, xbox one, xbox one x, xbox series x', NULL, NULL),
+(23, 1, 6, 'Tay Cầm Sony DualShock 4 PS4 Cũ', '20', NULL, 'Tay Cầm Sony DualShock 4 PS4 Cũ 2nd + Kèm Cáp USB Chơi Game Tối Ưu Cho PC / FO4 / FIFA | HÀNG MỚI VỀ', 'Tay Cầm Sony DualShock 4 PS4 Cũ 2nd + Kèm Cáp USB Chơi Game Tối Ưu Cho PC / FO4 / FIFA | HÀNG MỚI VỀ', '799000', 'ps4cu57.jpeg', 1, 'tay cam, tay cam choi game, tay cam ps4, ps4, ps4 cu', NULL, NULL),
+(24, 1, 6, 'Tay Cầm PS4 REP 1 1', '20', NULL, 'Tay Cầm PS4 REP 1 1 Chất Lượng Cao Bền Đẹp + Kèm Cáp USB Tối Ưu Chơi Game FO4 / FIFA / PC | HÀNG MỚI VỀ', 'Tay Cầm PS4 REP 1 1 Chất Lượng Cao Bền Đẹp + Kèm Cáp USB Tối Ưu Chơi Game FO4 / FIFA / PC | HÀNG MỚI VỀ', '339000', 'ps4rep11.jpg', 1, 'tay cam, tay cam choi game, tay cam ps4, ps4, ps4 rep ', NULL, NULL),
+(25, 4, 6, 'Tay Cầm Sony DualSense 5 PS5 Trắng Chính Hãng', '30', NULL, 'Tay Cầm Sony DualSense 5 PS5 Chĩnh Hãng + Top Gamepad Chơi Game Tối Ưu Cho PC / FO4 / FIFA | HÀNG NHẬP KHẨU', 'Tay Cầm Sony DualSense 5 PS5 Chĩnh Hãng + Top Gamepad Chơi Game Tối Ưu Cho PC / FO4 / FIFA | HÀNG NHẬP KHẨU', '1399000', 'ps5trang.jpg', 1, 'tay cam, tay cam ps5, ps5, ps5 trang chinh hang', NULL, NULL),
+(26, 4, 6, 'Tay Cầm Sony DualSense 5 PS5 Đen Chính Hãng', '30', NULL, 'Tay Cầm Sony DualSense 5 PS5 Đen Midnight Black Chĩnh Hãng Top Gamepad Cho PC / FO4 / FIFA | HÀNG NHẬP KHẨU', 'Tay Cầm Sony DualSense 5 PS5 Đen Midnight Black Chĩnh Hãng Top Gamepad Cho PC / FO4 / FIFA | HÀNG NHẬP KHẨU', '1399000', 'ps5den.jpg', 1, 'tay cam, tay cam ps5, ps5, ps5 den chinh hang', NULL, NULL),
+(27, 4, 6, 'Tay Cầm Sony DualSense 5 PS5 Astro Bot Limited Edition', '30', NULL, 'Tay Cầm Sony DualSense 5 PS5 Astro Bot Limited Edition Chĩnh Hãng Chơi Game Cho PC / FCO / FIFA / PS5 | HÀNG NHẬP KHẨU', 'Tay Cầm Sony DualSense 5 PS5 Astro Bot Limited Edition Chĩnh Hãng Chơi Game Cho PC / FCO / FIFA / PS5 | HÀNG NHẬP KHẨU', '2899000', 'ps5astrobot.jpg', 1, 'tay cam, tay cam ps5, ps5, ps5 astro, ps5 astro bot', NULL, NULL),
+(28, 6, 7, 'Tay Cầm Flydigi VADER 4 PRO', '30', NULL, 'Tay Cầm Flydigi VADER 4 PRO – Tay Cầm Chơi Game Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', 'Tay Cầm Flydigi VADER 4 PRO – Tay Cầm Chơi Game Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', '1299000', 'vader4_pro.jpg', 1, 'tay cam, tay cam flydigi, vader, tay cam vader, vader 4 pro', NULL, NULL),
+(29, 6, 7, 'Tay Cầm Flydigi APEX 4', '29', 1, 'Tay Cầm Flydigi APEX 4 – Tay Cầm Bluetooth Wireless Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', 'Tay Cầm Flydigi APEX 4 – Tay Cầm Bluetooth Wireless Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', '1899000', 'apex4.jpg', 1, 'tay cam, tay cam flydigi, apex, tay cam apex, apex 4', NULL, NULL),
+(30, 6, 7, 'Tay Cầm Flydigi APEX 4 WUKONG Bản Giới Hạn ', '20', NULL, 'Tay Cầm Flydigi APEX 4 WUKONG Bản Giới Hạn – Top Tay Cầm Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG ĐẶT TRƯỚC', 'Tay Cầm Flydigi APEX 4 WUKONG Bản Giới Hạn – Top Tay Cầm Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG ĐẶT TRƯỚC', '3099000', 'apex4_wukong.jpg', 1, 'tay cam, tay cam flydigi, apex, tay cam apex, apex 4 wukong', NULL, NULL),
+(31, 7, 8, 'Tay Cầm EasySMX X05', '50', NULL, 'Tay Cầm EasySMX X05 Chính Hãng Không Dây 2.4G, Hall Effect Joysticks Chơi FCO, PC, IOS, Android, Switch – MÀU ĐEN', 'Tay Cầm EasySMX X05 Chính Hãng Không Dây 2.4G, Hall Effect Joysticks Chơi FCO, PC, IOS, Android, Switch – MÀU ĐEN', '439000', 'x05den.jpg', 1, 'tay cam, tay cam choi game, tay cam easysmx, X05, easysmx X05 mau den', NULL, NULL),
+(32, 7, 8, 'Tay Cầm EasySMX X10', '35', 5, 'Tay Cầm EasySMX X10 Chính Hãng Không Dây 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch – MÀU XÁM SILVER', 'Tay Cầm EasySMX X10 Chính Hãng Không Dây 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch – MÀU XÁM SILVER', '699000', 'x10.jpg', 1, 'tay cam, tay cam choi game, tay cam easysmx, X10, easysmx X10 ', NULL, NULL),
+(33, 7, 8, 'Tay Cầm EasySMX D05', '30', NULL, 'Tay Cầm EasySMX D05 Chính Hãng Không Dây 2.4G, 1000Hz, Hall Effect, Led RGB Chơi FCO, PC, IOS, Android, Switch', 'Tay Cầm EasySMX D05 Chính Hãng Không Dây 2.4G, 1000Hz, Hall Effect, Led RGB Chơi FCO, PC, IOS, Android, Switch', '629000', 'd05.jpg', 1, 'tay cam, tay cam choi game, tay cam easysmx, D05, easysmx D05 ', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1418,7 +1448,9 @@ INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_email`, `s
 (59, 'Walter White', 'heisenb@gmail.com', 'stone 18', 'Albuquerque', '987654321', 3, NULL, NULL),
 (60, 'Walter White', 'heisenb@gmail.com', 'stone 19', 'Albuquerque', '987654321', 0, NULL, NULL),
 (61, 'Walter White', 'heisenb@gmail.com', 'stone 20', 'Albuquerque', '0988820943', 0, NULL, NULL),
-(62, 'Walter White', 'heisenb@gmail.com', 'stone 21', 'Albuquerque', '987654321', 0, NULL, NULL);
+(62, 'Walter White', 'heisenb@gmail.com', 'stone 21', 'Albuquerque', '987654321', 0, NULL, NULL),
+(64, 'Walter White', 'heisenb@gmail.com', 'stone 22', 'Albuquerque', '987654321', 0, NULL, NULL),
+(65, 'Walter White', 'heisenb@gmail.com', 'stone 2 26/3/2025', 'Albuquerque', '0988820943', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -12841,6 +12873,12 @@ ALTER TABLE `tbl_brand_product`
   ADD PRIMARY KEY (`brand_id`);
 
 --
+-- Chỉ mục cho bảng `tbl_category_post`
+--
+ALTER TABLE `tbl_category_post`
+  ADD PRIMARY KEY (`cate_post_id`);
+
+--
 -- Chỉ mục cho bảng `tbl_category_product`
 --
 ALTER TABLE `tbl_category_product`
@@ -12951,7 +12989,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `admin_roles`
 --
 ALTER TABLE `admin_roles`
-  MODIFY `id_admin_roles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_admin_roles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -12969,13 +13007,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `admin_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `admin_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_banner`
@@ -12988,6 +13026,12 @@ ALTER TABLE `tbl_banner`
 --
 ALTER TABLE `tbl_brand_product`
   MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_category_post`
+--
+ALTER TABLE `tbl_category_post`
+  MODIFY `cate_post_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_category_product`
@@ -13023,13 +13067,13 @@ ALTER TABLE `tbl_momo`
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  MODIFY `order_details_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `order_details_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_payment`
@@ -13041,7 +13085,7 @@ ALTER TABLE `tbl_payment`
 -- AUTO_INCREMENT cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_roles`
@@ -13053,7 +13097,7 @@ ALTER TABLE `tbl_roles`
 -- AUTO_INCREMENT cho bảng `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
-  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_social`
