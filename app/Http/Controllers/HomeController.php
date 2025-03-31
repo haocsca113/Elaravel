@@ -3,13 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 use App\Models\Banner;
+use App\Models\Category;
+use App\Models\Brand;
 use App\Models\CategoryPost;
 use Mail;
 use DB;
 use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use OpenAI\Laravel\Facades\OpenAI;
+// use GeminiAPI\Client;
+// use GeminiAPI\Resources\Parts\TextPart;
+
+// use Google\AI\GenerativeLanguage\Client;
+// use Google\AI\GenerativeLanguage\TextPart;
 session_start();
 
 class HomeController extends Controller
@@ -74,4 +83,66 @@ class HomeController extends Controller
 
         return view('pages.product.search')->with('category', $cate_product)->with('brand', $brand_product)->with('search_product', $search_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post);
     }
+
+    public function contact_us(Request $request)
+    {
+        // Banner
+        $banner = Banner::orderBy('banner_id', 'desc')->take(4)->get();
+
+        // SEO
+        $meta_desc = 'Liên hệ';
+        $meta_keywords = 'Liên hệ';
+        $meta_title = 'Liên hệ';
+        $url_canonical = $request->url();
+
+        $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+
+        return view('pages.contact.contact_us')->with(compact('category', 'brand', 'banner', 'cate_post', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
+    }
+
+    // public function send_chat(Request $request)
+    // {
+    //     $result = OpenAI::chat()->create([
+    //         'model' => 'gpt-3.5-turbo', // Hoặc 'gpt-4-turbo'
+    //         'messages' => [
+    //             ['role' => 'system', 'content' => 'Bạn là một trợ lý AI.'],
+    //             ['role' => 'user', 'content' => $request->input]
+    //         ],
+    //         'max_tokens' => 100,
+    //     ]);
+    
+    //     $response = $result->choices[0]['message']['content'] ?? 'Không có phản hồi';
+    
+    //     dd($response);
+    // }
+    
+    // public function send_chat_gemini(Request $request)
+    // {
+    //     $text = $request->input('text');
+
+    //     if (!$text) {
+    //         return response()->json(['error' => 'No input text provided'], 400);
+    //     }
+
+    //     $client = new Client(); 
+
+    //     $response = $client->post("https://generativelanguage.googleapis.com/v1/models/gemini-2.5-pro-exp-03-25:generateContent", [
+    //         'query' => ['key' => env('GOOGLE_API_KEY')],
+    //         'json' => [
+    //             'contents' => [['parts' => [['text' => $text]]]],
+    //         ],
+    //     ]);
+
+    //     $data = json_decode($response->getBody(), true);
+
+    //     if (!isset($data['candidates'][0]['content']['parts'][0]['text'])) {
+    //         return response()->json(['error' => 'API did not return a valid response'], 500);
+    //     }
+
+    //     return response()->json(['response' => $data['candidates'][0]['content']['parts'][0]['text']]);
+    // }
+
 }

@@ -11,6 +11,8 @@
 	<link rel="icon" type="image/x-icon" href="">
     <title>{{ $meta_title }} </title>
 
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
 	{{-- <meta property="og:image" content=""> --}}
 	<meta property="og:site_name" content="http://localhost:8080/laravel/webbanhang_tutorial/public/">
 	<meta property="og:description" content="{{ $meta_desc }}">
@@ -26,6 +28,8 @@
 	<link href="{{ asset('frontend/css/main.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/responsive.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet">
+
+	{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css" type="text/css"> --}}
 
 
     <!--[if lt IE 9]>
@@ -72,7 +76,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="{{ ('frontend/images/home/logo.png') }}" alt="" /></a>
+							<a href="index.html"><img src="{{ asset('frontend/images/logo.png') }}" alt="" /></a>
 						</div>
 						<div class="btn-group pull-right">
 							<div class="btn-group">
@@ -193,7 +197,7 @@
 
 								<li><a href="{{ URL::to('/gio-hang') }}">Giỏ hàng</a></li>
 
-								<li><a href="contact-us.html">Liên hệ</a></li>
+								<li><a href="{{ url('/contact-us') }}">Liên hệ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -458,7 +462,8 @@
 		.contact-box-bottom {
 			position: fixed;
 			bottom: 54px;
-			right: 10px;
+			/* right: 10px; */
+			left: 10px;
 			z-index: 10000;
 		}
 
@@ -486,6 +491,57 @@
 		.contact-info {
 			padding-left: 10px;
 		}
+
+		/* Chatbot */
+		.chat-container {
+            width: 400px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        .message {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 75%;
+        }
+        .user {
+            background: #007bff;
+            color: white;
+            align-self: flex-end;
+            text-align: right;
+        }
+        .bot {
+            background: #f1f1f1;
+            color: black;
+            align-self: flex-start;
+        }
+        .input-container {
+            display: flex;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
 	</style>
 
 	<div class="contact-box-bottom">
@@ -500,7 +556,7 @@
 			</div>
 		</a>
 
-		<a class="contact-box-wrapper nut-chat-zalo" href="https://zalo.me/0988965716" rel="nofollow" target="_blank">
+		<a class="contact-box-wrapper nut-chat-zalo" href="https://zalo.me/0988820943" rel="nofollow" target="_blank">
 			<div class="contact-icon-box" style="border: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.5 161.5"><path d="M504.54,431.79h14.31c19.66,0,31.15,2.89,41.35,8.36a56.65,56.65,0,0,1,23.65,23.65c5.47,10.2,8.36,21.69,8.36,41.35V519.4c0,19.66-2.89,31.15-8.36,41.35a56.65,56.65,0,0,1-23.65,23.65c-10.2,5.47-21.69,8.36-41.35,8.36H504.6c-19.66,0-31.15-2.89-41.35-8.36a56.65,56.65,0,0,1-23.65-23.65c-5.47-10.2-8.36-21.69-8.36-41.35V505.14c0-19.66,2.89-31.15,8.36-41.35a56.65,56.65,0,0,1,23.65-23.65C473.39,434.68,484.94,431.79,504.54,431.79Z" transform="translate(-431.25 -431.25)" style="fill:#0068ff"></path><path d="M592.21,517v2.35c0,19.66-2.89,31.15-8.35,41.35a56.65,56.65,0,0,1-23.65,23.65c-10.2,5.47-21.69,8.36-41.35,8.36H504.6c-16.09,0-26.7-1.93-35.62-5.63L454.29,572Z" transform="translate(-431.25 -431.25)" style="fill:#001a33;opacity:0.11999999731779099;isolation:isolate"></path><path d="M455.92,572.51c7.53.83,16.94-1.31,23.62-4.56,29,16,74.38,15.27,101.84-2.3q1.6-2.4,3-5c5.49-10.24,8.39-21.77,8.39-41.5v-14.3c0-19.73-2.9-31.26-8.39-41.5a56.86,56.86,0,0,0-23.74-23.74c-10.24-5.49-21.77-8.39-41.5-8.39H504.76c-16.8,0-27.71,2.12-36.88,6.15q-.75.67-1.47,1.37c-26.89,25.92-28.93,82.11-6.13,112.64l.08.14c3.51,5.18.12,14.24-5.18,19.55C454.32,571.89,454.63,572.39,455.92,572.51Z" transform="translate(-431.25 -431.25)" style="fill:#fff"></path><path d="M497.35,486.34H465.84v6.76h21.87l-21.56,26.72a6.06,6.06,0,0,0-1.17,4v1.72h29.73a2.73,2.73,0,0,0,2.7-2.7v-3.62h-23l20.27-25.43,1.11-1.35.12-.18a8,8,0,0,0,1.41-5Z" transform="translate(-431.25 -431.25)" style="fill:#0068ff"></path><path d="M537.47,525.54H542v-39.2h-6.76v36.92A2.27,2.27,0,0,0,537.47,525.54Z" transform="translate(-431.25 -431.25)" style="fill:#0068ff"></path><path d="M514.37,495.07a15.36,15.36,0,1,0,15.36,15.36A15.36,15.36,0,0,0,514.37,495.07Zm0,24.39a9,9,0,1,1,9-9A9,9,0,0,1,514.37,519.46Z" transform="translate(-431.25 -431.25)" style="fill:#0068ff"></path><path d="M561.92,494.82A15.48,15.48,0,1,0,577.4,510.3,15.5,15.5,0,0,0,561.92,494.82Zm0,24.64a9.09,9.09,0,1,1,9.09-9.09A9.07,9.07,0,0,1,561.92,519.46Z" transform="translate(-431.25 -431.25)" style="fill:#0068ff"></path><path d="M526.17,525.54h3.62V495.93h-6.33v27A2.72,2.72,0,0,0,526.17,525.54Z" transform="translate(-431.25 -431.25)" style="fill:#0068ff"></path></svg></div>
 			<div class="contact-info">
 			  <b>Chat Zalo</b>
@@ -518,7 +574,31 @@
 			</div>
 		</a>
 	</div>
-	
+
+
+	{{-- <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+			<div class="mb-2" style="margin-bottom: 20px;">
+				<div class="float-right px-3 py-2" style="width: 270px; background: #4acfee; border-radius: 10px; float: right; height: 40px; line-height: 40px; padding: 0 10px;">
+					Hello World
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+
+			<div class="d-flex mb-2" style="margin-bottom: 10px;">
+				<div class="mr-2" style="width: 45px; height: 45px;">
+					<div class="text-white px-3 py-2" style="width: 270px; background: #13254b; border-radius: 10px; height: 40px; line-height: 40px; padding: 0 10px; color: #fff;">
+						I'm chat bot
+					</div>
+				</div>
+			</div>
+		</div>
+
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Nhập tin nhắn...">
+            <button id="button-submit">Gửi</button>
+        </div>
+    </div> --}}
 
   
     <script src="{{ asset('frontend/js/jquery.js') }}"></script>
@@ -531,6 +611,54 @@
 	{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js"></script>
+
+	{{-- <script>
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
+
+		$('#button-submit').on('click', function(){
+			$value = $('#userInput').val();
+			$('#chatBox').append(`
+				<div class="mb-2" style="margin-bottom: 10px;">
+					<div class="float-right px-3 py-2" style="width: 270px; background: #4acfee; border-radius: 10px; float: right; height: 40px; line-height: 40px; padding: 0 10px;">
+						`+ $value +`
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+			`);
+
+			$.ajax({
+				url: '{{ url('/send-chat') }}',
+				method: 'POST',
+				data: {
+					input: $value
+				},
+				success: function(data){
+					$('#chatBox').append(`
+						<div class="d-flex mb-2" style="margin-bottom: 10px;">
+							<div class="mr-2" style="width: 45px; height: 45px;">
+								<div class="text-white px-3 py-2" style="width: 270px; background: #13254b; border-radius: 10px; height: 40px; line-height: 40px; padding: 0 10px; color: #fff;">
+									`+ data +`
+								</div>
+							</div>
+						</div>
+					`);
+					$value = $('#userInput').val('');
+				}
+			})
+		});
+	</script> --}}
+
+	<script>
+		var botmanWidget = {
+			aboutText: 'Welcome',
+			introMessage: 'Hi, By Poghao'
+		}
+	</script>
 
 	<script>
 		$(document).ready(function(){

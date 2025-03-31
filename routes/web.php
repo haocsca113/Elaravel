@@ -15,11 +15,15 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryPostController;
+use App\Http\Controllers\BotManController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/trang-chu', [HomeController::class, 'index']);
 Route::post('/tim-kiem', [HomeController::class, 'search']);
+Route::post('/send-chat', [HomeController::class, 'send_chat']);
+Route::post('/send-chat-gemini', [HomeController::class, 'send_chat_gemini']);
+Route::get('/contact-us', [HomeController::class, 'contact_us']);
 
 // Danh muc san pham trang chu
 Route::get('/danh-muc-san-pham/{category_id}', [CategoryProduct::class, 'show_category_home']);
@@ -190,6 +194,9 @@ Route::post('/store-users', [UserController::class, 'store_users'])->middleware(
 Route::get('/delete-user-roles/{admin_id}', [UserController::class, 'delete_user_roles'])->middleware('auth.roles');
 Route::get('/impersonate/{admin_id}', [UserController::class, 'impersonate'])->middleware('impersonate');
 Route::get('/impersonate-destroy', [UserController::class, 'impersonate_destroy'])->middleware('impersonate');
+
+// Chatbot
+Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
 
 
 
