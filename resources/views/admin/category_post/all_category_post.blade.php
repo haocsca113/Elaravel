@@ -79,10 +79,10 @@
                                 ?>
                             </span></td>
                             <td>
-                                <a href="{{ URL::to('/edit-cate-post/'.$cate_post->cate_post_id) }}" class="active styling-edit" ui-toggle-class="">
+                                <a href="{{ URL::to('/edit-category-post/'.$cate_post->cate_post_id) }}" class="active styling-edit" ui-toggle-class="">
                                     <i class="fa fa-pencil-square-o text-success text-active"></i>
                                 </a>
-                                <a href="{{ URL::to('/delete-cate-post/'.$cate_post->cate_post_id) }}" class="active styling-edit" ui-toggle-class="" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục bài viết này không?')">
+                                <a href="{{ URL::to('/delete-category-post/'.$cate_post->cate_post_id) }}" class="active styling-edit" ui-toggle-class="" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục bài viết này không?')">
                                     <i class="fa fa-times text-danger text"></i>
                                 </a>
                             </td>

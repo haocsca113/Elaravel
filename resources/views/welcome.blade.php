@@ -653,10 +653,16 @@
 		});
 	</script> --}}
 
+	<style>
+		#botmanWidgetRoot div[style*="position: fixed"] {
+			bottom: 40px !important;
+		}
+	</style>
+	
 	<script>
 		var botmanWidget = {
 			aboutText: 'Welcome',
-			introMessage: 'Hi, By Poghao'
+			introMessage: 'Hi, By Poghao',
 		}
 	</script>
 

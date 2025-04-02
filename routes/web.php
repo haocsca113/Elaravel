@@ -39,6 +39,9 @@ Route::post('/admin-dashboard', [AdminController::class, 'dashboard']);
 // Category Post
 Route::get('/add-category-post', [CategoryPostController::class, 'add_category_post']);
 Route::get('/all-category-post', [CategoryPostController::class, 'all_category_post']);
+Route::get('/edit-category-post/{cate_post_id}', [CategoryPostController::class, 'edit_category_post']);
+Route::get('/delete-category-post/{cate_post_id}', [CategoryPostController::class, 'delete_category_post']);
+Route::post('/update-category-post/{cate_post_id}', [CategoryPostController::class, 'update_category_post']);
 Route::post('/save-category-post', [CategoryPostController::class, 'save_category_post']);
 Route::get('/unactive-cate-post/{cate_post_id}', [CategoryPostController::class, 'unactive_cate_post']);
 Route::get('/active-cate-post/{cate_post_id}', [CategoryPostController::class, 'active_cate_post']);

@@ -50,8 +50,7 @@
                     @endif
                 </td>
 
-                <td>
-                    
+                <td>   
                     @if($order->order_status == 2)
                         @php
                             $total_after = \App\Models\OrderDetails::where('order_code', $order->order_code)

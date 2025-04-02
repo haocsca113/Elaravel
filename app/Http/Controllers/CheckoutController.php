@@ -340,8 +340,11 @@ class CheckoutController extends Controller
         // $amount = floatval(str_replace(',', '', $data['total_momo']));
         $amount = floatval(str_replace(',', '', $total_pay));
         $orderId = time() . "";
-        $redirectUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/momo-online-payment";
-        $ipnUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/momo-online-payment";
+        // $redirectUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/momo-online-payment";
+        // $ipnUrl = "http://localhost:8080/laravel/webbanhang_tutorial/public/momo-online-payment";
+
+        $redirectUrl = "http://127.0.0.1:8000/momo-online-payment";
+        $ipnUrl = "http://127.0.0.1:8000/momo-online-payment";
 
         // $redirectUrl = "https://pogshop.online/momo-online-payment";
         // $ipnUrl = "https://pogshop.online/momo-online-payment";
@@ -382,7 +385,8 @@ class CheckoutController extends Controller
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 
-        $vnp_Returnurl = "http://localhost:8080/laravel/webbanhang_tutorial/public/vnpay-online-payment";
+        // $vnp_Returnurl = "http://localhost:8080/laravel/webbanhang_tutorial/public/vnpay-online-payment";
+        $vnp_Returnurl = "http://127.0.0.1:8000/vnpay-online-payment";
         // $vnp_Returnurl = "https://pogshop.online/vnpay-online-payment";
         
         $vnp_TmnCode = "FY58L6R9";//Mã website tại VNPAY 
@@ -474,6 +478,8 @@ class CheckoutController extends Controller
         $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+
         $shipping_method = Session::get('shipping_method');
         
         if($shipping_method == 2)
@@ -490,7 +496,7 @@ class CheckoutController extends Controller
             $vnpay->code_cart = $request->query('vnp_TxnRef');
             $vnpay->save();
 
-            return view('pages.checkout.ttvnpay')->with(compact('category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
+            return view('pages.checkout.ttvnpay')->with(compact('category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'cate_post'));
         } 
     }
 
@@ -508,6 +514,8 @@ class CheckoutController extends Controller
         $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+
         $shipping_method = Session::get('shipping_method');
         if($shipping_method == 3)
         {
@@ -521,7 +529,7 @@ class CheckoutController extends Controller
             $momo->pay_type = $request->query('payType');
             $momo->save();
 
-            return view('pages.checkout.ttmomo')->with(compact('category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
+            return view('pages.checkout.ttmomo')->with(compact('category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'cate_post'));
         }
     }
 

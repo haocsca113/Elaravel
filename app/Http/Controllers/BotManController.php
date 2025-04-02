@@ -7,6 +7,10 @@ use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\OrderDetails;
+use App\Models\Coupon;
+use Session;
+session_start();
 
 class BotManController extends Controller
 {
@@ -45,7 +49,8 @@ class BotManController extends Controller
                     $botman->reply("📞 Bạn có thể gọi **0988820943** hoặc email **haocsca113@gmail.com**.");
                     break;
 
-                case 'khuyến mãi hôm nay':
+                case 'mã giảm giá':
+                case 'coupon':
                     $this->generateDiscountCode($botman);
                     break;
     
@@ -82,15 +87,15 @@ class BotManController extends Controller
     // Hiển thị danh sách lệnh có thể sử dụng
     public function showHelp($botman)
     {
-        $helpText = "📜 **Danh sách lệnh hỗ trợ**: \n";
-        $helpText .= "👉 **hi** - Chào hỏi \n";
-        $helpText .= "👉 **time** - Xem giờ hiện tại \n";
-        $helpText .= "👉 **date** - Xem ngày hôm nay \n";
-        $helpText .= "👉 **giờ mở cửa** - Xem giờ làm việc \n";
-        $helpText .= "👉 **liên hệ** - Xem thông tin liên hệ \n";
-        $helpText .= "👉 **khuyến mãi hôm nay** - Nhận mã giảm giá \n";
-        $helpText .= "👉 **kiểm tra đơn hàng [mã]** - Kiểm tra tình trạng đơn hàng \n";
-        $helpText .= "👉 **tay cầm [PS4/PS5/Xbox/Vader]** - Gợi ý tay cầm phù hợp \n";
+        $helpText = "📜 **Danh sách lệnh hỗ trợ**: <br>";
+        $helpText .= "👉 **hi** - Chào hỏi <br>";
+        $helpText .= "👉 **time** - Xem giờ hiện tại <br>";
+        $helpText .= "👉 **date** - Xem ngày hôm nay <br>";
+        $helpText .= "👉 **giờ mở cửa** - Xem giờ làm việc <br>";
+        $helpText .= "👉 **liên hệ** - Xem thông tin liên hệ <br>";
+        $helpText .= "👉 **mã giảm giá hoặc coupon** - Xem mã giảm giá bạn có <br>";
+        $helpText .= "👉 **kiểm tra đơn hàng [mã]** - Kiểm tra tình trạng đơn hàng <br>";
+        $helpText .= "👉 **tay cầm [PS4/PS5/Xbox/Vader]** - Gợi ý tay cầm phù hợp <br>";
 
         $botman->reply($helpText);
     }
@@ -126,7 +131,42 @@ class BotManController extends Controller
     // Tạo mã khuyến mãi ngẫu nhiên
     public function generateDiscountCode($botman)
     {
-        $discountCode = strtoupper(substr(md5(time()), 0, 6)); // Mã giảm giá ngẫu nhiên
-        $botman->reply("🎉 Hôm nay có khuyến mãi đặc biệt! Nhập mã **$discountCode** để nhận **10% giảm giá** khi mua hàng.");
+        $customer_id = session()->get('customer_id');
+        // $botman->reply("🔍 Customer ID: " . ($customer_id ?? 'Không có'));
+      
+        if (!$customer_id) {
+            $botman->reply("⚠️ Bạn cần đăng nhập để kiểm tra mã giảm giá.");
+            return;
+        }
+
+        $orders = Order::where('customer_id', $customer_id)
+        ->where('order_status', 2)
+        ->get();
+
+        $coupons = [];
+
+        foreach ($orders as $order) {
+            $total_after = OrderDetails::where('order_code', $order->order_code)
+                ->selectRaw('SUM(product_price * product_sales_quantity) as total')
+                ->value('total');
+
+            if ($total_after >= 1000000 && $total_after < 3000000) {
+                $coupon = Coupon::where('coupon_condition', 2)->first();
+            } elseif ($total_after >= 3000000) {
+                $coupon = Coupon::where('coupon_condition', 1)->first();
+            }
+
+            if (isset($coupon) && !in_array($coupon->coupon_code, $coupons)) {
+                $coupons[] = $coupon->coupon_code;
+            }
+        }
+
+        // Kiểm tra nếu có mã giảm giá
+        if (!empty($coupons)) {
+            $couponList = implode(", ", $coupons);
+            $botman->reply("🎉 Mã giảm giá bạn có: **$couponList**.");
+        } else {
+            $botman->reply("❌ Bạn chưa có mã giảm giá. Hãy mua hàng để nhận ưu đãi nhé!");
+        }
     }
 }

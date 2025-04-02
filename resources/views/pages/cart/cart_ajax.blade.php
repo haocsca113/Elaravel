@@ -126,8 +126,6 @@
                                                 @endforeach
                                             @endif
                                         </li>
-                                        {{-- <li>Phí vận chuyển: <span>Free</span></li> --}}
-                                       
                                     </ul>
                                 </td>
                             </tr>
