@@ -102,47 +102,4 @@ class HomeController extends Controller
 
         return view('pages.contact.contact_us')->with(compact('category', 'brand', 'banner', 'cate_post', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
     }
-
-    // public function send_chat(Request $request)
-    // {
-    //     $result = OpenAI::chat()->create([
-    //         'model' => 'gpt-3.5-turbo', // Hoặc 'gpt-4-turbo'
-    //         'messages' => [
-    //             ['role' => 'system', 'content' => 'Bạn là một trợ lý AI.'],
-    //             ['role' => 'user', 'content' => $request->input]
-    //         ],
-    //         'max_tokens' => 100,
-    //     ]);
-    
-    //     $response = $result->choices[0]['message']['content'] ?? 'Không có phản hồi';
-    
-    //     dd($response);
-    // }
-    
-    // public function send_chat_gemini(Request $request)
-    // {
-    //     $text = $request->input('text');
-
-    //     if (!$text) {
-    //         return response()->json(['error' => 'No input text provided'], 400);
-    //     }
-
-    //     $client = new Client(); 
-
-    //     $response = $client->post("https://generativelanguage.googleapis.com/v1/models/gemini-2.5-pro-exp-03-25:generateContent", [
-    //         'query' => ['key' => env('GOOGLE_API_KEY')],
-    //         'json' => [
-    //             'contents' => [['parts' => [['text' => $text]]]],
-    //         ],
-    //     ]);
-
-    //     $data = json_decode($response->getBody(), true);
-
-    //     if (!isset($data['candidates'][0]['content']['parts'][0]['text'])) {
-    //         return response()->json(['error' => 'API did not return a valid response'], 500);
-    //     }
-
-    //     return response()->json(['response' => $data['candidates'][0]['content']['parts'][0]['text']]);
-    // }
-
 }

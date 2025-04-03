@@ -32,10 +32,12 @@
                             <label for="exampleInputEmail1">Giá sản phẩm</label>
                             <input type="text" name="product_price" class="form-control" id="exampleInputEmail1" placeholder="Nhập giá sản phẩm">
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail1">Hình ảnh sản phẩm</label>
                             <input type="file" name="product_image" class="form-control" id="exampleInputEmail1">
                         </div>
+                        
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả sản phẩm</label>
                             <textarea type="text" name="product_desc" class="form-control" style="resize: none;" rows="5" id="ckeditor1" placeholder="Nhập mô tả sản phẩm">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 31, 2025 lúc 11:06 AM
+-- Thời gian đã tạo: Th4 02, 2025 lúc 10:25 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -72,7 +72,9 @@ CREATE TABLE `cache` (
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
 ('conversation-044090ae615b18626804915d649fbee946d37c7a-044090ae615b18626804915d649fbee946d37c7a', 'a:5:{s:12:\"conversation\";O:55:\"BotMan\\BotMan\\Messages\\Conversations\\InlineConversation\":2:{s:8:\"\0*\0token\";N;s:12:\"\0*\0cacheTime\";N;}s:8:\"question\";s:39:\"s:31:\"👋 Xin chào! Bạn tên gì?\";\";s:20:\"additionalParameters\";s:6:\"a:0:{}\";s:4:\"next\";s:646:\"O:47:\"Laravel\\SerializableClosure\\SerializableClosure\":1:{s:12:\"serializable\";O:46:\"Laravel\\SerializableClosure\\Serializers\\Signed\":2:{s:12:\"serializable\";s:417:\"O:46:\"Laravel\\SerializableClosure\\Serializers\\Native\":5:{s:3:\"use\";a:0:{}s:8:\"function\";s:198:\"function (\\BotMan\\BotMan\\Messages\\Incoming\\Answer $answer, $botman) {\n            $name = $answer->getText();\n            $botman->reply(\"🤖 Rất vui được gặp bạn, **$name**!\");\n        }\";s:5:\"scope\";s:37:\"App\\Http\\Controllers\\BotManController\";s:4:\"this\";N;s:4:\"self\";s:32:\"00000000000001ea0000000000000000\";}\";s:4:\"hash\";s:44:\"Uf5kZBBTb6vMuSyBUxRXASacxzwF6XGUFYlznA6RM9Y=\";}}\";s:4:\"time\";s:21:\"0.32035600 1743408383\";}', 1743410783),
+('conversation-198cd40bad7c35b86e757df70e2849aa4c08887f-198cd40bad7c35b86e757df70e2849aa4c08887f', 'a:5:{s:12:\"conversation\";O:55:\"BotMan\\BotMan\\Messages\\Conversations\\InlineConversation\":2:{s:8:\"\0*\0token\";N;s:12:\"\0*\0cacheTime\";N;}s:8:\"question\";s:39:\"s:31:\"👋 Xin chào! Bạn tên gì?\";\";s:20:\"additionalParameters\";s:6:\"a:0:{}\";s:4:\"next\";s:644:\"O:47:\"Laravel\\SerializableClosure\\SerializableClosure\":1:{s:12:\"serializable\";O:46:\"Laravel\\SerializableClosure\\Serializers\\Signed\":2:{s:12:\"serializable\";s:415:\"O:46:\"Laravel\\SerializableClosure\\Serializers\\Native\":5:{s:3:\"use\";a:0:{}s:8:\"function\";s:196:\"function (\\BotMan\\BotMan\\Messages\\Incoming\\Answer $answer, $botman) {\n            $name = $answer->getText();\n            $botman->say(\"🤖 Rất vui được gặp bạn, **$name**!\");\n        }\";s:5:\"scope\";s:37:\"App\\Http\\Controllers\\BotManController\";s:4:\"this\";N;s:4:\"self\";s:32:\"00000000000001ea0000000000000000\";}\";s:4:\"hash\";s:44:\"SLPJewohS3lnALbJVDj1abOcWB2BHX1/9meBinlYRJ0=\";}}\";s:4:\"time\";s:21:\"0.23206000 1743467189\";}', 1743469589),
 ('conversation-48e4907af9e95d4489b99081f6be288a20004cc7-48e4907af9e95d4489b99081f6be288a20004cc7', 'a:5:{s:12:\"conversation\";O:55:\"BotMan\\BotMan\\Messages\\Conversations\\InlineConversation\":2:{s:8:\"\0*\0token\";N;s:12:\"\0*\0cacheTime\";N;}s:8:\"question\";s:39:\"s:31:\"👋 Xin chào! Bạn tên gì?\";\";s:20:\"additionalParameters\";s:6:\"a:0:{}\";s:4:\"next\";s:644:\"O:47:\"Laravel\\SerializableClosure\\SerializableClosure\":1:{s:12:\"serializable\";O:46:\"Laravel\\SerializableClosure\\Serializers\\Signed\":2:{s:12:\"serializable\";s:415:\"O:46:\"Laravel\\SerializableClosure\\Serializers\\Native\":5:{s:3:\"use\";a:0:{}s:8:\"function\";s:196:\"function (\\BotMan\\BotMan\\Messages\\Incoming\\Answer $answer, $botman) {\n            $name = $answer->getText();\n            $botman->say(\"🤖 Rất vui được gặp bạn, **$name**!\");\n        }\";s:5:\"scope\";s:37:\"App\\Http\\Controllers\\BotManController\";s:4:\"this\";N;s:4:\"self\";s:32:\"00000000000001ea0000000000000000\";}\";s:4:\"hash\";s:44:\"SLPJewohS3lnALbJVDj1abOcWB2BHX1/9meBinlYRJ0=\";}}\";s:4:\"time\";s:21:\"0.79313400 1743410395\";}', 1743412795),
+('conversation-536198abea2583fa0a0740d19ab2a31a7ebeee48-536198abea2583fa0a0740d19ab2a31a7ebeee48', 'a:5:{s:12:\"conversation\";O:55:\"BotMan\\BotMan\\Messages\\Conversations\\InlineConversation\":2:{s:8:\"\0*\0token\";N;s:12:\"\0*\0cacheTime\";N;}s:8:\"question\";s:39:\"s:31:\"👋 Xin chào! Bạn tên gì?\";\";s:20:\"additionalParameters\";s:6:\"a:0:{}\";s:4:\"next\";s:644:\"O:47:\"Laravel\\SerializableClosure\\SerializableClosure\":1:{s:12:\"serializable\";O:46:\"Laravel\\SerializableClosure\\Serializers\\Signed\":2:{s:12:\"serializable\";s:415:\"O:46:\"Laravel\\SerializableClosure\\Serializers\\Native\":5:{s:3:\"use\";a:0:{}s:8:\"function\";s:196:\"function (\\BotMan\\BotMan\\Messages\\Incoming\\Answer $answer, $botman) {\n            $name = $answer->getText();\n            $botman->say(\"🤖 Rất vui được gặp bạn, **$name**!\");\n        }\";s:5:\"scope\";s:37:\"App\\Http\\Controllers\\BotManController\";s:4:\"this\";N;s:4:\"self\";s:32:\"00000000000001ea0000000000000000\";}\";s:4:\"hash\";s:44:\"SLPJewohS3lnALbJVDj1abOcWB2BHX1/9meBinlYRJ0=\";}}\";s:4:\"time\";s:21:\"0.03008100 1743470841\";}', 1743473241),
 ('conversation-8d1e142b5a2cca685d8e6085c7a7b3addc88d331-8d1e142b5a2cca685d8e6085c7a7b3addc88d331', 'a:5:{s:12:\"conversation\";O:55:\"BotMan\\BotMan\\Messages\\Conversations\\InlineConversation\":2:{s:8:\"\0*\0token\";N;s:12:\"\0*\0cacheTime\";N;}s:8:\"question\";s:39:\"s:31:\"👋 Xin chào! Bạn tên gì?\";\";s:20:\"additionalParameters\";s:6:\"a:0:{}\";s:4:\"next\";s:646:\"O:47:\"Laravel\\SerializableClosure\\SerializableClosure\":1:{s:12:\"serializable\";O:46:\"Laravel\\SerializableClosure\\Serializers\\Signed\":2:{s:12:\"serializable\";s:417:\"O:46:\"Laravel\\SerializableClosure\\Serializers\\Native\":5:{s:3:\"use\";a:0:{}s:8:\"function\";s:198:\"function (\\BotMan\\BotMan\\Messages\\Incoming\\Answer $answer, $botman) {\n            $name = $answer->getText();\n            $botman->reply(\"🤖 Rất vui được gặp bạn, **$name**!\");\n        }\";s:5:\"scope\";s:37:\"App\\Http\\Controllers\\BotManController\";s:4:\"this\";N;s:4:\"self\";s:32:\"00000000000001ea0000000000000000\";}\";s:4:\"hash\";s:44:\"Uf5kZBBTb6vMuSyBUxRXASacxzwF6XGUFYlznA6RM9Y=\";}}\";s:4:\"time\";s:21:\"0.26053100 1743408625\";}', 1743411025),
 ('conversation-9016f6169dc7ad289391d6cc329c6648a48d2496-9016f6169dc7ad289391d6cc329c6648a48d2496', 'a:5:{s:12:\"conversation\";O:55:\"BotMan\\BotMan\\Messages\\Conversations\\InlineConversation\":2:{s:8:\"\0*\0token\";N;s:12:\"\0*\0cacheTime\";N;}s:8:\"question\";s:31:\"s:23:\"Hello what is your name\";\";s:20:\"additionalParameters\";s:6:\"a:0:{}\";s:4:\"next\";s:655:\"O:47:\"Laravel\\SerializableClosure\\SerializableClosure\":1:{s:12:\"serializable\";O:46:\"Laravel\\SerializableClosure\\Serializers\\Signed\":2:{s:12:\"serializable\";s:426:\"O:46:\"Laravel\\SerializableClosure\\Serializers\\Native\":5:{s:3:\"use\";a:0:{}s:8:\"function\";s:160:\"function(\\BotMan\\BotMan\\Messages\\Incoming\\Answer $answer){\n            $name = $answer->getText();\n            $this->say(\"Nice to meet you \" .$name);\n        }\";s:5:\"scope\";s:37:\"App\\Http\\Controllers\\BotManController\";s:4:\"this\";O:37:\"App\\Http\\Controllers\\BotManController\":0:{}s:4:\"self\";s:32:\"00000000000001ea0000000000000000\";}\";s:4:\"hash\";s:44:\"auuq7A+McafPERRDJo3xWxr2yUVfb3MnUso56xPrXWY=\";}}\";s:4:\"time\";s:21:\"0.12128000 1743408163\";}', 1743410563),
 ('conversation-f7299efa89bcfddd134dfc222f45c4123e23b388-f7299efa89bcfddd134dfc222f45c4123e23b388', 'a:5:{s:12:\"conversation\";O:55:\"BotMan\\BotMan\\Messages\\Conversations\\InlineConversation\":2:{s:8:\"\0*\0token\";N;s:12:\"\0*\0cacheTime\";N;}s:8:\"question\";s:39:\"s:31:\"👋 Xin chào! Bạn tên gì?\";\";s:20:\"additionalParameters\";s:6:\"a:0:{}\";s:4:\"next\";s:646:\"O:47:\"Laravel\\SerializableClosure\\SerializableClosure\":1:{s:12:\"serializable\";O:46:\"Laravel\\SerializableClosure\\Serializers\\Signed\":2:{s:12:\"serializable\";s:417:\"O:46:\"Laravel\\SerializableClosure\\Serializers\\Native\":5:{s:3:\"use\";a:0:{}s:8:\"function\";s:198:\"function (\\BotMan\\BotMan\\Messages\\Incoming\\Answer $answer, $botman) {\n            $name = $answer->getText();\n            $botman->reply(\"🤖 Rất vui được gặp bạn, **$name**!\");\n        }\";s:5:\"scope\";s:37:\"App\\Http\\Controllers\\BotManController\";s:4:\"this\";N;s:4:\"self\";s:32:\"00000000000001ea0000000000000000\";}\";s:4:\"hash\";s:44:\"Uf5kZBBTb6vMuSyBUxRXASacxzwF6XGUFYlznA6RM9Y=\";}}\";s:4:\"time\";s:21:\"0.70245600 1743408341\";}', 1743410741);
@@ -213,9 +215,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('bJEpr2FVGiWrlKrUH1qL8ZvjletkWXsEncxjd5wi', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiQ3EyYVJwUEc3M2hudThVUHR0SHB4RHIzM0RaOXRqSkFZNXVCd3pKViI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC90cmFuZy1jaHUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjExOiJjdXN0b21lcl9pZCI7aTo1O3M6MTM6ImN1c3RvbWVyX25hbWUiO3M6MTA6ImhlaXNlbmJlcmciO3M6NDoiY2FydCI7YToyOntpOjA7YTo3OntzOjEwOiJzZXNzaW9uX2lkIjtzOjU6IjVmMzFmIjtzOjEwOiJwcm9kdWN0X2lkIjtzOjI6IjI0IjtzOjEyOiJwcm9kdWN0X25hbWUiO3M6MjE6IlRheSBD4bqnbSBQUzQgUkVQIDEgMSI7czoxMzoicHJvZHVjdF9pbWFnZSI7czoxMjoicHM0cmVwMTEuanBnIjtzOjE2OiJwcm9kdWN0X3F1YW50aXR5IjtzOjI6IjIwIjtzOjEzOiJwcm9kdWN0X3ByaWNlIjtzOjY6IjMzOTAwMCI7czoxMToicHJvZHVjdF9xdHkiO3M6MToiMSI7fWk6MTthOjc6e3M6MTA6InNlc3Npb25faWQiO3M6NToiZTVlZDMiO3M6MTA6InByb2R1Y3RfaWQiO3M6MjoiMzIiO3M6MTI6InByb2R1Y3RfbmFtZSI7czoyMToiVGF5IEPhuqdtIEVhc3lTTVggWDEwIjtzOjEzOiJwcm9kdWN0X2ltYWdlIjtzOjc6IngxMC5qcGciO3M6MTY6InByb2R1Y3RfcXVhbnRpdHkiO3M6MjoiMzUiO3M6MTM6InByb2R1Y3RfcHJpY2UiO3M6NjoiNjk5MDAwIjtzOjExOiJwcm9kdWN0X3F0eSI7czoxOiIxIjt9fX0=', 1743411659),
-('H82Lo8TPPHHSXnCtSqbd3pVjFAgBTdgdZ3pNNqS4', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYlBOTE0yT0kyWDBJZWdTdmZ6ZUtLQXY3SGZvbXlIY2dCdW5qRWk2diI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9sYXJhdmVsL3dlYmJhbmhhbmdfdHV0b3JpYWwvcHVibGljL3RyYW5nLWNodSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1743388949),
-('J2WAoa6T4KwR4s3IMbJnaL2xI7HLIHaqo2avf7AU', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidTVqZVhXakZRdzRkSjZpRmI3UEtHNW5FZHNRNEVLT3lOZVRzZUJlZiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9sYXJhdmVsL3dlYmJhbmhhbmdfdHV0b3JpYWwvcHVibGljIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1743407784);
+('qrmp2U0eqbKi6naKbZI7zc2YkAuD4NCwr1Qtqh89', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36', 'YToxMTp7czo2OiJfdG9rZW4iO3M6NDA6ImRRbU9vTkxwNjJ5bVRrdFZEd2tuYVFzSkM3NzZKMFRDZVFqZmtSSTkiO3M6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvdHJhbmctY2h1Ijt9czoxMToiY3VzdG9tZXJfaWQiO2k6NTtzOjEzOiJjdXN0b21lcl9uYW1lIjtzOjEwOiJoZWlzZW5iZXJnIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTE6InRvdGFsX2FmdGVyIjtpOjI3NzcwMDA7czoxMDoib3JkZXJfY29kZSI7czo1OiI4YTc1ZiI7czo5OiJvcmRlcl9mZWUiO3M6NToiMjAwMDAiO3M6MTU6InNoaXBwaW5nX21ldGhvZCI7czoxOiIwIjtzOjQ6ImNhcnQiO2E6MTp7aTowO2E6Nzp7czoxMDoic2Vzc2lvbl9pZCI7czo1OiJhYjJiYSI7czoxMDoicHJvZHVjdF9pZCI7czoyOiIyNSI7czoxMjoicHJvZHVjdF9uYW1lIjtzOjUxOiJUYXkgQ+G6p20gU29ueSBEdWFsU2Vuc2UgNSBQUzUgVHLhuq9uZyBDaMOtbmggSMOjbmciO3M6MTM6InByb2R1Y3RfaW1hZ2UiO3M6MTI6InBzNXRyYW5nLmpwZyI7czoxNjoicHJvZHVjdF9xdWFudGl0eSI7czoyOiIzMCI7czoxMzoicHJvZHVjdF9wcmljZSI7czo3OiIxMzk5MDAwIjtzOjExOiJwcm9kdWN0X3F0eSI7czoxOiIxIjt9fX0=', 1743582200);
 
 -- --------------------------------------------------------
 
@@ -323,8 +323,9 @@ CREATE TABLE `tbl_category_post` (
 --
 
 INSERT INTO `tbl_category_post` (`cate_post_id`, `cate_post_name`, `cate_post_desc`, `cate_post_status`, `cate_post_slug`, `created_at`, `updated_at`) VALUES
-(1, 'Giới thiệu về tay cầm PS4', 'Giới thiệu về tay cầm PS4', 1, 'gioi-thieu-ve-tay-cam-ps4', NULL, NULL),
-(2, 'Tin thể thao', 'Tin tức về thể thao hôm nay', 1, 'tin-the-thao', NULL, NULL);
+(1, 'Giới thiệu về tay cầm PS4 mới', 'Giới thiệu về tay cầm PS4', 1, 'gioi-thieu-ve-tay-cam-ps4-moi', NULL, NULL),
+(2, 'Tin thể thao mới hôm nay', 'Tin tức về thể thao hôm nay', 1, 'tin-the-thao-moi-hom-nay', NULL, NULL),
+(3, 'Tin tức bóng đá ngoại hạng anh', 'Tin tức bóng đá ngoại hạng anh mới nhất', 1, 'tin-tuc-bong-da-ngoai-hang-anh', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -375,8 +376,8 @@ CREATE TABLE `tbl_coupon` (
 --
 
 INSERT INTO `tbl_coupon` (`coupon_id`, `coupon_name`, `coupon_code`, `coupon_time`, `coupon_condition`, `coupon_number`, `created_at`, `updated_at`) VALUES
-(1, 'Giảm giá 30/4', 'VN30T4', 10, 1, 10, NULL, NULL),
-(2, 'Giảm giá Aniversary 2025', 'ANI2025', 5, 2, 100000, NULL, NULL);
+(1, 'Giảm giá 30/4', 'VN30T4', 9, 1, 10, NULL, NULL),
+(2, 'Giảm giá Aniversary 2025', 'ANI2025', 4, 2, 100000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -410,23 +411,13 @@ INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_email`, `c
 
 CREATE TABLE `tbl_feeship` (
   `fee_id` int(10) UNSIGNED NOT NULL,
-  `fee_matp` varchar(255) NOT NULL,
-  `fee_maqh` varchar(255) NOT NULL,
-  `fee_xaid` int(11) NOT NULL,
+  `fee_matp` varchar(5) NOT NULL,
+  `fee_maqh` varchar(5) NOT NULL,
+  `fee_xaid` varchar(5) NOT NULL,
   `fee_feeship` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_feeship`
---
-
-INSERT INTO `tbl_feeship` (`fee_id`, `fee_matp`, `fee_maqh`, `fee_xaid`, `fee_feeship`, `created_at`, `updated_at`) VALUES
-(1, '54', '555', 22021, '30000', NULL, NULL),
-(2, '79', '764', 26893, '30000', NULL, NULL),
-(3, '1', '18', 541, '30000', NULL, NULL),
-(5, '10', '80', 2647, '40000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -454,7 +445,8 @@ CREATE TABLE `tbl_momo` (
 INSERT INTO `tbl_momo` (`momo_id`, `partner_code`, `order_id`, `amount`, `order_info`, `order_type`, `trans_id`, `pay_type`, `created_at`, `updated_at`) VALUES
 (1, 'MOMOBKUN20180529', '1741160898', '1468950', 'Thanh toán qua ATM MoMo', 'momo_wallet', '4360126790', 'napas', NULL, NULL),
 (2, 'MOMOBKUN20180529', '1742265926', '719000', 'Thanh toán qua ATM MoMo', 'momo_wallet', '4368941424', 'napas', NULL, NULL),
-(3, 'MOMOBKUN20180529', '1742541103', '3070000', 'Thanh toán qua ATM MoMo', 'momo_wallet', '4372580644', 'napas', NULL, NULL);
+(3, 'MOMOBKUN20180529', '1742541103', '3070000', 'Thanh toán qua ATM MoMo', 'momo_wallet', '4372580644', 'napas', NULL, NULL),
+(4, 'MOMOBKUN20180529', '1743554504', '719000', 'Thanh toán qua ATM MoMo', 'momo_wallet', '4385189180', 'napas', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -464,8 +456,8 @@ INSERT INTO `tbl_momo` (`momo_id`, `partner_code`, `order_id`, `amount`, `order_
 
 CREATE TABLE `tbl_order` (
   `order_id` int(10) UNSIGNED NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `shipping_id` int(11) NOT NULL,
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `shipping_id` int(11) UNSIGNED NOT NULL,
   `order_status` varchar(50) NOT NULL,
   `order_code` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -477,7 +469,7 @@ CREATE TABLE `tbl_order` (
 --
 
 INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status`, `order_code`, `created_at`, `updated_at`) VALUES
-(72, 5, 65, '2', 'ff870', '2025-03-26 02:46:04', NULL);
+(1, 5, 70, '2', '8a75f', '2025-04-02 08:16:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -488,7 +480,7 @@ INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status
 CREATE TABLE `tbl_order_details` (
   `order_details_id` int(10) UNSIGNED NOT NULL,
   `order_code` varchar(50) NOT NULL,
-  `product_id` int(11) NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `product_price` double NOT NULL,
   `product_sales_quantity` int(11) NOT NULL,
@@ -503,74 +495,8 @@ CREATE TABLE `tbl_order_details` (
 --
 
 INSERT INTO `tbl_order_details` (`order_details_id`, `order_code`, `product_id`, `product_name`, `product_price`, `product_sales_quantity`, `product_coupon`, `product_feeship`, `created_at`, `updated_at`) VALUES
-(25, 'fc03c', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 2, 'ANI2025', '30000', NULL, NULL),
-(26, 'fc03c', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 3, 'ANI2025', '30000', NULL, NULL),
-(27, 'fc03c', 5, 'Tay Cầm Xbox One X', 1090000, 4, 'ANI2025', '30000', NULL, NULL),
-(28, '4d0d0', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 2, 'ANI2025', '30000', NULL, NULL),
-(29, '4d0d0', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 3, 'ANI2025', '30000', NULL, NULL),
-(30, '4d0d0', 5, 'Tay Cầm Xbox One X', 1090000, 4, 'ANI2025', '30000', NULL, NULL),
-(31, '943a9', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 2, 'ANI2025', '30000', NULL, NULL),
-(32, '943a9', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 3, 'ANI2025', '30000', NULL, NULL),
-(33, '943a9', 5, 'Tay Cầm Xbox One X', 1090000, 4, 'ANI2025', '30000', NULL, NULL),
-(34, '9e75f', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 2, 'ANI2025', '30000', NULL, NULL),
-(35, '9e75f', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 3, 'ANI2025', '30000', NULL, NULL),
-(36, '9e75f', 5, 'Tay Cầm Xbox One X', 1090000, 4, 'ANI2025', '30000', NULL, NULL),
-(37, 'f40b8', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 2, 'ANI2025', '30000', NULL, NULL),
-(38, 'f40b8', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 3, 'ANI2025', '30000', NULL, NULL),
-(39, 'f40b8', 5, 'Tay Cầm Xbox One X', 1090000, 4, 'ANI2025', '30000', NULL, NULL),
-(40, '377a1', 7, 'Tay Cầm PS5 30th Anniversary', 3050000, 2, 'ANI2025', '20000', NULL, NULL),
-(41, '377a1', 5, 'Tay Cầm Xbox One X', 1090000, 2, 'ANI2025', '20000', NULL, NULL),
-(42, '377a1', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'ANI2025', '20000', NULL, NULL),
-(43, '4d2e1', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 2, 'no', '20000', NULL, NULL),
-(44, '4d2e1', 5, 'Tay Cầm Xbox One X', 1090000, 2, 'no', '20000', NULL, NULL),
-(45, '34183', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'VN30T4', '20000', NULL, NULL),
-(46, '89147', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 1, 'no', '20000', NULL, NULL),
-(47, 'c5404', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 3, 'VN30T4', '20000', NULL, NULL),
-(48, 'c5404', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 2, 'VN30T4', '20000', NULL, NULL),
-(49, '94479', 7, 'Tay Cầm PS5 30th Anniversary', 3050000, 1, 'ANI2025', '30000', NULL, NULL),
-(50, '94479', 5, 'Tay Cầm Xbox One X', 1090000, 2, 'ANI2025', '30000', NULL, NULL),
-(51, '94479', 11, 'Tay Cầm Xbox 360', 479000, 5, 'ANI2025', '30000', NULL, NULL),
-(52, '94479', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 3, 'ANI2025', '30000', NULL, NULL),
-(53, 'ebc01', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'no', '20000', NULL, NULL),
-(54, '49ad0', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'no', '20000', NULL, NULL),
-(55, '08c66', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'ANI2025', '20000', NULL, NULL),
-(56, 'b80a7', 11, 'Tay Cầm Xbox 360', 479000, 1, 'ANI2025', '20000', NULL, NULL),
-(57, '89baa', 11, 'Tay Cầm Xbox 360', 479000, 1, 'ANI2025', '20000', NULL, NULL),
-(58, '8ada5', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 1, 'ANI2025', '20000', NULL, NULL),
-(59, '270de', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'no', '20000', NULL, NULL),
-(60, '8b61e', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 1, 'no', '20000', NULL, NULL),
-(61, '661e2', 11, 'Tay Cầm Xbox 360', 479000, 1, 'no', '20000', NULL, NULL),
-(62, '61362', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 1, 'no', '20000', NULL, NULL),
-(63, '18956', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(64, '2a29f', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(65, '6c899', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(66, 'eb206', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(67, 'ffc3b', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(68, 'ab699', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'ANI2025', '20000', NULL, NULL),
-(69, '0e873', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(70, 'ababa', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(71, 'ce436', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(72, '4f21f', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(73, '10c88', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(74, '7892a', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(75, '84a13', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'no', '20000', NULL, NULL),
-(76, '62eb7', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'ANI2025', '20000', NULL, NULL),
-(77, '51615', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 1, 'ANI2025', '20000', NULL, NULL),
-(78, 'fb7b9', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 12, 'ANI2025', '20000', NULL, NULL),
-(79, 'bf2ca', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 11, 'VN30T4', '20000', NULL, NULL),
-(80, 'bf2ca', 5, 'Tay Cầm Xbox One X', 1090000, 12, 'VN30T4', '20000', NULL, NULL),
-(81, 'f4779', 6, 'Tay Cầm Sony DualShock 4 PS4', 799000, 10, 'ANI2025', '20000', NULL, NULL),
-(82, 'f4779', 10, 'Tay Cầm Xbox One S Cũ 2ND', 699000, 5, 'ANI2025', '20000', NULL, NULL),
-(83, 'f68a9', 5, 'Tay Cầm Xbox One X', 1090000, 1, 'no', '20000', NULL, NULL),
-(84, '94026', 9, 'Tay Cầm Sony DualSense 5 PS5', 1399000, 1, 'no', '20000', NULL, NULL),
-(85, '36c77', 7, 'Tay Cầm PS5 30th Anniversary', 3050000, 1, 'no', '20000', NULL, NULL),
-(86, '537ff', 16, 'Tay Cầm EasySMX X10', 699000, 2, 'no', '20000', NULL, NULL),
-(87, '537ff', 17, 'Tay Cầm EasySMX D05', 629000, 5, 'no', '20000', NULL, NULL),
-(88, 'd11e1', 17, 'Tay Cầm EasySMX D05', 629000, 1, 'no', '20000', NULL, NULL),
-(89, 'be47e', 12, 'Tay Cầm Flydigi VADER 4 PRO', 1299000, 1, 'no', '20000', NULL, NULL),
-(91, '79f66', 15, 'Tay Cầm EasySMX X05', 439000, 1, 'ANI2025', '20000', NULL, NULL),
-(92, 'ff870', 32, 'Tay Cầm EasySMX X10', 699000, 5, 'no', '20000', NULL, NULL),
-(93, 'ff870', 29, 'Tay Cầm Flydigi APEX 4', 1899000, 1, 'no', '20000', NULL, NULL);
+(1, '8a75f', 29, 'Tay Cầm Flydigi APEX 4', 1899000, 1, 'no', '20000', NULL, NULL),
+(2, '8a75f', 31, 'Tay Cầm EasySMX X05', 439000, 2, 'no', '20000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -618,8 +544,8 @@ INSERT INTO `tbl_payment` (`payment_id`, `payment_method`, `payment_status`, `cr
 
 CREATE TABLE `tbl_product` (
   `product_id` int(10) UNSIGNED NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `brand_id` int(11) NOT NULL,
+  `category_id` int(11) UNSIGNED NOT NULL,
+  `brand_id` int(11) UNSIGNED NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `product_quantity` varchar(50) NOT NULL,
   `product_sold` int(11) DEFAULT NULL,
@@ -649,9 +575,9 @@ INSERT INTO `tbl_product` (`product_id`, `category_id`, `brand_id`, `product_nam
 (26, 4, 6, 'Tay Cầm Sony DualSense 5 PS5 Đen Chính Hãng', '30', NULL, 'Tay Cầm Sony DualSense 5 PS5 Đen Midnight Black Chĩnh Hãng Top Gamepad Cho PC / FO4 / FIFA | HÀNG NHẬP KHẨU', 'Tay Cầm Sony DualSense 5 PS5 Đen Midnight Black Chĩnh Hãng Top Gamepad Cho PC / FO4 / FIFA | HÀNG NHẬP KHẨU', '1399000', 'ps5den.jpg', 1, 'tay cam, tay cam ps5, ps5, ps5 den chinh hang', NULL, NULL),
 (27, 4, 6, 'Tay Cầm Sony DualSense 5 PS5 Astro Bot Limited Edition', '30', NULL, 'Tay Cầm Sony DualSense 5 PS5 Astro Bot Limited Edition Chĩnh Hãng Chơi Game Cho PC / FCO / FIFA / PS5 | HÀNG NHẬP KHẨU', 'Tay Cầm Sony DualSense 5 PS5 Astro Bot Limited Edition Chĩnh Hãng Chơi Game Cho PC / FCO / FIFA / PS5 | HÀNG NHẬP KHẨU', '2899000', 'ps5astrobot.jpg', 1, 'tay cam, tay cam ps5, ps5, ps5 astro, ps5 astro bot', NULL, NULL),
 (28, 6, 7, 'Tay Cầm Flydigi VADER 4 PRO', '30', NULL, 'Tay Cầm Flydigi VADER 4 PRO – Tay Cầm Chơi Game Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', 'Tay Cầm Flydigi VADER 4 PRO – Tay Cầm Chơi Game Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', '1299000', 'vader4_pro.jpg', 1, 'tay cam, tay cam flydigi, vader, tay cam vader, vader 4 pro', NULL, NULL),
-(29, 6, 7, 'Tay Cầm Flydigi APEX 4', '29', 1, 'Tay Cầm Flydigi APEX 4 – Tay Cầm Bluetooth Wireless Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', 'Tay Cầm Flydigi APEX 4 – Tay Cầm Bluetooth Wireless Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', '1899000', 'apex4.jpg', 1, 'tay cam, tay cam flydigi, apex, tay cam apex, apex 4', NULL, NULL),
+(29, 6, 7, 'Tay Cầm Flydigi APEX 4', '28', 2, 'Tay Cầm Flydigi APEX 4 – Tay Cầm Bluetooth Wireless Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', 'Tay Cầm Flydigi APEX 4 – Tay Cầm Bluetooth Wireless Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG MỚI VỀ 2024', '1899000', 'apex4.jpg', 1, 'tay cam, tay cam flydigi, apex, tay cam apex, apex 4', NULL, NULL),
 (30, 6, 7, 'Tay Cầm Flydigi APEX 4 WUKONG Bản Giới Hạn ', '20', NULL, 'Tay Cầm Flydigi APEX 4 WUKONG Bản Giới Hạn – Top Tay Cầm Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG ĐẶT TRƯỚC', 'Tay Cầm Flydigi APEX 4 WUKONG Bản Giới Hạn – Top Tay Cầm Cao Cấp Chơi FO4 FC ONLINE, PC, LAPTOP, Steam, Android | HÀNG ĐẶT TRƯỚC', '3099000', 'apex4_wukong.jpg', 1, 'tay cam, tay cam flydigi, apex, tay cam apex, apex 4 wukong', NULL, NULL),
-(31, 7, 8, 'Tay Cầm EasySMX X05', '50', NULL, 'Tay Cầm EasySMX X05 Chính Hãng Không Dây 2.4G, Hall Effect Joysticks Chơi FCO, PC, IOS, Android, Switch – MÀU ĐEN', 'Tay Cầm EasySMX X05 Chính Hãng Không Dây 2.4G, Hall Effect Joysticks Chơi FCO, PC, IOS, Android, Switch – MÀU ĐEN', '439000', 'x05den.jpg', 1, 'tay cam, tay cam choi game, tay cam easysmx, X05, easysmx X05 mau den', NULL, NULL),
+(31, 7, 8, 'Tay Cầm EasySMX X05', '45', 5, 'Tay Cầm EasySMX X05 Chính Hãng Không Dây 2.4G, Hall Effect Joysticks Chơi FCO, PC, IOS, Android, Switch – MÀU ĐEN', 'Tay Cầm EasySMX X05 Chính Hãng Không Dây 2.4G, Hall Effect Joysticks Chơi FCO, PC, IOS, Android, Switch – MÀU ĐEN', '439000', 'x05den.jpg', 1, 'tay cam, tay cam choi game, tay cam easysmx, X05, easysmx X05 mau den', NULL, NULL),
 (32, 7, 8, 'Tay Cầm EasySMX X10', '35', 5, 'Tay Cầm EasySMX X10 Chính Hãng Không Dây 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch – MÀU XÁM SILVER', 'Tay Cầm EasySMX X10 Chính Hãng Không Dây 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch – MÀU XÁM SILVER', '699000', 'x10.jpg', 1, 'tay cam, tay cam choi game, tay cam easysmx, X10, easysmx X10 ', NULL, NULL),
 (33, 7, 8, 'Tay Cầm EasySMX D05', '30', NULL, 'Tay Cầm EasySMX D05 Chính Hãng Không Dây 2.4G, 1000Hz, Hall Effect, Led RGB Chơi FCO, PC, IOS, Android, Switch', 'Tay Cầm EasySMX D05 Chính Hãng Không Dây 2.4G, 1000Hz, Hall Effect, Led RGB Chơi FCO, PC, IOS, Android, Switch', '629000', 'd05.jpg', 1, 'tay cam, tay cam choi game, tay cam easysmx, D05, easysmx D05 ', NULL, NULL);
 
@@ -662,7 +588,7 @@ INSERT INTO `tbl_product` (`product_id`, `category_id`, `brand_id`, `product_nam
 --
 
 CREATE TABLE `tbl_quanhuyen` (
-  `maqh` varchar(5) NOT NULL,
+  `maqh` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `name_quanhuyen` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `type` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `matp` int(10) NOT NULL
@@ -1461,7 +1387,12 @@ INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_email`, `s
 (61, 'Walter White', 'heisenb@gmail.com', 'stone 20', 'Albuquerque', '0988820943', 0, NULL, NULL),
 (62, 'Walter White', 'heisenb@gmail.com', 'stone 21', 'Albuquerque', '987654321', 0, NULL, NULL),
 (64, 'Walter White', 'heisenb@gmail.com', 'stone 22', 'Albuquerque', '987654321', 0, NULL, NULL),
-(65, 'Walter White', 'heisenb@gmail.com', 'stone 2 26/3/2025', 'Albuquerque', '0988820943', 0, NULL, NULL);
+(65, 'Walter White', 'heisenb@gmail.com', 'stone 2 26/3/2025', 'Albuquerque', '0988820943', 0, NULL, NULL),
+(66, 'Walter White', 'heisenb@gmail.com', 'stone 1/4 8:37', 'Albuquerque', '987654321', 3, NULL, NULL),
+(67, 'Walter White', 'heisenb@gmail.com', 'stone 2/4 7:32', 'Albuquerque', '987654321', 3, NULL, NULL),
+(68, 'Walter White', 'heisenb@gmail.com', 'stone 2/4 7:32', 'Albuquerque', '987654321', 2, NULL, NULL),
+(69, 'Walter White', 'heisenb@gmail.com', 'stone 2/4 7:41', 'Mexico', '0988820943', 3, NULL, NULL),
+(70, 'Walter White', 'heisenb@gmail.com', 'stone 2/4 15:16', 'Albuquerque', '987654321', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1473,18 +1404,10 @@ CREATE TABLE `tbl_social` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `provider_user_id` varchar(255) NOT NULL,
   `provider` varchar(255) NOT NULL,
-  `user` int(11) NOT NULL,
+  `user` int(11) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_social`
---
-
-INSERT INTO `tbl_social` (`user_id`, `provider_user_id`, `provider`, `user`, `created_at`, `updated_at`) VALUES
-(9, '115868358498485712861', 'GOOGLE', 11, NULL, NULL),
-(10, '3023444524484885', 'facebook', 11, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1493,7 +1416,7 @@ INSERT INTO `tbl_social` (`user_id`, `provider_user_id`, `provider`, `user`, `cr
 --
 
 CREATE TABLE `tbl_tinhthanhpho` (
-  `matp` varchar(5) NOT NULL,
+  `matp` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `name_city` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `type` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci ROW_FORMAT=COMPACT;
@@ -1595,7 +1518,8 @@ CREATE TABLE `tbl_vnpay` (
 INSERT INTO `tbl_vnpay` (`vnpay_id`, `vnp_amount`, `vnp_bankcode`, `vnp_banktranno`, `vnp_cardtype`, `vnp_orderinfo`, `vnp_paydate`, `vnp_tmncode`, `vnp_transactionno`, `code_cart`, `created_at`, `updated_at`) VALUES
 (1, '83895000', 'NCB', 'VNP14830689', 'ATM', 'Thanh toán đơn hàng test', '20250305091636', 'FY58L6R9', '14830689', '1374', NULL, NULL),
 (2, '81900000', 'NCB', 'VNP14851375', 'ATM', 'Thanh toán đơn hàng test', '20250318092447', 'FY58L6R9', '14851375', '6396', NULL, NULL),
-(3, '141900000', 'NCB', 'VNP14859124', 'ATM', 'Thanh toán đơn hàng test', '20250321141000', 'FY58L6R9', '14859124', '5518', NULL, NULL);
+(3, '141900000', 'NCB', 'VNP14859124', 'ATM', 'Thanh toán đơn hàng test', '20250321141000', 'FY58L6R9', '14859124', '5518', NULL, NULL),
+(5, '350400000', 'NCB', 'VNP14885634', 'ATM', 'Thanh toán đơn hàng test', '20250402073748', 'FY58L6R9', '14885634', '4979', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1604,7 +1528,7 @@ INSERT INTO `tbl_vnpay` (`vnpay_id`, `vnp_amount`, `vnp_bankcode`, `vnp_banktran
 --
 
 CREATE TABLE `tbl_xaphuongthitran` (
-  `xaid` varchar(5) NOT NULL,
+  `xaid` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `name_xaphuong` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `type` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `maqh` int(10) NOT NULL
@@ -12911,7 +12835,10 @@ ALTER TABLE `tbl_customer`
 -- Chỉ mục cho bảng `tbl_feeship`
 --
 ALTER TABLE `tbl_feeship`
-  ADD PRIMARY KEY (`fee_id`);
+  ADD PRIMARY KEY (`fee_id`),
+  ADD KEY `fee_matp` (`fee_matp`,`fee_maqh`,`fee_xaid`),
+  ADD KEY `fee_maqh` (`fee_maqh`),
+  ADD KEY `fee_xaid` (`fee_xaid`);
 
 --
 -- Chỉ mục cho bảng `tbl_momo`
@@ -12923,13 +12850,16 @@ ALTER TABLE `tbl_momo`
 -- Chỉ mục cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  ADD PRIMARY KEY (`order_id`);
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `customer_id` (`customer_id`,`shipping_id`),
+  ADD KEY `shipping_id` (`shipping_id`);
 
 --
 -- Chỉ mục cho bảng `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  ADD PRIMARY KEY (`order_details_id`);
+  ADD PRIMARY KEY (`order_details_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Chỉ mục cho bảng `tbl_payment`
@@ -12941,7 +12871,9 @@ ALTER TABLE `tbl_payment`
 -- Chỉ mục cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  ADD PRIMARY KEY (`product_id`);
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `category_id` (`category_id`,`brand_id`),
+  ADD KEY `brand_id` (`brand_id`);
 
 --
 -- Chỉ mục cho bảng `tbl_quanhuyen`
@@ -12965,7 +12897,8 @@ ALTER TABLE `tbl_shipping`
 -- Chỉ mục cho bảng `tbl_social`
 --
 ALTER TABLE `tbl_social`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `user` (`user`);
 
 --
 -- Chỉ mục cho bảng `tbl_tinhthanhpho`
@@ -13042,7 +12975,7 @@ ALTER TABLE `tbl_brand_product`
 -- AUTO_INCREMENT cho bảng `tbl_category_post`
 --
 ALTER TABLE `tbl_category_post`
-  MODIFY `cate_post_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cate_post_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_category_product`
@@ -13066,25 +12999,25 @@ ALTER TABLE `tbl_customer`
 -- AUTO_INCREMENT cho bảng `tbl_feeship`
 --
 ALTER TABLE `tbl_feeship`
-  MODIFY `fee_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `fee_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_momo`
 --
 ALTER TABLE `tbl_momo`
-  MODIFY `momo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `momo_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  MODIFY `order_details_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `order_details_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_payment`
@@ -13108,25 +13041,63 @@ ALTER TABLE `tbl_roles`
 -- AUTO_INCREMENT cho bảng `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
-  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_social`
 --
 ALTER TABLE `tbl_social`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_vnpay`
 --
 ALTER TABLE `tbl_vnpay`
-  MODIFY `vnpay_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `vnpay_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `tbl_feeship`
+--
+ALTER TABLE `tbl_feeship`
+  ADD CONSTRAINT `tbl_feeship_ibfk_1` FOREIGN KEY (`fee_maqh`) REFERENCES `tbl_quanhuyen` (`maqh`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_feeship_ibfk_2` FOREIGN KEY (`fee_matp`) REFERENCES `tbl_tinhthanhpho` (`matp`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_feeship_ibfk_3` FOREIGN KEY (`fee_xaid`) REFERENCES `tbl_xaphuongthitran` (`xaid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `tbl_order`
+--
+ALTER TABLE `tbl_order`
+  ADD CONSTRAINT `tbl_order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_order_ibfk_2` FOREIGN KEY (`shipping_id`) REFERENCES `tbl_shipping` (`shipping_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `tbl_order_details`
+--
+ALTER TABLE `tbl_order_details`
+  ADD CONSTRAINT `tbl_order_details_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `tbl_product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `tbl_product`
+--
+ALTER TABLE `tbl_product`
+  ADD CONSTRAINT `tbl_product_ibfk_1` FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand_product` (`brand_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_product_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `tbl_category_product` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `tbl_social`
+--
+ALTER TABLE `tbl_social`
+  ADD CONSTRAINT `tbl_social_ibfk_1` FOREIGN KEY (`user`) REFERENCES `tbl_admin` (`admin_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

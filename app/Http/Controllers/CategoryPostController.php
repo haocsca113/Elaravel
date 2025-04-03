@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Brand;
 use App\Models\Banner;
 use App\Models\Category;    
-use App\Models\CategoryPost;    
+use App\Models\CategoryPost;   
+use App\Models\Post;   
 use DB;
 use Session;
 use App\Http\Requests;
@@ -107,8 +109,27 @@ class CategoryPostController extends Controller
     }
     // End Admin Page
 
-    public function danh_muc_bai_viet($cate_post_slug)
+    public function danh_muc_bai_viet(Request $request, $cate_post_slug)
     {
+        // Banner
+        $banner = Banner::orderBy('banner_id', 'desc')->take(4)->get();
 
+        $cate_post_seo = CategoryPost::where('cate_post_status', '1')->where('cate_post_slug', $cate_post_slug)->first();
+
+        // SEO
+        $meta_desc = $cate_post_seo->cate_post_desc;
+        $meta_keywords = $cate_post_seo->cate_post_slug;
+        $meta_title = $cate_post_seo->cate_post_name;
+        $url_canonical = $request->url();
+        $cate_post_id = $cate_post_seo->cate_post_id;
+
+        $post = Post::with('cate_post')->where('post_status', 1)->where('cate_post_id', $cate_post_id)->paginate(10);
+
+        $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+        
+        return view('pages.baiviet.danhmucbaiviet')->with(compact('category', 'brand', 'banner', 'cate_post', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'post'));
     }
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryPostController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\BotManController;
 
 // Frontend
@@ -46,6 +47,16 @@ Route::post('/save-category-post', [CategoryPostController::class, 'save_categor
 Route::get('/unactive-cate-post/{cate_post_id}', [CategoryPostController::class, 'unactive_cate_post']);
 Route::get('/active-cate-post/{cate_post_id}', [CategoryPostController::class, 'active_cate_post']);
 Route::get('/danh-muc-bai-viet/{cate_post_slug}', [CategoryPostController::class, 'danh_muc_bai_viet']);
+
+// Post
+Route::get('/add-post', [PostController::class, 'add_post']);
+Route::get('/all-post', [PostController::class, 'all_post']);
+Route::post('/save-post', [PostController::class, 'save_post']);
+Route::get('/unactive-post/{post_id}', [PostController::class, 'unactive_post']);
+Route::get('/active-post/{post_id}', [PostController::class, 'active_post']);
+Route::get('/edit-post/{post_id}', [PostController::class, 'edit_post']);
+Route::post('/update-post/{post_id}', [PostController::class, 'update_post']);
+Route::get('/delete-post/{post_id}', [PostController::class, 'delete_post']);
 
 
 // Category Product

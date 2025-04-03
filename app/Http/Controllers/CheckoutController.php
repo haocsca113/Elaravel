@@ -57,7 +57,9 @@ class CheckoutController extends Controller
         $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
-        return view('pages.payment.payment_info')->with(compact('category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical'));
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+
+        return view('pages.payment.payment_info')->with(compact('category', 'brand', 'banner', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'cate_post'));
     }
 
     public function confirm_order(Request $request)

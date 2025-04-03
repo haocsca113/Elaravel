@@ -174,6 +174,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
+                        <span>Bài viết</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ URL::to('/add-post') }}">Thêm bài viết</a></li>
+						<li><a href="{{ URL::to('/all-post') }}">Liệt kê bài viết</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
                         <span>Sản phẩm</span>
                     </a>
                     <ul class="sub">
@@ -464,10 +475,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     //     });
     // });
     $("#formProduct").validate();
+    $("#formPost").validate();
 </script>
+
 <script>
     CKEDITOR.replace('ckeditor1');
     CKEDITOR.replace('ckeditor2');
+    CKEDITOR.replace('ckeditor3');
+    CKEDITOR.replace('ckeditor4');
 </script>
 
 
