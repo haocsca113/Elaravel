@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Banner;
+use App\Models\Brand;
 use App\Models\Category;    
 use App\Models\CategoryPost;    
 use App\Models\Post;    
@@ -147,5 +148,27 @@ class PostController extends Controller
         Post::where('post_id', $post_id)->delete();
 
         return redirect()->back()->with('message', 'Xóa bài viết thành công');
+    }
+    // End Admin Page
+
+    public function bai_viet(Request $request, $post_slug)
+    {
+        // Banner
+        $banner = Banner::orderBy('banner_id', 'desc')->take(4)->get();
+
+        $post = Post::with('cate_post')->where('post_status', 1)->where('post_slug', $post_slug)->first();
+
+        // SEO
+        $meta_desc = $post->post_meta_desc;
+        $meta_keywords = $post->post_meta_keywords;
+        $meta_title = $post->post_title;
+        $url_canonical = $request->url();
+
+        $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+
+        return view('pages.baiviet.baiviet')->with(compact('category', 'brand', 'banner', 'cate_post', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'post'));
     }
 }

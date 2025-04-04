@@ -51,8 +51,8 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> 0988820943</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> haocsca113@gmail.com</a></li>
 							</ul>
 						</div>
 					</div>
@@ -76,9 +76,9 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="{{ asset('frontend/images/logo.png') }}" alt="" /></a>
+							<a href="{{ url('/trang-chu') }}"><img src="{{ asset('frontend/images/pogshop_logo.png') }}" style="width: 80px; height: 50px;" alt="" /></a>
 						</div>
-						<div class="btn-group pull-right">
+						<div class="btn-group" style="margin-left: 20px;">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
 									USA
@@ -304,27 +304,35 @@
 	
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
-			<div class="container">
-				<div class="row">
+			<style>
+				.companyinfo, .video-gallery
+				{
+					margin: 0;
+				}
+			</style>
+
+			<div class="container" style="padding: 0;">
+				<div class="row" style="padding: 30px 0;">
 					<div class="col-sm-2">
-						<div class="companyinfo">
-							<h2><span>e</span>-shopper</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+						<div class="companyinfo text-center">
+							<a href="{{ url('/trang-chu') }}"><img src="{{ asset('frontend/images/pogshop_logo_rmbg.png') }}" style="width: 70%; height: 80px;" alt="" /></a>
+							<h2 style="margin: 0;">Pogshop</h2>
 						</div>
 					</div>
-					<div class="col-sm-7">
+
+					<div class="col-sm-7" style="margin-top: 10px;">
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{ asset('frontend/images/iframe1.png') }}" alt="" />
+										<img src="{{ asset('frontend/images/maldini1.webp') }}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
+								<p>Football Player</p>
+								<h2>Maldini</h2>
 							</div>
 						</div>
 						
@@ -332,42 +340,42 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{ asset('frontend/images/iframe2.png') }}" alt="" />
+										<img src="{{ asset('frontend/images/ramos2.webp') }}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
+								<p>Football Player</p>
+								<h2>Ramos</h2>
 							</div>
 						</div>
                         <div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{ asset('frontend/images/iframe3.png') }}" alt="" />
+										<img src="{{ asset('frontend/images/vandijk1.webp') }}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
+								<p>Football Player</p>
+								<h2>Van Dijk</h2>
 							</div>
 						</div>
                         <div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{ asset('frontend/images/iframe4.png') }}" alt="" />
+										<img src="{{ asset('frontend/images/rudiger1.jpg') }}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Circle of Hands</p>
-								<h2>24 DEC 2014</h2>
+								<p>Football Player</p>
+								<h2>Rudiger</h2>
 							</div>
 						</div>
 					</div>
@@ -382,67 +390,65 @@
 		</div>
 		
 		<div class="footer-widget">
+			<style>
+				.single-widget ul li a
+				{
+					padding: 0;
+				}
+				.single-widget ul
+				{
+					color: #8C8C88;
+				}
+			</style>
+
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="single-widget">
-							<h2>Service</h2>
+							
+						</div>
+					</div>
+
+					<div class="col-sm-3">
+						<div class="single-widget">
+							<h2>Thông tin liên hệ</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Online Help</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Order Status</a></li>
-								<li><a href="#">Change Location</a></li>
-								<li><a href="#">FAQ’s</a></li>
+								<li>Địa Chỉ : 12 Nguyễn Văn Bảo, Phường 1, Gò Vấp, TP.HCM</li>
+								<li>Số điện thoại : 0988820943</li>
+								<li>Email : haocsca113@gmail.com</li>
+								<li>Website : https://pogshop.online/</li>
 							</ul>
 						</div>
 					</div>
+
 					<div class="col-sm-2">
 						<div class="single-widget">
-							<h2>Quock Shop</h2>
+							<h2>Hướng dẫn</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">T-Shirt</a></li>
-								<li><a href="#">Mens</a></li>
-								<li><a href="#">Womens</a></li>
-								<li><a href="#">Gift Cards</a></li>
-								<li><a href="#">Shoes</a></li>
+								<li><a href="#">Hướng dẫn mua hàng</a></li>
 							</ul>
 						</div>
 					</div>
+
 					<div class="col-sm-2">
 						<div class="single-widget">
-							<h2>Policies</h2>
+							<h2>Về chúng tôi</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privecy Policy</a></li>
-								<li><a href="#">Refund Policy</a></li>
-								<li><a href="#">Billing System</a></li>
-								<li><a href="#">Ticket System</a></li>
+								<li>Là website bán tay cầm</li>
+								<li>Yêu thích thể thao và trò chơi điện tử</li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-2">
+
+					<div class="col-sm-3">
 						<div class="single-widget">
-							<h2>About Shopper</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">Store Location</a></li>
-								<li><a href="#">Affillate Program</a></li>
-								<li><a href="#">Copyright</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-3 col-sm-offset-1">
-						<div class="single-widget">
-							<h2>About Shopper</h2>
+							<h2>Về khách hàng</h2>
 							<form action="#" class="searchform">
 								<input type="text" placeholder="Your email address" />
 								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-								<p>Get the most recent updates from <br />our site and be updated your self...</p>
 							</form>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</div>
@@ -450,8 +456,8 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-					<p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+					<p class="pull-left">Copyright © 2025 By Poghao. All rights reserved.</p>
+					{{-- <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p> --}}
 				</div>
 			</div>
 		</div>

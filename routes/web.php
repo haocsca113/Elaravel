@@ -57,7 +57,7 @@ Route::get('/active-post/{post_id}', [PostController::class, 'active_post']);
 Route::get('/edit-post/{post_id}', [PostController::class, 'edit_post']);
 Route::post('/update-post/{post_id}', [PostController::class, 'update_post']);
 Route::get('/delete-post/{post_id}', [PostController::class, 'delete_post']);
-
+Route::get('/bai-viet/{post_slug}', [PostController::class, 'bai_viet']);
 
 // Category Product
 Route::get('/add-category-product', [CategoryProduct::class, 'add_category_product']);

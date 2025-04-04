@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="features_items"><!--features_items-->
-    <h2 class="title text-center">Danh mục bài viết</h2>
+    <h2 class="title text-center">{{ $meta_title }}</h2>
     @foreach($post as $key => $p)
         <div class="product-image-wrapper">
             <div class="single-products">
@@ -22,5 +22,9 @@
         </div>
     @endforeach
 </div><!--features_items-->
+
+<ul class="pagination pagination-sm m-t-none m-b-none">
+    {!! $post->links('pagination::bootstrap-4') !!}
+</ul>
 
 @endsection
