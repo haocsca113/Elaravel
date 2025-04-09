@@ -30,6 +30,12 @@
         </div> --}}
 
         <style>
+            #imageGallery li img
+            {
+                width: 100%;
+                height: 329px;
+            }
+
             .lSSlideOuter .lSPager.lSGallery img
             {
                 height: 106px;
@@ -42,21 +48,11 @@
         </style>
 
         <ul id="imageGallery">
-            <li data-thumb="{{ asset('frontend/images/ps5trang.jpg') }}" data-src="{{ asset('frontend/images/ps5trang.jpg') }}">
-                <img style="width: 100%; height: 329px;" src="{{ asset('frontend/images/ps5trang.jpg') }}" />
-            </li>
-            <li data-thumb="{{ asset('frontend/images/rudiger1.jpg') }}" data-src="{{ asset('frontend/images/rudiger1.jpg') }}">
-                <img style="width: 100%; height: 329px;" src="{{ asset('frontend/images/rudiger1.jpg') }}" />
-            </li>
-            <li data-thumb="{{ asset('frontend/images/rudiger1.jpg') }}" data-src="{{ asset('frontend/images/rudiger1.jpg') }}">
-                <img style="width: 100%; height: 329px;" src="{{ asset('frontend/images/rudiger1.jpg') }}" />
-            </li>
-            <li data-thumb="{{ asset('frontend/images/rudiger1.jpg') }}" data-src="{{ asset('frontend/images/rudiger1.jpg') }}">
-                <img style="width: 100%; height: 329px;" src="{{ asset('frontend/images/rudiger1.jpg') }}" />
-            </li>
-            <li data-thumb="{{ asset('frontend/images/rudiger1.jpg') }}" data-src="{{ asset('frontend/images/rudiger1.jpg') }}">
-                <img style="width: 100%; height: 329px;" src="{{ asset('frontend/images/rudiger1.jpg') }}" />
-            </li>
+            @foreach($gallery as $key => $gal)
+                <li data-thumb="{{ asset('upload/gallery/'.$gal->gallery_image) }}" data-src="{{ asset('upload/gallery/'.$gal->gallery_image) }}">
+                    <img src="{{ asset('upload/gallery/'.$gal->gallery_image) }}" alt="{{ $gal->gallery_name }}"/>
+                </li>
+            @endforeach
         </ul>
     </div>
 
@@ -154,10 +150,27 @@
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
-                                <img src="{{ URL::to('upload/product/'.$lienquan->product_image) }}" alt="" />
+                                {{-- <img src="{{ URL::to('upload/product/'.$lienquan->product_image) }}" alt="" />
                                 <h2>{{ number_format($lienquan->product_price).' '.'VNĐ' }}</h2>
                                 <p>{{ $lienquan->product_name }}</p>
-                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
+                                <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button> --}}
+
+                                <form action="">
+                                    @csrf
+                                    <input type="hidden" class="cart_product_id_{{ $lienquan->product_id }}" value="{{ $lienquan->product_id }}">
+                                    <input type="hidden" class="cart_product_name_{{ $lienquan->product_id }}" value="{{ $lienquan->product_name }}">
+                                    <input type="hidden" class="cart_product_image_{{ $lienquan->product_id }}" value="{{ $lienquan->product_image }}">
+                                    <input type="hidden" class="cart_product_price_{{ $lienquan->product_id }}" value="{{ $lienquan->product_price }}">
+                                    <input type="hidden" class="cart_product_quantity_{{ $lienquan->product_id }}" value="{{ $lienquan->product_quantity }}">
+                                    <input type="hidden" class="cart_product_qty_{{ $lienquan->product_id }}" value="1">
+        
+                                    <a href="{{ URL::to('/chi-tiet-san-pham/'.$lienquan->product_id) }}">
+                                        <img src="{{ URL::to('upload/product/'.$lienquan->product_image) }}" alt="" height="250px" />
+                                        <h2>{{ number_format($lienquan->product_price, 0, ',', '.').' VNĐ' }}</h2>
+                                        <p style="height: 40px;">{{ $lienquan->product_name }}</p>
+                                    </a>
+                                    <button type="button" class="btn btn-default add-to-cart" data-id="{{ $lienquan->product_id }}" name="add-to-cart">Thêm giỏ hàng</button>
+                                </form>
                             </div>
                         </div>
                     </div>

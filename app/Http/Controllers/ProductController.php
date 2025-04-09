@@ -7,6 +7,8 @@ use App\Imports\ExcelImportProduct;
 use App\Exports\ExcelExportProduct;
 use App\Models\Banner;
 use App\Models\CategoryPost;
+use App\Models\Gallery;
+use File;
 use Excel;
 use DB;
 use Session;
@@ -65,21 +67,27 @@ class ProductController extends Controller
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
 
+        $path = 'upload/product/';
+        $path_gallery = 'upload/gallery/';
+
         $get_image = $request->file('product_image');
         if($get_image)
         {
             $get_name_image = $get_image->getClientOriginalName();
             $name_image = current(explode('.',$get_name_image)); // tách dấu . ra khỏi tên
             $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
-            $get_image->move('upload/product', $new_image);
+            $get_image->move($path, $new_image);
+            File::copy($path.$new_image, $path_gallery.$new_image);
             $data['product_image'] = $new_image;
-            DB::table('tbl_product')->insert($data);
-            Session::put('message', 'Thêm sản phẩm thành công');
-            return Redirect::to('/add-product');
         }
-        $data['product_image'] = '';
 
-        DB::table('tbl_product')->insert($data);
+        $pro_id = DB::table('tbl_product')->insertGetId($data);
+        $gallery = new Gallery();
+        $gallery->gallery_image = $new_image;
+        $gallery->gallery_name = $new_image;
+        $gallery->product_id = $pro_id;
+        $gallery->save();
+
         Session::put('message', 'Thêm sản phẩm thành công');
         return Redirect::to('/add-product');
     }
@@ -192,12 +200,15 @@ class ProductController extends Controller
             $url_canonical = $request->url();
         }
 
+        // Gallery
+        $gallery = Gallery::where('product_id', $product_id)->get();
+
         // VD: Lay ra cac san pham co category = 3 tru san pham detail
         $related_product = DB::table('tbl_product')
         ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
         ->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$product_id])->get();
 
-        return view('pages.product.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('detail_product', $detail_product)->with('related_product', $related_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post);
+        return view('pages.product.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('detail_product', $detail_product)->with('related_product', $related_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post)->with('gallery', $gallery);
     }
 }

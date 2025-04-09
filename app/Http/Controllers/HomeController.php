@@ -14,11 +14,7 @@ use Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use OpenAI\Laravel\Facades\OpenAI;
-// use GeminiAPI\Client;
-// use GeminiAPI\Resources\Parts\TextPart;
 
-// use Google\AI\GenerativeLanguage\Client;
-// use Google\AI\GenerativeLanguage\TextPart;
 session_start();
 
 class HomeController extends Controller
@@ -57,7 +53,8 @@ class HomeController extends Controller
         // ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
         // ->orderby('tbl_product.product_id', 'desc')->get();
 
-        $all_product = DB::table('tbl_product')->where('product_status', '1')->orderby('product_id', 'desc')->limit(12)->get();
+        // $all_product = DB::table('tbl_product')->where('product_status', '1')->orderby('product_id', 'desc')->limit(12)->get();
+        $all_product = DB::table('tbl_product')->where('product_status', '1')->orderby('product_id', 'desc')->paginate(9);
 
         return view('pages.home')->with('category', $cate_product)->with('brand', $brand_product)->with('all_product', $all_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post);
     }
