@@ -17,6 +17,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BotManController;
+use App\Http\Controllers\GalleryController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -25,6 +26,7 @@ Route::post('/tim-kiem', [HomeController::class, 'search']);
 Route::post('/send-chat', [HomeController::class, 'send_chat']);
 Route::post('/send-chat-gemini', [HomeController::class, 'send_chat_gemini']);
 Route::get('/contact-us', [HomeController::class, 'contact_us']);
+Route::get('/buying-guide', [HomeController::class, 'buying_guide']);
 
 // Danh muc san pham trang chu
 Route::get('/danh-muc-san-pham/{category_id}', [CategoryProduct::class, 'show_category_home']);
@@ -211,6 +213,12 @@ Route::get('/impersonate-destroy', [UserController::class, 'impersonate_destroy'
 
 // Chatbot
 Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
+
+// Gallery
+Route::get('/add-gallery/{product_id}', [GalleryController::class, 'add_gallery']);
+Route::post('/select-gallery', [GalleryController::class, 'select_gallery']);
+Route::post('/insert-gallery/{pro_id}', [GalleryController::class, 'insert_gallery']);
+
 
 
 

@@ -123,7 +123,7 @@ class CategoryPostController extends Controller
         $url_canonical = $request->url();
         $cate_post_id = $cate_post_seo->cate_post_id;
 
-        $post = Post::with('cate_post')->where('post_status', 1)->where('cate_post_id', $cate_post_id)->paginate(10);
+        $post = Post::with('cate_post')->where('post_status', 1)->where('cate_post_id', $cate_post_id)->orderBy('post_id', 'DESC')->paginate(10);
 
         $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();

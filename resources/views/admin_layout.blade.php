@@ -236,7 +236,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- footer -->
     <div class="footer">
         <div class="wthree-copyright">
-            <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+            {{-- <p>© 2017 Visitors. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p> --}}
+
+            <p>© 2025 By Poghao. All rights reserved</a></p>
         </div>
     </div>
     <!-- / footer -->
@@ -250,6 +252,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+
+<script>
+    $(document).ready(function(){
+        load_gallery();
+
+        function load_gallery()
+        {
+            var pro_id = $('.pro_id').val();
+            var _token = $('input[name="_token"]').val();
+            // alert(pro_id);
+            $.ajax({
+                url: "{{ url('/select-gallery') }}",
+                method: "POST",
+                data: {pro_id: pro_id, _token: _token},
+                success: function(data){
+                    $('#gallery_load').html(data);
+                }
+            });
+        }
+
+        $('#file').change(function(){
+            var error = '';
+            var files = $('#file')[0].files;
+            if(files.length > 5)
+            {
+                error+='<p>Bạn chỉ được chọn tối đa 5 ảnh</p>';
+            }
+            else if(files.length == '')
+            {
+                error+='<p>Bạn không được bỏ trống ảnh</p>';
+            }
+            else if(files.size > 2000000)
+            {
+                error+='<p>File ảnh không được lớn hơn 2MB</p>';
+            }
+
+            if(error == '')
+            {
+
+            }
+            else
+            {
+                $('#file').val('');
+                $('#error_gallery').html('<span class="text-danger">'+ error +'</span>');
+                return false;
+            }
+        });
+    });
+</script>
 
 <script type="text/javascript">
     function ChangeToSlug()

@@ -4,7 +4,7 @@
 @foreach($detail_product as $key => $value)
 <div class="product-details"><!--product-details-->
     <div class="col-sm-5">
-        <div class="view-product">
+        {{-- <div class="view-product">
             <img src="{{ URL::to('upload/product/'.$value->product_image) }}" alt="" />
             <h3>ZOOM</h3>
         </div>
@@ -27,9 +27,39 @@
               <a class="right item-control" href="#similar-product" data-slide="next">
                 <i class="fa fa-angle-right"></i>
               </a>
-        </div>
+        </div> --}}
 
+        <style>
+            .lSSlideOuter .lSPager.lSGallery img
+            {
+                height: 106px;
+            }
+
+            li.active
+            {
+                border: 1px solid #FE980F;
+            }
+        </style>
+
+        <ul id="imageGallery">
+            <li data-thumb="{{ asset('frontend/images/ps5trang.jpg') }}" data-src="{{ asset('frontend/images/ps5trang.jpg') }}">
+                <img style="width: 100%; height: 329px;" src="{{ asset('frontend/images/ps5trang.jpg') }}" />
+            </li>
+            <li data-thumb="{{ asset('frontend/images/rudiger1.jpg') }}" data-src="{{ asset('frontend/images/rudiger1.jpg') }}">
+                <img style="width: 100%; height: 329px;" src="{{ asset('frontend/images/rudiger1.jpg') }}" />
+            </li>
+            <li data-thumb="{{ asset('frontend/images/rudiger1.jpg') }}" data-src="{{ asset('frontend/images/rudiger1.jpg') }}">
+                <img style="width: 100%; height: 329px;" src="{{ asset('frontend/images/rudiger1.jpg') }}" />
+            </li>
+            <li data-thumb="{{ asset('frontend/images/rudiger1.jpg') }}" data-src="{{ asset('frontend/images/rudiger1.jpg') }}">
+                <img style="width: 100%; height: 329px;" src="{{ asset('frontend/images/rudiger1.jpg') }}" />
+            </li>
+            <li data-thumb="{{ asset('frontend/images/rudiger1.jpg') }}" data-src="{{ asset('frontend/images/rudiger1.jpg') }}">
+                <img style="width: 100%; height: 329px;" src="{{ asset('frontend/images/rudiger1.jpg') }}" />
+            </li>
+        </ul>
     </div>
+
     <div class="col-sm-7">
         <div class="product-information"><!--/product-information-->
             <img src="images/product-details/new.jpg" class="newarrival" alt="" />

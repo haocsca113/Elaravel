@@ -28,6 +28,9 @@
 	<link href="{{ asset('frontend/css/main.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/responsive.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet">
+	<link href="{{ asset('frontend/css/lightgallery.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('frontend/css/lightslider.css') }}" rel="stylesheet">
+	<link href="{{ asset('frontend/css/prettify.css') }}" rel="stylesheet">
 
 	{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css" type="text/css"> --}}
 
@@ -128,8 +131,6 @@
 									}
 								?>
 								
-
-								{{-- <li><a href="{{ URL::to('/show-cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li> --}}
 								<li><a href="{{ URL::to('/gio-hang') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 
 								<li><a href="{{ URL::to('/order-tracking') }}"><i class="fa fa-truck"></i> Theo dõi đơn hàng</a></li>
@@ -183,7 +184,7 @@
 								<li><a href="{{ URL::to('trang-chu') }}" class="active">Trang chủ</a></li>
 								<li class="dropdown"><a href="#">Sản phẩm<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>	
+                                        <li><a href="#">Products</a></li>	
                                     </ul>
                                 </li> 
 
@@ -198,6 +199,9 @@
 								<li><a href="{{ URL::to('/gio-hang') }}">Giỏ hàng</a></li>
 
 								<li><a href="{{ url('/contact-us') }}">Liên hệ</a></li>
+
+								<li><a href="{{ url('/buying-guide') }}">Hướng dẫn mua hàng</a></li>
+
 							</ul>
 						</div>
 					</div>
@@ -425,7 +429,7 @@
 						<div class="single-widget">
 							<h2>Hướng dẫn</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Hướng dẫn mua hàng</a></li>
+								<li><a href="{{ url('/buying-guide') }}">Hướng dẫn mua hàng</a></li>
 							</ul>
 						</div>
 					</div>
@@ -613,51 +617,14 @@
 	<script src="{{ asset('frontend/js/price-range.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script src="{{ asset('frontend/js/lightgallery-all.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/lightslider.js') }}"></script>
+    <script src="{{ asset('frontend/js/prettify.js') }}"></script>
 
 	{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<script src="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js"></script>
-
-	{{-- <script>
-		$.ajaxSetup({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			}
-		});
-
-		$('#button-submit').on('click', function(){
-			$value = $('#userInput').val();
-			$('#chatBox').append(`
-				<div class="mb-2" style="margin-bottom: 10px;">
-					<div class="float-right px-3 py-2" style="width: 270px; background: #4acfee; border-radius: 10px; float: right; height: 40px; line-height: 40px; padding: 0 10px;">
-						`+ $value +`
-					</div>
-					<div style="clear: both;"></div>
-				</div>
-			`);
-
-			$.ajax({
-				url: '{{ url('/send-chat') }}',
-				method: 'POST',
-				data: {
-					input: $value
-				},
-				success: function(data){
-					$('#chatBox').append(`
-						<div class="d-flex mb-2" style="margin-bottom: 10px;">
-							<div class="mr-2" style="width: 45px; height: 45px;">
-								<div class="text-white px-3 py-2" style="width: 270px; background: #13254b; border-radius: 10px; height: 40px; line-height: 40px; padding: 0 10px; color: #fff;">
-									`+ data +`
-								</div>
-							</div>
-						</div>
-					`);
-					$value = $('#userInput').val('');
-				}
-			})
-		});
-	</script> --}}
 
 	<style>
 		#botmanWidgetRoot div[style*="position: fixed"] {
@@ -670,6 +637,25 @@
 			aboutText: 'Welcome',
 			introMessage: 'Hi, By Poghao',
 		}
+	</script>
+
+	<script>
+		$(document).ready(function() {
+			$('#imageGallery').lightSlider({
+				gallery:true,
+				item:1,
+				loop:true,
+				thumbItem:3,
+				slideMargin:0,
+				enableDrag: false,
+				currentPagerPosition:'left',
+				onSliderLoad: function(el) {
+					el.lightGallery({
+						selector: '#imageGallery .lslide'
+					});
+				}   
+			});  
+		});
 	</script>
 
 	<script>

@@ -82,6 +82,7 @@ class PostController extends Controller
             $name_image = current(explode('.',$get_name_image)); // tách dấu . ra khỏi tên
             $new_image = $name_image.rand(0, 99).'.'.$get_image->getClientOriginalExtension();
             $get_image->move('upload/post', $new_image);
+            
             $post->post_image = $new_image;
             $post->save();
             return redirect()->to('/all-post')->with('message', 'Thêm bài viết thành công');
@@ -163,12 +164,15 @@ class PostController extends Controller
         $meta_keywords = $post->post_meta_keywords;
         $meta_title = $post->post_title;
         $url_canonical = $request->url();
+        $cate_post_id = $post->cate_post_id;
 
         $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
         $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
 
-        return view('pages.baiviet.baiviet')->with(compact('category', 'brand', 'banner', 'cate_post', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'post'));
+        $related = Post::with('cate_post')->where('post_status', 1)->where('cate_post_id', $cate_post_id)->whereNotIn('post_slug', [$post_slug])->take(5)->get();
+
+        return view('pages.baiviet.baiviet')->with(compact('category', 'brand', 'banner', 'cate_post', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'post', 'related'));
     }
 }
