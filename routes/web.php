@@ -218,6 +218,9 @@ Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
 Route::get('/add-gallery/{product_id}', [GalleryController::class, 'add_gallery']);
 Route::post('/select-gallery', [GalleryController::class, 'select_gallery']);
 Route::post('/insert-gallery/{pro_id}', [GalleryController::class, 'insert_gallery']);
+Route::post('/update-gallery-name', [GalleryController::class, 'update_gallery_name']);
+Route::post('/delete-gallery', [GalleryController::class, 'delete_gallery']);
+Route::post('/update-gallery', [GalleryController::class, 'update_gallery']);
 
 
 
