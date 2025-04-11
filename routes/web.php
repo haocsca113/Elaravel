@@ -18,6 +18,7 @@ use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BotManController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\VideoController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -221,6 +222,12 @@ Route::post('/insert-gallery/{pro_id}', [GalleryController::class, 'insert_galle
 Route::post('/update-gallery-name', [GalleryController::class, 'update_gallery_name']);
 Route::post('/delete-gallery', [GalleryController::class, 'delete_gallery']);
 Route::post('/update-gallery', [GalleryController::class, 'update_gallery']);
+
+// Video
+Route::get('/video', [VideoController::class, 'video']);
+Route::post('/select-video', [VideoController::class, 'select_video']);
+Route::post('/insert-video', [VideoController::class, 'insert_video']);
+Route::post('/update-video', [VideoController::class, 'update_video']);
 
 
 

@@ -177,6 +177,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
+                        <span>Sản phẩm</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ URL::to('/add-product') }}">Thêm sản phẩm</a></li>
+						<li><a href="{{ URL::to('/all-product') }}">Liệt kê sản phẩm</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
                         <span>Bài viết</span>
                     </a>
                     <ul class="sub">
@@ -188,11 +199,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Sản phẩm</span>
+                        <span>Video</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{ URL::to('/add-product') }}">Thêm sản phẩm</a></li>
-						<li><a href="{{ URL::to('/all-product') }}">Liệt kê sản phẩm</a></li>
+						<li><a href="{{ URL::to('/video') }}">Thêm video</a></li>
                     </ul>
                 </li>
 
@@ -255,6 +265,84 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+
+<script>
+    $(document).ready(function(){
+        load_video();
+        function load_video()
+        {
+            $.ajax({
+                url: "{{ url('/select-video') }}",
+                method: "POST",
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(data){
+                    $('#video_load').html(data);
+                }
+            });
+        }
+
+        $(document).on('click', '.btn-add-video', function(){
+            var video_title = $('.video_title').val();
+            var video_slug = $('.video_slug').val();
+            var video_link = $('.video_link').val();
+            var video_desc = $('.video_desc').val();
+            
+            $.ajax({
+                url: "{{ url('/insert-video') }}",
+                method: "POST",
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {video_title: video_title, video_slug: video_slug, video_link: video_link, video_desc: video_desc},
+                success: function(data){
+                    load_video();
+                    $('#notify').html('<span class="text-success">Đã thêm video thành công</span>');
+                }
+            });
+        });
+
+        $(document).on('blur', '.video_edit', function(){
+            var video_type = $(this).data('video_type');
+            var video_id = $(this).data('video_id');
+            // alert(video_type);
+            if(video_type == 'video_title')
+            {
+                var video_edit = $('#' + video_type + '_' + video_id).text();
+                var video_check = video_type;
+            }
+            else if(video_type == 'video_slug')
+            {
+                var video_edit = $('#' + video_type + '_' + video_id).text();
+                var video_check = video_type;
+            }
+            else if(video_type == 'video_link')
+            {
+                var video_edit = $('#' + video_type + '_' + video_id).text();
+                var video_check = video_type;
+            }
+            else if(video_type == 'video_desc')
+            {
+                var video_edit = $('#' + video_type + '_' + video_id).text();
+                var video_check = video_type;
+            }
+            
+            $.ajax({
+                url: "{{ url('/update-video') }}",
+                method: "POST",
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {video_edit: video_edit, video_id: video_id, video_check: video_check},
+                success: function(data){
+                    load_video();
+                    $('#notify').html('<span class="text-success">Cập nhật video thành công</span>');
+                }
+            });
+        });
+    });
+</script>
 
 <script>
     $(document).ready(function(){
