@@ -14,7 +14,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	{{-- <meta property="og:image" content=""> --}}
-	<meta property="og:site_name" content="http://localhost:8080/laravel/webbanhang_tutorial/public/">
+	<meta property="og:site_name" content="{{ $url_canonical }}">
 	<meta property="og:description" content="{{ $meta_desc }}">
 	<meta property="og:title" content="{{ $meta_title }}">
 	<meta property="og:url" content="{{ $url_canonical }}">
@@ -170,7 +170,7 @@
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-9">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 								<span class="sr-only">Toggle navigation</span>
@@ -198,6 +198,8 @@
 
 								<li><a href="{{ URL::to('/gio-hang') }}">Giỏ hàng</a></li>
 
+								<li><a href="{{ URL::to('/video-shop') }}">Video</a></li>
+
 								<li><a href="{{ url('/contact-us') }}">Liên hệ</a></li>
 
 								<li><a href="{{ url('/buying-guide') }}">Hướng dẫn mua hàng</a></li>
@@ -205,7 +207,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<form action="{{ URL::to('/tim-kiem') }}" method="post">
 							{{ csrf_field() }}
 							<div class="search_box pull-right">
@@ -655,6 +657,26 @@
 					});
 				}   
 			});  
+		});
+	</script>
+
+	<script>
+		$(document).on('click', '.watch-video', function(){
+			var video_id = $(this).attr('id');
+			$.ajax({
+				url: "{{ url('/watch-video') }}",
+				method: "POST",
+				headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+				dataType: "JSON",
+				data: {video_id: video_id},
+				success: function(data){
+					$('#video_title').html(data.video_title);
+					$('#video_link').html(data.video_link);
+					$('#video_desc').html(data.video_desc);
+				}
+			});
 		});
 	</script>
 

@@ -41,6 +41,11 @@
                             </textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Hình ảnh video</label>
+                            <input type="file" class="form-control" name="file" id="file_img_video" accept="image/*">
+                        </div>
+
                         {{-- <div class="form-group">
                             <label for="exampleInputPassword1">Hiển thị</label>
                             <select name="brand_product_status" class="form-control input-sm m-bot15">

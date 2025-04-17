@@ -288,6 +288,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             var video_slug = $('.video_slug').val();
             var video_link = $('.video_link').val();
             var video_desc = $('.video_desc').val();
+
+            var form_data = new FormData();
+            form_data.append("file", document.getElementById('file_img_video').files[0]);
+            form_data.append("video_title", video_title);
+            form_data.append("video_slug", video_slug);
+            form_data.append("video_link", video_link);
+            form_data.append("video_desc", video_desc);
             
             $.ajax({
                 url: "{{ url('/insert-video') }}",
@@ -295,12 +302,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 headers:{
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                data: {video_title: video_title, video_slug: video_slug, video_link: video_link, video_desc: video_desc},
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
                 success: function(data){
                     load_video();
                     $('#notify').html('<span class="text-success">Đã thêm video thành công</span>');
                 }
             });
+        });
+
+        $(document).on('click', '.btn-delete-video', function(){
+            var video_id = $(this).data('video_id');
+            
+            if(confirm('Bạn có chắc muốn xóa video này không?'))
+            {
+                $.ajax({
+                    url: "{{ url('/delete-video') }}",
+                    method: "POST",
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {video_id: video_id},
+                    success: function(data){
+                        load_video();
+                        $('#notify').html('<span class="text-success">Xóa video thành công</span>');
+                    }
+                });
+            }
         });
 
         $(document).on('blur', '.video_edit', function(){
@@ -338,6 +368,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 success: function(data){
                     load_video();
                     $('#notify').html('<span class="text-success">Cập nhật video thành công</span>');
+                }
+            });
+        });
+
+        $(document).on('change', '.file_img_video', function(){
+            var video_id = $(this).data('video_id');
+            var image = document.getElementById('file-video-' + video_id).files[0];
+
+            var form_data = new FormData();
+            form_data.append("file", document.getElementById('file-video-' + video_id).files[0]);
+            form_data.append("video_id", video_id);
+  
+            $.ajax({
+                url: "{{ url('/update-video-image') }}",
+                method: "POST",
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data){
+                    load_video();
+                    $('#notify').html('<span class="text-success">Cập nhật hình ảnh video thành công</span>');  
                 }
             });
         });

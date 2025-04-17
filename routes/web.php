@@ -225,9 +225,13 @@ Route::post('/update-gallery', [GalleryController::class, 'update_gallery']);
 
 // Video
 Route::get('/video', [VideoController::class, 'video']);
+Route::get('/video-shop', [VideoController::class, 'video_shop']);
 Route::post('/select-video', [VideoController::class, 'select_video']);
 Route::post('/insert-video', [VideoController::class, 'insert_video']);
 Route::post('/update-video', [VideoController::class, 'update_video']);
+Route::post('/delete-video', [VideoController::class, 'delete_video']);
+Route::post('/update-video-image', [VideoController::class, 'update_video_image']);
+Route::post('/watch-video', [VideoController::class, 'watch_video']);
 
 
 
