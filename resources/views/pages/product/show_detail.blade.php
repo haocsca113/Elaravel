@@ -88,6 +88,36 @@
             <p><b>Điệu kiện:</b> Mới 100%</p>
             <p><b>Thương hiệu:</b> {{ $value->brand_name }}</p>
             <p><b>Danh mục:</b> {{ $value->category_name }}</p>
+
+            <style>
+                a.tags_style
+                {
+                    margin: 3px 2px;
+                    border: 1px solid;
+                    height: auto;
+                    background: #428bca;
+                    color: #fff;
+                    padding: 0px;
+                }
+                a.tags_style:hover
+                {
+                    background: #000;
+                }
+            </style>
+            <fieldset>
+                <legend>Tags</legend>
+                <p>
+                    <i class="fa fa-tag"></i>
+                    @php
+                        $tags = $value->product_tags;
+                        $tags = explode(",", $tags);
+                    @endphp
+                    @foreach($tags as $tag)
+                        <a href="{{ url('/tag/'.Str::slug($tag)) }}" class="tags_style">{{ $tag }}</a>
+                    @endforeach
+                </p>
+            </fieldset>
+
             <a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
         </div><!--/product-information-->
     </div>

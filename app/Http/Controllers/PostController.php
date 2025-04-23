@@ -43,7 +43,8 @@ class PostController extends Controller
     {
         $this->AuthLogin();
 
-        $all_post = Post::with('cate_post')->orderBy('post_id', 'DESC')->paginate(10);
+        // $all_post = Post::with('cate_post')->orderBy('post_id', 'DESC')->paginate(10);
+        $all_post = Post::with('cate_post')->orderBy('post_id', 'DESC')->get();
 
         return view('admin.post.all_post')->with(compact('all_post'));
     }

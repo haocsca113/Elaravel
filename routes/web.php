@@ -33,6 +33,7 @@ Route::get('/buying-guide', [HomeController::class, 'buying_guide']);
 Route::get('/danh-muc-san-pham/{category_id}', [CategoryProduct::class, 'show_category_home']);
 Route::get('/thuong-hieu-san-pham/{brand_id}', [BrandProduct::class, 'show_brand_home']);
 Route::get('/chi-tiet-san-pham/{product_id}', [ProductController::class, 'detail_product']);
+Route::get('/tag/{product_tag}', [ProductController::class, 'tag']);
 
 // Backend
 Route::get('/admin', [AdminController::class, 'index']);

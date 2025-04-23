@@ -27,6 +27,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{ asset('backend/css/font.css') }}" type="text/css"/>
 <link href="{{ asset('backend/css/font-awesome.css') }}" rel="stylesheet"> 
 <link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('backend/css/bootstrap-tagsinput.css') }}" type="text/css"/>
+<link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
+
 <!-- calendar -->
 <link rel="stylesheet" href="{{ asset('backend/css/monthly.css') }}">
 <!-- //calendar -->
@@ -34,6 +37,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/jquery2.0.3.min.js') }}"></script>
 <script src="{{ asset('backend/js/raphael-min.js') }}"></script>
 <script src="{{ asset('backend/js/morris.js') }}"></script>
+<script src="{{ asset('backend/js/bootstrap-tagsinput.js') }}"></script>
+<script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+
 </head>
 <body>
 <section id="container">
@@ -265,6 +271,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#myTable').DataTable();
+    });
+</script>
 
 <script>
     $(document).ready(function(){

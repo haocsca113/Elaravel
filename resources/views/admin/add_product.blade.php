@@ -69,6 +69,12 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tags sản phẩm</label>
+                            <input type="text" data-role="tagsinput" name="product_tags" class="form-control">
+                        </div>
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Hiển thị</label>
                             <select name="product_status" class="form-control input-sm m-bot15">

@@ -8,6 +8,7 @@ use App\Exports\ExcelExportProduct;
 use App\Models\Banner;
 use App\Models\CategoryPost;
 use App\Models\Gallery;
+use App\Models\Product;
 use File;
 use Excel;
 use DB;
@@ -58,6 +59,7 @@ class ProductController extends Controller
         $this->AuthLogin();
         $data = array();
         $data['product_name'] = $request->product_name;
+        $data['product_tags'] = $request->product_tags;
         $data['product_quantity'] = $request->product_quantity;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
@@ -123,6 +125,7 @@ class ProductController extends Controller
         $this->AuthLogin();
         $data = array();
         $data['product_name'] = $request->product_name;
+        $data['product_tags'] = $request->product_tags;
         $data['product_quantity'] = $request->product_quantity;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
@@ -210,5 +213,26 @@ class ProductController extends Controller
         ->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$product_id])->get();
 
         return view('pages.product.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('detail_product', $detail_product)->with('related_product', $related_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post)->with('gallery', $gallery);
+    }
+
+    public function tag(Request $request, $product_tag)
+    {
+        // Banner
+        $banner = Banner::orderBy('banner_id', 'desc')->take(4)->get();
+
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
+
+        $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
+
+        $meta_desc = 'Tags tìm kiếm: '.$product_tag;
+        $meta_keywords = 'Tags tìm kiếm: '.$product_tag;
+        $meta_title = 'Tags tìm kiếm: '.$product_tag;
+        $url_canonical = $request->url();
+
+        $tag = str_replace("-", " ", $product_tag);
+        $pro_tag = Product::where('product_status', 1)->where('product_name', 'LIKE', '%'.$tag.'%')->orWhere('product_tags', 'LIKE', '%'.$tag.'%')->get();
+
+        return view('pages.product.tag')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post)->with('product_tag', $product_tag)->with('pro_tag', $pro_tag);
     }
 }
