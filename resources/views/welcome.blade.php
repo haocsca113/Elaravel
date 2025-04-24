@@ -208,11 +208,13 @@
 						</div>
 					</div>
 					<div class="col-sm-3">
-						<form action="{{ URL::to('/tim-kiem') }}" method="post">
+						<form action="{{ URL::to('/tim-kiem') }}" autocomplete="off" method="post">
 							{{ csrf_field() }}
-							<div class="search_box pull-right">
-								<input type="text" name="keywords" placeholder="Tìm kiếm sản phẩm"/>
+							<div class="search_box pull-right" style="width: 100%;">
+								<input type="text" name="keywords" id="keywords" placeholder="Tìm kiếm sản phẩm"/>
 								<input type="submit" name="search_item" class="btn btn-primary btn-sm" value="Tìm kiếm" style="margin-top: 0; color: #fff; width: 90px;">
+
+								<div id="search-ajax"></div>
 							</div>
 						</form>
 						
@@ -642,6 +644,62 @@
 	</script>
 
 	<script>
+		$('.xemnhanh').click(function(){
+			var product_id = $(this).data('id_product');
+			$.ajax({
+				url: "{{ url('/quickview') }}",
+				method: "POST",
+				headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+				dataType: "JSON",
+				data: {product_id: product_id},
+				success: function(data){
+					$('#product_quickview_title').html(data.product_name);
+					$('#product_quickview_id').html(data.product_id);
+					$('#product_quickview_price').html(data.product_price);
+					$('#product_quickview_image').html(data.product_image);
+					$('#product_quickview_gallery').html(data.product_gallery);
+					$('#product_quickview_desc').html(data.product_desc);
+					$('#product_quickview_content').html(data.product_content);
+					$('#product_quickview_value').html(data.product_quickview_value);
+					$('#product_quickview_button').html(data.product_button);
+				}
+			});
+		});
+	</script>
+
+	<script>
+		$('#keywords').keyup(function(){
+			var query = $(this).val();
+			if(query != '')
+			{
+				$.ajax({
+					url: "{{ url('/autocomplete-ajax') }}",
+					method: "POST",
+					headers:{
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					data: {query: query},
+					success: function(data){
+						$('#search-ajax').fadeIn();
+						$('#search-ajax').html(data);
+					}
+				});
+			}
+			else
+			{
+				$('#search-ajax').fadeOut();
+			}
+		});
+
+		$(document).on('click', '.li_search_ajax', function(){
+			$('#keywords').val($(this).text());
+			$('#search-ajax').fadeOut();
+		});
+	</script>
+
+	<script>
 		$(document).ready(function() {
 			$('#imageGallery').lightSlider({
 				gallery:true,
@@ -807,6 +865,50 @@
 					});
 				}
 			});
+		});
+	</script>
+
+	<!-- Add to cart quickview -->
+	<script>
+		$(document).on('click', '.add-to-cart-quickview', function(){
+			var id = $(this).data('id_product');
+			var cart_product_id = $('.cart_product_id_' + id).val();
+			var cart_product_name = $('.cart_product_name_' + id).val();
+			var cart_product_image = $('.cart_product_image_' + id).val();
+			var cart_product_quantity = $('.cart_product_quantity_' + id).val();
+			var cart_product_price = $('.cart_product_price_' + id).val();
+			var cart_product_qty = $('.cart_product_qty_' + id).val();
+			var _token = $('input[name="_token"]').val();
+			if(parseInt(cart_product_qty) > parseInt(cart_product_quantity))
+			{
+				alert('Làm ơn đặt nhỏ hơn ' + cart_product_quantity);
+			}
+			else
+			{
+				$.ajax({
+					url: '{{ url('/add-cart-ajax') }}',
+					method: 'POST',
+					data: {
+						cart_product_id: cart_product_id,
+						cart_product_name: cart_product_name,
+						cart_product_image: cart_product_image,
+						cart_product_price: cart_product_price,
+						cart_product_quantity: cart_product_quantity,
+						cart_product_qty: cart_product_qty,
+						_token: _token,
+					},
+					beforeSend: function(){
+						$("#beforesend_quickview").html("<p class='text text-primary'>Đang thêm sản phẩm vào giỏ hàng</p>");
+					},
+					success: function(data){
+						$("#beforesend_quickview").html("<p class='text text-success'>Đã thêm sản phẩm vào giỏ hàng</p>");
+					},
+				});
+			}
+		});
+
+		$(document).on('click', '.redirect-cart', function(){
+			window.location.href = "{{ url('/gio-hang') }}";
 		});
 	</script>
 

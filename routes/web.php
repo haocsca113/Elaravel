@@ -24,6 +24,8 @@ use App\Http\Controllers\VideoController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/trang-chu', [HomeController::class, 'index']);
 Route::post('/tim-kiem', [HomeController::class, 'search']);
+Route::post('/autocomplete-ajax', [HomeController::class, 'autocomplete_ajax']);
+
 Route::post('/send-chat', [HomeController::class, 'send_chat']);
 Route::post('/send-chat-gemini', [HomeController::class, 'send_chat_gemini']);
 Route::get('/contact-us', [HomeController::class, 'contact_us']);
@@ -34,6 +36,7 @@ Route::get('/danh-muc-san-pham/{category_id}', [CategoryProduct::class, 'show_ca
 Route::get('/thuong-hieu-san-pham/{brand_id}', [BrandProduct::class, 'show_brand_home']);
 Route::get('/chi-tiet-san-pham/{product_id}', [ProductController::class, 'detail_product']);
 Route::get('/tag/{product_tag}', [ProductController::class, 'tag']);
+Route::post('/quickview', [ProductController::class, 'quickview']);
 
 // Backend
 Route::get('/admin', [AdminController::class, 'index']);

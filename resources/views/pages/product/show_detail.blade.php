@@ -3,32 +3,14 @@
 
 @foreach($detail_product as $key => $value)
 <div class="product-details"><!--product-details-->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background: none;">
+          <li class="breadcrumb-item"><a href="{{ url('/') }}">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/danh-muc-san-pham/'.$value->category_id) }}">{{ $product_cate }}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ $meta_title }}</li>
+        </ol>
+    </nav>
     <div class="col-sm-5">
-        {{-- <div class="view-product">
-            <img src="{{ URL::to('upload/product/'.$value->product_image) }}" alt="" />
-            <h3>ZOOM</h3>
-        </div>
-        <div id="similar-product" class="carousel slide" data-ride="carousel">
-            
-              <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <div class="item active">
-                      <a href=""><img src="{{ URL::to('frontend/images/similar1.jpg') }}" alt=""></a>
-                      <a href=""><img src="{{ URL::to('frontend/images/similar2.jpg') }}" alt=""></a>
-                      <a href=""><img src="{{ URL::to('frontend/images/similar3.jpg') }}" alt=""></a>
-                    </div>
-                    
-                </div>
-
-              <!-- Controls -->
-              <a class="left item-control" href="#similar-product" data-slide="prev">
-                <i class="fa fa-angle-left"></i>
-              </a>
-              <a class="right item-control" href="#similar-product" data-slide="next">
-                <i class="fa fa-angle-right"></i>
-              </a>
-        </div> --}}
-
         <style>
             #imageGallery li img
             {

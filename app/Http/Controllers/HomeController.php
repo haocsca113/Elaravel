@@ -8,6 +8,7 @@ use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\CategoryPost;
+use App\Models\Product;
 use Mail;
 use DB;
 use Session;
@@ -79,6 +80,24 @@ class HomeController extends Controller
         $search_product = DB::table('tbl_product')->where('product_name', 'like', '%'.$keywords.'%')->where('product_status', '1')->get();
 
         return view('pages.product.search')->with('category', $cate_product)->with('brand', $brand_product)->with('search_product', $search_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post);
+    }
+
+    public function autocomplete_ajax(Request $request)
+    {
+        $data = $request->all();
+        if($data['query'])
+        {
+            $product = Product::where('product_status', 1)->where('product_name', 'LIKE', '%'.$data['query'].'%')->get();
+            $output = '<ul class="dropdown-menu" style="display: block; position: relative;">';
+            foreach($product as $key => $val)
+            {
+                $output .= '
+                    <li class="li_search_ajax"><a href="#">'.$val->product_name.'</a></li>
+                ';
+            }
+            $output .= '</ul>';
+            echo $output;
+        }
     }
 
     public function contact_us(Request $request)

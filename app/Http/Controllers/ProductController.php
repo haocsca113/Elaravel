@@ -35,6 +35,46 @@ class ProductController extends Controller
         }
     }
 
+    public function quickview(Request $request)
+    {
+        $product_id = $request->product_id;
+        $product = Product::find($product_id);
+        
+        $gallery = Gallery::where('product_id', $product_id)->get();
+        $output['product_gallery'] = '';
+        foreach($gallery as $key => $gal)
+        {
+            $output['product_gallery'] .= '<p><img width="100%" src="upload/gallery/'.$gal->gallery_image.'"></p>';
+        }
+
+        $output['product_name'] = $product->product_name;
+        $output['product_id'] = $product->product_id;
+        $output['product_desc'] = $product->product_desc;
+        $output['product_content'] = $product->product_content;
+        $output['product_price'] = number_format($product->product_price, 0, ',', '.').' VNĐ';
+        $output['product_image'] = '<p><img width="100%" src="upload/product/'.$product->product_image.'"></p>';
+
+        $output['product_button'] = '
+            <input type="button" value="Mua ngay" class="btn btn-primary btn-sm add-to-cart-quickview" id="buy_quickview" data-id_product="'.$product->product_id.'" name="add-to-cart">
+        ';
+
+        $output['product_quickview_value'] = '
+            <input type="hidden" class="cart_product_id_'.$product->product_id.'" value="'.$product->product_id.'">
+
+            <input type="hidden" class="cart_product_name_'.$product->product_id.'" value="'.$product->product_name.'">
+            
+            <input type="hidden" class="cart_product_image_'.$product->product_id.'" value="'.$product->product_image.'">
+
+            <input type="hidden" class="cart_product_price_'.$product->product_id.'" value="'.$product->product_price.'">
+
+            <input type="hidden" class="cart_product_quantity_'.$product->product_id.'" value="'.$product->product_quantity.'">
+
+            <input type="hidden" class="cart_product_qty_'.$product->product_id.'" value="1">
+        ';
+
+        echo json_encode($output);
+    }
+
     public function add_product()
     {
         $this->AuthLogin();
@@ -188,13 +228,14 @@ class ProductController extends Controller
         ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
         ->where('tbl_product.product_id', $product_id)->get();
 
-        $meta_desc = 'Chi tiết sản phẩm';
-        $meta_keywords = 'Chi tiết sản phẩm';
-        $meta_title = 'Chi tiết sản phẩm';
-        $url_canonical = $request->url();
+        // $meta_desc = 'Chi tiết sản phẩm';
+        // $meta_keywords = 'Chi tiết sản phẩm';
+        // $meta_title = 'Chi tiết sản phẩm';
+        // $url_canonical = $request->url();
         foreach($detail_product as $key => $value)
         {
             $category_id = $value->category_id;
+            $product_cate = $value->category_name;
 
             // Seo
             $meta_desc = $value->product_desc;
@@ -212,7 +253,7 @@ class ProductController extends Controller
         ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
         ->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$product_id])->get();
 
-        return view('pages.product.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('detail_product', $detail_product)->with('related_product', $related_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post)->with('gallery', $gallery);
+        return view('pages.product.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('detail_product', $detail_product)->with('related_product', $related_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post)->with('gallery', $gallery)->with('product_cate', $product_cate);
     }
 
     public function tag(Request $request, $product_tag)
