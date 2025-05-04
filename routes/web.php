@@ -37,6 +37,12 @@ Route::get('/thuong-hieu-san-pham/{brand_id}', [BrandProduct::class, 'show_brand
 Route::get('/chi-tiet-san-pham/{product_id}', [ProductController::class, 'detail_product']);
 Route::get('/tag/{product_tag}', [ProductController::class, 'tag']);
 Route::post('/quickview', [ProductController::class, 'quickview']);
+Route::post('/load-comment', [ProductController::class, 'load_comment']);
+Route::post('/send-comment', [ProductController::class, 'send_comment']);
+
+Route::get('/comment', [ProductController::class, 'comment']);
+Route::post('/allow-comment', [ProductController::class, 'allow_comment']);
+Route::post('/reply-comment', [ProductController::class, 'reply_comment']);
 
 // Backend
 Route::get('/admin', [AdminController::class, 'index']);

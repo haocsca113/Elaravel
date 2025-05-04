@@ -13,8 +13,8 @@ class Brand extends Model
     protected $primaryKey = 'brand_id';
     protected $table = 'tbl_brand_product';
 
-    public function product()
-    {
-        return $this->belongsTo('App\Product', 'brand_id');
-    }
+    // public function product()
+    // {
+    //     return $this->belongsTo('App\Product', 'brand_id');
+    // }
 }

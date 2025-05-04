@@ -644,6 +644,50 @@
 	</script>
 
 	<script>
+		$(document).ready(function(){
+			load_comment();
+			
+			function load_comment()
+			{
+				var product_id = $('.comment_product_id').val();
+				// alert(product_id);
+				$.ajax({
+					url: "{{ url('/load-comment') }}",
+					method: "POST",
+					headers:{
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					data: {product_id: product_id},
+					success: function(data){
+						$('#comment_show').html(data);
+					}
+				});
+			}
+
+			$('.send-comment').click(function(){
+				var product_id = $('.comment_product_id').val();
+				var comment_name = $('.comment_name').val();
+				var comment_content = $('.comment_content').val();
+				$.ajax({
+					url: "{{ url('/send-comment') }}",
+					method: "POST",
+					headers:{
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					data: {product_id: product_id, comment_name: comment_name, comment_content: comment_content},
+					success: function(data){
+						$('#notify_comment').html('<span class="text text-success">Thêm bình luận thành công, bình luận đang chờ duyệt</span>')
+						$('#notify_comment').fadeOut(9000);
+						$('.comment_name').val('');
+						$('.comment_content').val('');
+						load_comment();
+					}
+				});
+			});
+		})
+	</script>
+
+	<script>
 		$('.xemnhanh').click(function(){
 			var product_id = $(this).data('id_product');
 			$.ajax({

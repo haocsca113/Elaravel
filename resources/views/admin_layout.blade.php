@@ -118,6 +118,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
+                        <span>Bình luận</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{ url('/comment') }}">Liệt kê bình luận</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
                         <span>Đơn hàng</span>
                     </a>
                     <ul class="sub">
@@ -276,6 +286,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     $(document).ready(function(){
         $('#myTable').DataTable();
     });
+</script>
+
+<script>
+    $(document).on('click', '.comment_duyet_btn', function(){
+        var comment_status = $(this).data('comment_status');
+        var comment_id = $(this).data('comment_id');
+        var comment_product_id = $(this).attr('id');
+        if(comment_status == 1)
+        {
+            var alert = 'Duyệt thành công';        
+        }
+        else
+        {
+            var alert = 'Bỏ duyệt thành công';        
+        }
+        
+        $.ajax({
+            url: "{{ url('/allow-comment') }}",
+            method: "POST",
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {comment_status: comment_status, comment_id: comment_id, comment_product_id: comment_product_id},
+            success: function(data){
+                location.reload();
+                $('#notify_comment').html('<span class="text text-alert">'+ alert +'</span>');
+            }
+        });
+    });
+
+    $(document).on('click', '.btn-reply-comment', function(){
+        var comment_id = $(this).data('comment_id');
+        var comment = $('.reply_comment_' + comment_id).val();
+        var comment_product_id = $(this).data('product_id');
+
+        // alert(comment);         
+        // alert(comment_id);         
+        // alert(comment_product_id);         
+        
+        $.ajax({
+            url: "{{ url('/reply-comment') }}",
+            method: "POST",
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {comment: comment, comment_id: comment_id, comment_product_id: comment_product_id},
+            success: function(data){
+                location.reload();
+                $('.reply_comment_' + comment_id).val('');
+                $('#notify_comment').html('<span class="text text-alert">Trả lời bình luận thành công</span>');
+            }
+        });
+    })
 </script>
 
 <script>
