@@ -10,6 +10,7 @@ use App\Models\CategoryPost;
 use App\Models\Gallery;
 use App\Models\Product;
 use App\Models\Comment;
+use App\Models\Rating;
 use File;
 use Excel;
 use DB;
@@ -314,10 +315,6 @@ class ProductController extends Controller
         ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
         ->where('tbl_product.product_id', $product_id)->get();
 
-        // $meta_desc = 'Chi tiết sản phẩm';
-        // $meta_keywords = 'Chi tiết sản phẩm';
-        // $meta_title = 'Chi tiết sản phẩm';
-        // $url_canonical = $request->url();
         foreach($detail_product as $key => $value)
         {
             $category_id = $value->category_id;
@@ -339,7 +336,10 @@ class ProductController extends Controller
         ->join('tbl_brand_product', 'tbl_brand_product.brand_id', '=', 'tbl_product.brand_id')
         ->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$product_id])->get();
 
-        return view('pages.product.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('detail_product', $detail_product)->with('related_product', $related_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post)->with('gallery', $gallery)->with('product_cate', $product_cate);
+        $rating = Rating::where('product_id', $product_id)->avg('rating');
+        $rating = round($rating);
+
+        return view('pages.product.show_detail')->with('category', $cate_product)->with('brand', $brand_product)->with('detail_product', $detail_product)->with('related_product', $related_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post)->with('gallery', $gallery)->with('product_cate', $product_cate)->with('rating', $rating);
     }
 
     public function tag(Request $request, $product_tag)
@@ -361,5 +361,21 @@ class ProductController extends Controller
         $pro_tag = Product::where('product_status', 1)->where('product_name', 'LIKE', '%'.$tag.'%')->orWhere('product_tags', 'LIKE', '%'.$tag.'%')->get();
 
         return view('pages.product.tag')->with('category', $cate_product)->with('brand', $brand_product)->with('meta_desc', $meta_desc)->with('meta_keywords', $meta_keywords)->with('meta_title', $meta_title)->with('url_canonical', $url_canonical)->with('banner', $banner)->with('cate_post', $cate_post)->with('product_tag', $product_tag)->with('pro_tag', $pro_tag);
+    }
+
+    public function insert_rating(Request $request)
+    {
+        // $data = $request->all();
+        // dd($data);
+        $product_id = $request->input('product_id');
+        $index = $request->input('index');
+
+        $rating = new Rating();
+        // $rating->product_id = $data['product_id'];
+        $rating->product_id = $product_id;
+        // $rating->rating = $data['index'];
+        $rating->rating = $index;
+        $rating->save();
+        echo 'done';
     }
 }

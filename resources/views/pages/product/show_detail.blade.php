@@ -143,6 +143,24 @@
                 <div id="comment_show"></div>
                 
                 <p><b>Viết đánh giá của bạn</b></p>
+                <ul class="list-inline rating" title="Average Rating">
+                    @for($count = 1; $count <= 5; $count++)
+                        @php
+                            if($count <= $rating)
+                            {
+                                $color = 'color: #ffcc00;';
+                            }
+                            else
+                            {
+                                $color = 'color: #ccc;';
+                            }
+                        @endphp
+
+                        <li title="star_rating" id="{{ $value->product_id }}-{{ $count }}" data-index="{{ $count }}" data-product_id="{{ $value->product_id }}" data-rating="{{ $rating }}" class="rating" style="cursor: pointer; {{ $color }} font-size: 30px;">
+                            &#9733;
+                        </li>
+                    @endfor
+                </ul>
                 
                 <form action="#">
                     <span>
@@ -150,7 +168,7 @@
                     </span>
                     <textarea name="comment" class="comment_content" placeholder="Nội dung bình luận"></textarea>
                     <div id="notify_comment"></div>
-                    <b>Đánh giá sao: </b> <img src="images/product-details/rating.png" alt="" />
+                    {{-- <b>Đánh giá sao: </b> <img src="images/product-details/rating.png" alt="" /> --}}
                     <button type="button" class="btn btn-default pull-right send-comment">
                         Gửi bình luận
                     </button>

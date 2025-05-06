@@ -19,6 +19,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\BotManController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\ContactController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -30,6 +31,12 @@ Route::post('/send-chat', [HomeController::class, 'send_chat']);
 Route::post('/send-chat-gemini', [HomeController::class, 'send_chat_gemini']);
 Route::get('/contact-us', [HomeController::class, 'contact_us']);
 Route::get('/buying-guide', [HomeController::class, 'buying_guide']);
+
+// Lien he trang
+Route::get('/lien-he', [ContactController::class, 'lien_he']);
+Route::get('/information', [ContactController::class, 'information']);
+Route::post('/save-info', [ContactController::class, 'save_info']);
+Route::post('/update-info/{info_id}', [ContactController::class, 'update_info']);
 
 // Danh muc san pham trang chu
 Route::get('/danh-muc-san-pham/{category_id}', [CategoryProduct::class, 'show_category_home']);
@@ -43,6 +50,8 @@ Route::post('/send-comment', [ProductController::class, 'send_comment']);
 Route::get('/comment', [ProductController::class, 'comment']);
 Route::post('/allow-comment', [ProductController::class, 'allow_comment']);
 Route::post('/reply-comment', [ProductController::class, 'reply_comment']);
+
+Route::post('/insert-rating', [ProductController::class, 'insert_rating']);
 
 // Backend
 Route::get('/admin', [AdminController::class, 'index']);

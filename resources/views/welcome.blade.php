@@ -200,7 +200,8 @@
 
 								<li><a href="{{ URL::to('/video-shop') }}">Video</a></li>
 
-								<li><a href="{{ url('/contact-us') }}">Liên hệ</a></li>
+								{{-- <li><a href="{{ url('/contact-us') }}">Liên hệ</a></li> --}}
+								<li><a href="{{ url('/lien-he') }}">Liên hệ</a></li>
 
 								<li><a href="{{ url('/buying-guide') }}">Hướng dẫn mua hàng</a></li>
 
@@ -641,6 +642,70 @@
 			aboutText: 'Welcome',
 			introMessage: 'Hi, By Poghao',
 		}
+	</script>
+
+	<script>
+		function remove_background(product_id)
+		{
+			for(var count = 1; count <= 5; count++)
+			{
+				$('#' + product_id + '-' + count).css('color', '#ccc');
+			}
+		}
+
+		$(document).ready(function () {
+			// Hover chuot danh gia sao
+			$(document).on('mouseenter', '.rating', function(){
+				var index = $(this).data('index');
+				var product_id = $(this).data('product_id');
+				// alert(index);
+				// alert(product_id);
+				remove_background(product_id);
+
+				for(var count = 1; count <= index; count++)
+				{
+					$('#' + product_id + '-' + count).css('color', '#ffcc00');	
+				}
+			});
+			
+			// Nha chuot ko danh gia
+			$(document).on('mouseleave', '.rating', function(){
+				var index = $(this).data('index');
+				var product_id = $(this).data('product_id');
+				var rating = $(this).data('rating');
+				remove_background(product_id);
+
+				for(var count = 1; count <= rating; count++)
+				{
+					$('#' + product_id + '-' + count).css('color', '#ffcc00');
+				}
+			});
+
+			// Click danh gia sao
+			$(document).on('click', '.rating', function(){
+				var index = $(this).data('index');
+				var product_id = $(this).data('product_id');
+			
+				$.ajax({
+					url: "{{ url('/insert-rating') }}",
+					method: "POST",
+					headers:{
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					data: {index: index, product_id: product_id},
+					success: function(data){
+						if(data == 'done')
+						{
+							alert('Bạn đã đánh giá ' + index + ' trên 5');
+						}
+						else
+						{
+							alert('Lỗi đánh giá');
+						}
+					}
+				});
+			});
+		});
 	</script>
 
 	<script>
