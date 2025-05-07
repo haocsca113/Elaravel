@@ -50,8 +50,10 @@ Route::post('/send-comment', [ProductController::class, 'send_comment']);
 Route::get('/comment', [ProductController::class, 'comment']);
 Route::post('/allow-comment', [ProductController::class, 'allow_comment']);
 Route::post('/reply-comment', [ProductController::class, 'reply_comment']);
-
 Route::post('/insert-rating', [ProductController::class, 'insert_rating']);
+
+Route::post('/uploads-ckeditor', [ProductController::class, 'ckeditor_image']);
+Route::get('/file-browser', [ProductController::class, 'file_browser']);
 
 // Backend
 Route::get('/admin', [AdminController::class, 'index']);
@@ -96,6 +98,7 @@ Route::post('/update-category-product/{category_product_id}', [CategoryProduct::
 
 Route::post('/import-csv', [CategoryProduct::class, 'import_csv']);
 Route::post('/export-csv', [CategoryProduct::class, 'export_csv']);
+Route::post('/arrange-category', [CategoryProduct::class, 'arrange_category']);
 
 
 // Brand Product

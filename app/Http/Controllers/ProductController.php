@@ -104,7 +104,7 @@ class ProductController extends Controller
                 {
                     if($rep_comment->comment_parent_comment == $comm->comment_id)
                     {
-                        $output .= '<div class="row style_comment" style="margin: 5px 40px;">
+                        $output .= '<div class="row style_comment" style="margin: 5px 40px; background: aquamarine;">
                                         <div class="col-md-2">
                                             <img width="80%" src="'.asset('frontend/images/pogba_icon.webp').'" class="img img-responsive img-thumbnail" alt="">
                                         </div>
@@ -366,16 +366,49 @@ class ProductController extends Controller
     public function insert_rating(Request $request)
     {
         // $data = $request->all();
-        // dd($data);
         $product_id = $request->input('product_id');
         $index = $request->input('index');
 
         $rating = new Rating();
         // $rating->product_id = $data['product_id'];
-        $rating->product_id = $product_id;
         // $rating->rating = $data['index'];
+        $rating->product_id = $product_id;
         $rating->rating = $index;
         $rating->save();
         echo 'done';
+    }
+
+    public function ckeditor_image(Request $request)
+    {
+        if($request->hasFile('upload'))
+        {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName.'_'.time().'.'.$extension;
+
+            $request->file('upload')->move('upload/ckeditor', $fileName);
+
+            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+            $url = asset('upload/ckeditor/'.$fileName);
+            $msg = 'Tải ảnh thành công';
+            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+            @header('Content-Type: text/html; charset=utf-8');
+            echo $response;
+        }
+    }
+
+    public function file_browser(Request $request)
+    {
+        $paths = glob(public_path('upload/ckeditor/*'));
+        $fileNames = array();
+        foreach($paths as $path)
+        {
+            array_push($fileNames, basename($path));
+        }
+        $data = array(
+            'fileNames' => $fileNames
+        );
+        return view('admin.images.file_browser')->with($data);
     }
 }

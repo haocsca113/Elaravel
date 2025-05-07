@@ -32,6 +32,20 @@ class CategoryProduct extends Controller
         }
     }
 
+    public function arrange_category(Request $request)
+    {
+        $this->AuthLogin();
+        $data =$request->all();
+        $cate_id = $data['page_id_array'];
+        foreach($cate_id as $key => $value)
+        {
+            $category = Category::find($value);
+            $category->category_order = $key;
+            $category->save();
+        }
+        echo 'Updated';
+    }
+
     public function add_category_product()
     {
         $this->AuthLogin();
@@ -41,7 +55,7 @@ class CategoryProduct extends Controller
     public function all_category_product()
     {
         $this->AuthLogin();
-        $all_category_product = DB::table('tbl_category_product')->get();
+        $all_category_product = DB::table('tbl_category_product')->orderBy('category_order', 'ASC')->get();
         $manager_category_product = view('admin.all_category_product')->with('all_category_product', $all_category_product);
         return view('admin_layout')->with('admin.all_category_product', $manager_category_product);
     }

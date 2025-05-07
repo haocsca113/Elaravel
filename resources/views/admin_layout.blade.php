@@ -287,11 +287,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
 <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 
 <script>
     $(document).ready(function(){
         $('#myTable').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('#category_order').sortable({
+            placeholder: 'ui-state-highlight',
+            update: function(event, ui)
+            {
+                var page_id_array = new Array();
+                $('#category_order tr').each(function(){
+                    page_id_array.push($(this).attr("id"));
+                });
+                // alert(page_id_array);
+
+                $.ajax({
+                    url: "{{ url('/arrange-category') }}",
+                    method: "POST",
+                    headers:{
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {page_id_array: page_id_array},
+                    success: function(data){
+                        alert(data);
+                    }
+                });
+            }
+        });
     });
 </script>
 
@@ -817,8 +847,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 <script>
-    CKEDITOR.replace('ckeditor1');
-    CKEDITOR.replace('ckeditor2');
+    CKEDITOR.replace('ckeditor1', {
+        filebrowserImageUploadUrl: "{{ url('uploads-ckeditor?_token='.csrf_token()) }}",
+        filebrowserBrowseUrl: "{{ url('file-browser?_token='.csrf_token()) }}",
+        filebrowserUploadMethod: 'form'
+    });
+    CKEDITOR.replace('ckeditor2', {
+        filebrowserImageUploadUrl: "{{ url('uploads-ckeditor?_token='.csrf_token()) }}",
+        filebrowserBrowseUrl: "{{ url('file-browser?_token='.csrf_token()) }}",
+        filebrowserUploadMethod: 'form'
+    });
     CKEDITOR.replace('ckeditor3');
     CKEDITOR.replace('ckeditor4');
 </script>

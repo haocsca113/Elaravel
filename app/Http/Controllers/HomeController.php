@@ -44,7 +44,8 @@ class HomeController extends Controller
         // Banner
         $banner = Banner::orderBy('banner_id', 'desc')->where('banner_status', '1')->take(4)->get();
 
-        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        // $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_id', 'desc')->get();
+        $cate_product = DB::table('tbl_category_product')->where('category_status', '1')->orderby('category_order', 'ASC')->get();
         $brand_product = DB::table('tbl_brand_product')->where('brand_status', '1')->orderby('brand_id', 'desc')->get();
 
         $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
