@@ -287,7 +287,7 @@
 							@endforeach
 						</div><!--/category-products-->
 					
-						<div class="brands_products"><!--brands_products-->
+						<div class="brands_products" style="margin-bottom: 35px;"><!--brands_products-->
 							<h2>Thương hiệu sản phẩm</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
@@ -298,6 +298,14 @@
 							</div>
 						</div><!--/brands_products-->
 						
+						<div class="brands_products"><!--brands_products-->
+							<h2>Sản phẩm yêu thích</h2>
+							<div class="brands-name">
+								<div id="row_wishlist" class="row">
+
+								</div>
+							</div>
+						</div><!--/brands_products-->
 
 					</div>
 				</div>
@@ -632,6 +640,21 @@
 	<script src="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js"></script>
 
 	<style>
+		.info_wishlist p
+		{
+			margin: 0;
+		}
+		.info_wishlist button
+		{
+			margin: 5px 0; 
+			color: white; 
+			border: none; 
+			padding: 5px 10px; 
+			cursor: pointer;
+		}
+	</style>
+
+	<style>
 		#botmanWidgetRoot div[style*="position: fixed"] {
 			bottom: 40px !important;
 		}
@@ -641,6 +664,85 @@
 		var botmanWidget = {
 			aboutText: 'Welcome',
 			introMessage: 'Hi, By Poghao',
+		}
+	</script>
+
+	<script>
+		function view()
+		{
+			if(localStorage.getItem('data') != null)
+			{
+				var data = JSON.parse(localStorage.getItem('data'));
+				data.reverse(); // sp moi yeu thich se len dau
+
+				// $('#row_wishlist').empty();
+
+				document.getElementById('row_wishlist').style.overflow = 'scroll';
+				document.getElementById('row_wishlist').style.height = '600px';
+
+				for(i = 0; i < data.length; i++)
+				{
+					var name = data[i].name;
+					var price = data[i].price;
+					var image = data[i].image;
+					var url = data[i].url;
+					var id = data[i].id;
+
+					$("#row_wishlist").append('<div class="row item_'+id+'" style="margin: 10px 0;"><div class="col-md-4"><img src="'+image+'" width="100%"></div><div class="col-md-8 info_wishlist"><p>'+name+'</p><p style="color: #FE980F;">'+parseInt(price).toLocaleString('vi-VN')+' VNĐ</p><a href="'+url+'">Xem chi tiết</a><button class="btn btn-danger btn-sm" onclick="remove_wishlist('+id+')">Xóa yêu thích</button></div></div>');
+				}
+			}
+		}
+		view();
+
+		function remove_wishlist(id) {
+			var data = JSON.parse(localStorage.getItem('data'));
+
+			data = data.filter(item => item.id != id);
+
+			localStorage.setItem('data', JSON.stringify(data));
+
+			$('.item_' + id).remove();
+		}
+
+		function add_wishlist(clicked_id)
+		{
+			var id = clicked_id;
+			var name = document.getElementById('wishlist_productname' + id).value;
+			var price = document.getElementById('wishlist_productprice' + id).value;
+			var image = document.getElementById('wishlist_productimage' + id).src;
+			var url = document.getElementById('wishlist_producturl' + id).href;
+
+			var newItem = {
+				'url': url,
+				'id': id,
+				'name': name,
+				'price': price,
+				'image': image
+			}
+
+			if(localStorage.getItem('data') == null)
+			{
+				localStorage.setItem('data', '[]');
+			}
+
+			var old_data = JSON.parse(localStorage.getItem('data'));
+
+			var matches = $.grep(old_data, function(obj){
+				return obj.id == id;
+			})
+
+			if(matches.length)
+			{
+				alert('Sản phẩm bạn đã yêu thích, không thể thêm');
+			}
+			else
+			{
+				old_data.push(newItem);
+
+				$("#row_wishlist").append('<div class="row item_'+newItem.id+'" style="margin: 10px 0;"><div class="col-md-4"><img src="'+newItem.image+'" width="100%"></div><div class="col-md-8 info_wishlist"><p>'+newItem.name+'</p><p style="color: #FE980F;">'+parseInt(newItem.price).toLocaleString('vi-VN')+' VNĐ</p><a href="'+newItem.url+'">Xem chi tiết</a><button class="btn btn-danger btn-sm" onclick="remove_wishlist('+newItem.id+')">Xóa yêu thích</button></div></div>');
+			}
+
+			localStorage.setItem('data', JSON.stringify(old_data));
 		}
 	</script>
 

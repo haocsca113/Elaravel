@@ -11,17 +11,23 @@
                         <form action="">
                             @csrf
                             <input type="hidden" class="cart_product_id_{{ $product->product_id }}" value="{{ $product->product_id }}">
-                            <input type="hidden" class="cart_product_name_{{ $product->product_id }}" value="{{ $product->product_name }}">
+
+                            <input type="hidden" id="wishlist_productname{{ $product->product_id }}" class="cart_product_name_{{ $product->product_id }}" value="{{ $product->product_name }}">
+
                             <input type="hidden" class="cart_product_image_{{ $product->product_id }}" value="{{ $product->product_image }}">
-                            <input type="hidden" class="cart_product_price_{{ $product->product_id }}" value="{{ $product->product_price }}">
+
+                            <input type="hidden" id="wishlist_productprice{{ $product->product_id }}" class="cart_product_price_{{ $product->product_id }}" value="{{ $product->product_price }}">
+
                             <input type="hidden" class="cart_product_quantity_{{ $product->product_id }}" value="{{ $product->product_quantity }}">
+
                             <input type="hidden" class="cart_product_qty_{{ $product->product_id }}" value="1">
 
-                            <a href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id) }}">
-                                <img src="{{ URL::to('upload/product/'.$product->product_image) }}" alt="" height="250px" />
+                            <a id="wishlist_producturl{{ $product->product_id }}" href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id) }}">
+                                <img id="wishlist_productimage{{ $product->product_id }}" src="{{ URL::to('upload/product/'.$product->product_image) }}" alt="" height="250px" />
                                 <h2>{{ number_format($product->product_price, 0, ',', '.').' VNĐ' }}</h2>
                                 <p style="height: 40px;">{{ $product->product_name }}</p>
                             </a>
+                            
                             <button type="button" class="btn btn-default add-to-cart" data-id="{{ $product->product_id }}" name="add-to-cart">Thêm giỏ hàng</button>
 
                             <style>
@@ -42,7 +48,39 @@
                 
                 <div class="choose">
                     <ul class="nav nav-pills nav-justified">
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Yêu thích</a></li>
+                        <style>
+                            ul.nav.nav-pills.nav-justified li
+                            {
+                                text-align: center;
+                                font-size: 13px;
+                            }
+                            .button_wishlist
+                            {
+                                border: none;
+                                background: #ffff;
+                                color: #B3AFA8;
+                                padding: 0;
+                                margin: 0;
+                            }
+                            ul.nav.nav-pills.nav-justified i
+                            {
+                                color: #B3AFA8;
+                                margin-right: 5px;
+                            }
+                            .button_wishlist span:hover
+                            {
+                                color: #FE980F;
+                            }
+                            .button_wishlist:focus
+                            {
+                                border: none;
+                                outline: none;
+                            }
+                        </style>
+                        <li>
+                            {{-- <a href="#"><i class="fa fa-plus-square"></i>Yêu thích</a> --}}
+                            <button class="button_wishlist" id="{{ $product->product_id }}" onclick="add_wishlist(this.id);"><i class="fa fa-plus-square"></i><span>Yêu thích</span></button>
+                        </li>
                         <li><a href="#"><i class="fa fa-plus-square"></i>So sánh</a></li>
                     </ul>
                 </div>
