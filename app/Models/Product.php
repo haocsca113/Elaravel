@@ -17,4 +17,9 @@ class Product extends Model
     {
         return $this->hasMany(\App\Models\Comment::class);
     }
+
+    public function category()
+    {
+        return $this->beLongsTo(\App\Models\Category::class, 'category_id');
+    }
 }

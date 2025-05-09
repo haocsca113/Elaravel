@@ -11,17 +11,45 @@
     @foreach($category_name as $key => $name)
     <h2 class="title text-center">{{ $name->category_name }}</h2>
     @endforeach
+
+    <div class="row" style="margin: 10px 0;">
+        <div class="col-md-4">
+            <label for="amount">Sắp xếp theo</label>
+            <form action="">
+                @csrf
+                <select name="sort" id="sort" class="form-control">
+                    <option value="{{ Request::url() }}?sort_by=none">--Lọc theo--</option>
+                    <option value="{{ Request::url() }}?sort_by=tang_dan">--Giá tăng dần--</option>
+                    <option value="{{ Request::url() }}?sort_by=giam_dan">--Giá giảm dần--</option>
+                    <option value="{{ Request::url() }}?sort_by=kytu_az">--A đến Z--</option>
+                    <option value="{{ Request::url() }}?sort_by=kytu_za">--Z đến A--</option>
+                </select>
+            </form>
+        </div>
+
+        <div class="col-md-4">
+            <label for="amount">Lọc giá theo</label>
+            <form action="">
+                <div id="slider-range"></div>
+                <div class="style-range" style="display: flex;">
+                    <input type="text" id="amount_start" readonly="" style="border:0; color:#f6931f; font-weight:bold; padding: 0; margin-top: 5px;">
+                    <input type="text" id="amount_end" readonly="" style="border:0; color:#f6931f; font-weight:bold; padding: 0;">
+                </div>
+
+                <input type="hidden" name="start_price" id="start_price">
+                <input type="hidden" name="end_price" id="end_price">
+                
+                <input type="submit" name="filter_price" value="Lọc giá" class="btn btn-sm btn-default">
+            </form>
+        </div>
+    </div>
+
     @foreach($category_by_id as $key => $product)
     <a href="{{ URL::to('/chi-tiet-san-pham/'.$product->product_id) }}">
         <div class="col-sm-4">
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                        {{-- <img src="{{ URL::to('upload/product/'.$product->product_image) }}" alt="" />
-                        <h2>{{ number_format($product->product_price).' '.'VNĐ' }}</h2>
-                        <p>{{ $product->product_name }}</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a> --}}
-
                         <form action="">
                             @csrf
                             <input type="hidden" class="cart_product_id_{{ $product->product_id }}" value="{{ $product->product_id }}">
@@ -54,5 +82,9 @@
 </div><!--features_items-->
 
 <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>
+
+<ul class="pagination pagination-sm m-t-none m-b-none">
+    {!! $category_by_id->links('pagination::bootstrap-4') !!}
+</ul>
 
 @endsection

@@ -32,6 +32,8 @@
 	<link href="{{ asset('frontend/css/lightslider.css') }}" rel="stylesheet">
 	<link href="{{ asset('frontend/css/prettify.css') }}" rel="stylesheet">
 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+
 	{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css" type="text/css"> --}}
 
 
@@ -633,11 +635,13 @@
     <script src="{{ asset('frontend/js/lightgallery-all.min.js') }}"></script>
     <script src="{{ asset('frontend/js/lightslider.js') }}"></script>
     <script src="{{ asset('frontend/js/prettify.js') }}"></script>
+    <script src="{{ asset('frontend/js/simple.money.format.js') }}"></script>
 
 	{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 	<script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<script src="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 	<style>
 		.info_wishlist p
@@ -665,6 +669,43 @@
 			aboutText: 'Welcome',
 			introMessage: 'Hi, By Poghao',
 		}
+	</script>
+
+	<script>
+		$(document).ready(function(){
+			$( "#slider-range" ).slider({
+				orientation: "horizontal",
+				range: true,
+				min: {{ $min_price_range }},
+				max: {{ $max_price_range }},
+				values: [ {{ $min_price }}, {{ $max_price }} ],
+				step: 10000,
+				slide: function( event, ui ) {
+					$( "#amount_start" ).val(ui.values[ 0 ]).simpleMoneyFormat();
+					$( "#amount_end" ).val(ui.values[ 1 ]).simpleMoneyFormat();
+
+					$( "#start_price" ).val(ui.values[ 0 ]);
+					$( "#end_price" ).val(ui.values[ 1 ]);
+				}
+			});
+
+			$( "#amount_start" ).val( $( "#slider-range" ).slider( "values", 0 )).simpleMoneyFormat();
+			$( "#amount_end" ).val($( "#slider-range" ).slider( "values", 1 )).simpleMoneyFormat();
+		});
+	</script>
+
+	<script>
+		$(document).ready(function(){
+			$('#sort').on('change', function(){
+				var url = $(this).val();
+				// alert(url);
+				if(url)
+				{
+					window.location = url;
+				}
+				return false;
+			});
+		});
 	</script>
 
 	<script>
