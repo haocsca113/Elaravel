@@ -29,6 +29,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{ asset('backend/css/morris.css') }}" type="text/css"/>
 <link rel="stylesheet" href="{{ asset('backend/css/bootstrap-tagsinput.css') }}" type="text/css"/>
 <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 
 <!-- calendar -->
 <link rel="stylesheet" href="{{ asset('backend/css/monthly.css') }}">
@@ -287,13 +289,122 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/jquery.slimscroll.js') }}"></script>
 <script src="{{ asset('backend/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('backend/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('backend/js/simple.money.format.js') }}"></script>
 
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 
 <script>
     $(document).ready(function(){
         $('#myTable').DataTable();
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('.price_format').simpleMoneyFormat();
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        var colorDanger = "#FF1744";
+        Morris.Donut({
+            element: 'donut',
+            resize: true,
+            colors: [
+                '#a8328e',
+                '#61a1ce',
+                '#ce8f61',
+                '#f5b942',
+                '#4842f5'
+            ],
+            //labelColor:"#cccccc", // text color
+            //backgroundColor: '#333333', // border color
+            data: [
+                {label:"San pham", value:<?php echo $product_count ?>},
+                {label:"Bai viet", value:<?php echo $post_count ?>},
+                {label:"Don hang", value:<?php echo $order_count ?>},
+                {label:"Video", value:<?php echo $video_count ?>},
+                {label:"Khach hang", value:<?php echo $customer_count ?>}
+            ]
+        });
+    })
+</script>
+
+<script>
+    $(document).ready(function(){
+        chart30daysorder();
+        
+        var chart = new Morris.Bar({
+            element: 'myfirstchart',
+            lineColors: ['#819C79', '#fc8710', '#FF6541', '#A4ADD3', '#766B56'],
+            pointFillColors: ['#ffffff'],
+            pointStrokeColors: ['black'],
+            fillOpacity: 0.6,
+            hideHover: 'auto',
+            parseTime: false,
+            xkey: 'period',
+            ykeys: ['order', 'sales', 'profit', 'quantity'],
+            behaveLikeLine: true,
+            labels: ['đơn hàng', 'doanh số', 'lợi nhuận', 'số lượng']
+        });
+
+        function chart30daysorder()
+        {
+            $.ajax({
+                url: "{{ url('/days-order') }}",
+                method: "POST",
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType: "JSON",
+                data: {},
+                success: function(data){
+                    chart.setData(data);
+                }
+            });
+        }
+
+        $("#btn-dashboard-filter").click(function(){
+            var from_date = $('#datepicker').val();
+            var to_date = $('#datepicker2').val();
+           
+            $.ajax({
+                url: "{{ url('/filter-by-date') }}",
+                method: "POST",
+                headers:{
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType: "JSON",
+                data: {from_date: from_date, to_date: to_date},
+                success: function(data){
+                    chart.setData(data);
+                }
+            });
+        })
+    });
+</script>
+
+<script>
+    $(function(){
+        $("#datepicker").datepicker({
+            prevText: "Tháng trước",
+            nextText: "Tháng sau",
+            dateFormat: "yy-mm-dd",
+            dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+            duration: "slow"
+        });
+        $("#datepicker2").datepicker({
+            prevText: "Tháng trước",
+            nextText: "Tháng sau",
+            dateFormat: "yy-mm-dd",
+            dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+            duration: "slow"
+        });
     });
 </script>
 

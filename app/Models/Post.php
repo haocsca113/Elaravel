@@ -8,7 +8,7 @@ class Post extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'cate_post_id', 'post_title', 'post_slug', 'post_desc', 'post_content', 'post_meta_desc', 'post_meta_keywords', 'post_image', 'post_status'
+        'cate_post_id', 'post_title', 'post_slug', 'post_desc', 'post_content', 'post_meta_desc', 'post_meta_keywords', 'post_image', 'post_status', 'post_views'
     ];
     protected $primaryKey = 'post_id';
     protected $table = 'tbl_post';

@@ -29,8 +29,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Giá sản phẩm</label>
-                            <input type="text" name="product_price" class="form-control" id="exampleInputEmail1" placeholder="Nhập giá sản phẩm">
+                            <label for="exampleInputEmail1">Giá bán</label>
+                            <input type="text" name="product_price" class="form-control price_format" id="exampleInputEmail1" placeholder="Nhập giá bán sản phẩm">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Giá gốc</label>
+                            <input type="text" name="price_cost" class="form-control price_format" id="exampleInputEmail1" placeholder="Nhập giá gốc">
                         </div>
 
                         <div class="form-group">

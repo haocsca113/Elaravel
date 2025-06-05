@@ -111,7 +111,8 @@
                         <th>Mã giảm giá</th>
                         <th>Phí ship</th>
                         <th>Số lượng</th>
-                        <th>Giá sản phẩm</th>
+                        <th>Giá bán</th>
+                        <th>Giá gốc</th>
                         <th>Tổng tiền</th>
                     </tr>
                 </thead>
@@ -138,6 +139,7 @@
                             @endif
                         </td>
                         <td>{{ number_format($details->product_feeship). ' VNĐ' }}</td>
+
                         <td>
                             <input type="number" min="1" {{ $order_status == 2 ? 'disabled' : '' }} class="order_qty_{{ $details->product_id }}" value="{{ $details->product_sales_quantity }}" name="product_sales_quantity" style="width: 50%;">
 
@@ -149,7 +151,9 @@
                                 <button class="btn btn-default update_quantity_order" data-product_id={{ $details->product_id }} name="update_quantity_order">Cập nhật</button>
                             @endif
                         </td>
+
                         <td>{{ number_format($details->product_price, 0, ',', '.'). ' VNĐ' }}</td>
+                        <td>{{ number_format($details->product->price_cost, 0, ',', '.'). ' VNĐ' }}</td>
                         <td>{{ number_format($subtotal, 0, ',', '.'). ' VNĐ' }}</td>
                     </tr>
                     @endforeach
@@ -199,7 +203,7 @@
                                         @csrf
                                         <select class="form-control order_details">
                                             <option value="">------Chọn hình thức đơn hàng------</option>
-                                            <option id="{{ $or->order_id }}" value="1">Chưa xử lý</option>
+                                            <option id="{{ $or->order_id }}" value="1" disabled>Chưa xử lý</option>
                                             <option id="{{ $or->order_id }}" value="2" selected>Đã xử lý</option>
                                             <option id="{{ $or->order_id }}" value="3">Hủy đơn hàng</option>
                                         </select>

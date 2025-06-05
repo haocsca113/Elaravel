@@ -185,12 +185,18 @@ class ProductController extends Controller
     {
         $this->AuthLogin();
         $data = array();
+
+        // Loc nhung ki tu dac biet chi lay dung so tien
+        $product_price = filter_var($request->product_price, FILTER_SANITIZE_NUMBER_INT);
+        $price_cost = filter_var($request->price_cost, FILTER_SANITIZE_NUMBER_INT);
+
         $data['product_name'] = $request->product_name;
         $data['product_tags'] = $request->product_tags;
         $data['product_quantity'] = $request->product_quantity;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
-        $data['product_price'] = $request->product_price;
+        $data['product_price'] = $product_price;
+        $data['price_cost'] = $price_cost;
         $data['product_status'] = $request->product_status;
         $data['meta_keywords'] = $request->product_keywords;
         $data['category_id'] = $request->product_cate;
@@ -251,12 +257,16 @@ class ProductController extends Controller
     {
         $this->AuthLogin();
         $data = array();
+        $product_price = filter_var($request->product_price, FILTER_SANITIZE_NUMBER_INT);
+        $price_cost = filter_var($request->price_cost, FILTER_SANITIZE_NUMBER_INT);
+
         $data['product_name'] = $request->product_name;
         $data['product_tags'] = $request->product_tags;
         $data['product_quantity'] = $request->product_quantity;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
-        $data['product_price'] = $request->product_price;
+        $data['product_price'] = $product_price;
+        $data['price_cost'] = $price_cost;
         $data['product_status'] = $request->product_status;
         $data['meta_keywords'] = $request->product_keywords;
         $data['category_id'] = $request->product_cate;
@@ -329,6 +339,11 @@ class ProductController extends Controller
 
         // Gallery
         $gallery = Gallery::where('product_id', $product_id)->get();
+
+        // Update views
+        $product = Product::where('product_id', $product_id)->first();
+        $product->product_views = $product->product_views + 1;
+        $product->save();
 
         // VD: Lay ra cac san pham co category = 3 tru san pham detail
         $related_product = DB::table('tbl_product')

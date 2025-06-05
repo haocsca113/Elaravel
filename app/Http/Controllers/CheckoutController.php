@@ -22,6 +22,7 @@ use App\Models\Coupon;
 use DB;
 use Session;
 use Cart;
+use Carbon\Carbon;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -81,8 +82,11 @@ class CheckoutController extends Controller
         $order->shipping_id = $shipping_id;
         $order->order_status = 1;
         $order->order_code = $checkout_code;
+
         date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $order_date = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         $order->created_at = now();
+        $order->order_date = $order_date;
         $order->save();
 
         if(Session::get('cart'))

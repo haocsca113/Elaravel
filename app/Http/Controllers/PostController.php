@@ -166,6 +166,7 @@ class PostController extends Controller
         $meta_title = $post->post_title;
         $url_canonical = $request->url();
         $cate_post_id = $post->cate_post_id;
+        $post_id = $post->post_id;
 
         $category = Category::where('category_status', '1')->orderby('category_id', 'desc')->get();
         $brand = Brand::where('brand_status', '1')->orderby('brand_id', 'desc')->get();
@@ -173,6 +174,11 @@ class PostController extends Controller
         $cate_post = CategoryPost::where('cate_post_status', '1')->orderBy('cate_post_id', 'desc')->get();
 
         $related = Post::with('cate_post')->where('post_status', 1)->where('cate_post_id', $cate_post_id)->whereNotIn('post_slug', [$post_slug])->take(5)->get();
+
+        // Update views
+        $post_update_views = Post::where('post_id', $post_id)->first();
+        $post_update_views->post_views = $post_update_views->post_views + 1;
+        $post_update_views->save();
 
         return view('pages.baiviet.baiviet')->with(compact('category', 'brand', 'banner', 'cate_post', 'meta_desc', 'meta_keywords', 'meta_title', 'url_canonical', 'post', 'related'));
     }

@@ -60,6 +60,9 @@ Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/dashboard', [AdminController::class, 'show_dashboard']);
 Route::get('/logout', [AdminController::class, 'logout']);
 Route::post('/admin-dashboard', [AdminController::class, 'dashboard']);
+Route::post('/filter-by-date', [AdminController::class, 'filter_by_date']);
+Route::post('/days-order', [AdminController::class, 'days_order']);
+
 
 // Category Post
 Route::get('/add-category-post', [CategoryPostController::class, 'add_category_post']);
