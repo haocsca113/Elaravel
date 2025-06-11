@@ -47,6 +47,7 @@
                     </th>
                     <th>Tên sản phẩm</th>
                     <th>Thư viện ảnh</th>
+                    <th>Tài liệu</th>
                     <th>Số lượng</th>
                     <th>Giá bán</th>
                     <th>Giá gốc</th>
@@ -64,6 +65,12 @@
                         <td>{{ $pro->product_name }}</td>
 
                         <td><a href="{{ url('/add-gallery/'.$pro->product_id) }}">Thêm thư viện ảnh</a></td>
+
+                        @if($pro->product_file)
+                            <td><a target="_blank" href="{{ asset('/upload/document/'.$pro->product_file) }}">Xem file</a></td>
+                        @else
+                            <td>Không file</td>
+                        @endif
 
                         <td>{{ $pro->product_quantity }}</td>
                         <td>{{ number_format($pro->product_price, 0, ',', '.') }} VNĐ</td>

@@ -43,6 +43,22 @@
                             <input type="file" name="product_image" class="form-control" id="exampleInputEmail1">
                             <img src="{{ URL::to('upload/product/'.$pro->product_image) }}" alt="" height="100" width="100">
                         </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tài liệu</label>
+                            <input type="file" name="document" class="form-control" id="exampleInputEmail1">
+
+                            @if($pro->product_file)
+                                <p style="margin: 5px 0;">
+                                    <a target="_blank" href="{{ asset('/upload/document/'.$pro->product_file) }}">{{ $pro->product_file }}</a>
+
+                                    <button type="button" data-document_id="{{ $pro->product_id }}" class="btn btn-sm btn-danger btn-delete-document"><i class="fa fa-times"></i></button>
+                                </p>
+                            @else
+                                <p>Không file</p>
+                            @endif
+                        </div>
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả sản phẩm</label>
                             <textarea type="text" name="product_desc" class="form-control" style="resize: none;" rows="5" id="ckeditor1">

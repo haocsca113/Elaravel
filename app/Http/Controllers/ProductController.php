@@ -204,8 +204,12 @@ class ProductController extends Controller
 
         $path = 'upload/product/';
         $path_gallery = 'upload/gallery/';
+        $path_document = 'upload/document/';
 
         $get_image = $request->file('product_image');
+        $get_document = $request->file('document');
+
+        // Them hinh anh
         if($get_image)
         {
             $get_name_image = $get_image->getClientOriginalName();
@@ -214,6 +218,16 @@ class ProductController extends Controller
             $get_image->move($path, $new_image);
             File::copy($path.$new_image, $path_gallery.$new_image);
             $data['product_image'] = $new_image;
+        }
+
+        // Them document
+        if($get_document)
+        {
+            $get_name_document = $get_document->getClientOriginalName();
+            $name_document = current(explode('.',$get_name_document)); // tách dấu . ra khỏi tên
+            $new_document = $name_document.rand(0, 99).'.'.$get_document->getClientOriginalExtension();
+            $get_document->move($path_document, $new_document);
+            $data['product_file'] = $new_document;
         }
 
         $pro_id = DB::table('tbl_product')->insertGetId($data);
@@ -271,7 +285,12 @@ class ProductController extends Controller
         $data['meta_keywords'] = $request->product_keywords;
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
+
         $get_image = $request->file('product_image');
+        $get_document = $request->file('document');
+
+        $path_document = 'upload/document/';
+
         if($get_image)
         {
             $get_name_image = $get_image->getClientOriginalName();
@@ -284,9 +303,35 @@ class ProductController extends Controller
             return Redirect::to('all-product');
         }
 
+        if($get_document)
+        {
+            $get_name_document = $get_document->getClientOriginalName();
+            $name_document = current(explode('.',$get_name_document)); // tách dấu . ra khỏi tên
+            $new_document = $name_document.rand(0, 99).'.'.$get_document->getClientOriginalExtension();
+            $get_document->move($path_document, $new_document);
+            $data['product_file'] = $new_document;
+
+            // Lay file old document
+            $product = Product::find($product_id);
+            if($product->product_file)
+            {
+                unlink($path_document.$product->product_file);
+            }
+        }
+
         DB::table('tbl_product')->where('product_id', $product_id)->update($data);
+
         Session::put('message', 'Cập nhật sản phẩm thành công');
         return Redirect::to('all-product');
+    }
+
+    public function delete_document(Request $request)
+    {
+        $path_document = 'upload/document/';
+        $product = Product::find($request->product_id);
+        unlink($path_document.$product->product_file);
+        $product->product_file = NULL;
+        $product->save();
     }
 
     public function delete_product($product_id)

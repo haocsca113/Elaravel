@@ -136,6 +136,8 @@ Route::post('/update-product/{product_id}', [ProductController::class, 'update_p
 Route::post('/import-csv-product', [ProductController::class, 'import_csv_product']);
 Route::post('/export-csv-product', [ProductController::class, 'export_csv_product']);
 
+Route::post('/delete-document', [ProductController::class, 'delete_document']);
+
 // Cart
 Route::post('/save-cart', [CartController::class, 'save_cart']);
 Route::get('/show-cart', [CartController::class, 'show_cart']);

@@ -44,6 +44,11 @@
                         </div>
                         
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Tài liệu</label>
+                            <input type="file" name="document" class="form-control" id="exampleInputEmail1">
+                        </div>
+
+                        <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả sản phẩm</label>
                             <textarea type="text" name="product_desc" class="form-control" style="resize: none;" rows="5" id="ckeditor1" placeholder="Nhập mô tả sản phẩm">
                             </textarea>
