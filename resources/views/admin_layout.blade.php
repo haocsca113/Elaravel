@@ -107,6 +107,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
 
                 <li>
+                    <a class="active" href="{{ URL::to('/read-data') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Google Drive</span>
+                    </a>
+                </li>
+
+                <li>
                     <a class="" href="{{ URL::to('/information') }}">
                         <i class="fa fa-dashboard"></i>
                         <span>Thông tin website</span>

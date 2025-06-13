@@ -20,6 +20,7 @@ use App\Http\Controllers\BotManController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DocumentController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -260,6 +261,19 @@ Route::post('/delete-video', [VideoController::class, 'delete_video']);
 Route::post('/update-video-image', [VideoController::class, 'update_video_image']);
 Route::post('/watch-video', [VideoController::class, 'watch_video']);
 
+
+// Document 
+Route::get('/create-document', [DocumentController::class, 'create_document']);
+Route::get('/upload-file', [DocumentController::class, 'upload_file']);
+Route::get('/upload-image', [DocumentController::class, 'upload_image']);
+Route::get('/list-document', [DocumentController::class, 'list_document']);
+
+Route::get('/download-document/{virtual_path}/{name}', [DocumentController::class, 'download_document']);
+Route::get('/delete-document/{virtual_path}', [DocumentController::class, 'delete_document']);
+
+Route::get('/create-folder', [DocumentController::class, 'create_folder']);
+
+Route::get('/read-data', [DocumentController::class, 'read_data']);
 
 
 
