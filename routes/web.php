@@ -21,6 +21,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\MailController;
 
 // Frontend
 Route::get('/', [HomeController::class, 'index']);
@@ -199,9 +200,6 @@ Route::get('/my-order-detail/{order_code}', [OrderController::class, 'my_order_d
 Route::get('/order-tracking', [OrderController::class, 'order_tracking']);
 Route::post('/cancel-order/{order_code}', [OrderController::class, 'cancel_order']);
 
-// Send mail
-Route::get('/send-mail', [HomeController::class, 'send_mail']);
-
 //Login facebook
 Route::get('/login-facebook', [AdminController::class, 'login_facebook']);
 Route::get('/admin/callback', [AdminController::class, 'callback_facebook']);
@@ -274,6 +272,12 @@ Route::get('/delete-document/{virtual_path}', [DocumentController::class, 'delet
 Route::get('/create-folder', [DocumentController::class, 'create_folder']);
 
 Route::get('/read-data', [DocumentController::class, 'read_data']);
+
+// Send mail
+Route::get('/send-mail', [HomeController::class, 'send_mail']);
+
+Route::get('/send-coupon', [MailController::class, 'send_coupon']);
+Route::get('/mail-example', [MailController::class, 'mail_example']);
 
 
 
