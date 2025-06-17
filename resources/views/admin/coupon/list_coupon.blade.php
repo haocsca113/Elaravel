@@ -46,9 +46,13 @@
                 </th>
                 <th>Tên mã giảm giá</th>
                 <th>Mã giảm giá</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
                 <th>Số lượng</th>
                 <th>Điều kiện giảm giá</th>
                 <th>Số % hoặc tiền giảm</th>
+                <th>Tình trạng</th>
+                <th>Hết hạn</th>
             
                 </tr>
             </thead>
@@ -58,6 +62,10 @@
                     <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
                     <td>{{ $cou->coupon_name }}</td>
                     <td>{{ $cou->coupon_code }}</td>
+
+                    <td>{{ $cou->coupon_date_start }}</td>
+                    <td>{{ $cou->coupon_date_end }}</td>
+
                     <td>{{ $cou->coupon_time }}</td>
                     
                     <td><span class="text-ellipsis">
@@ -89,6 +97,29 @@
                         }
                         ?>
                     </span></td>
+
+                    <td><span class="text-ellipsis">
+                        <?php
+                        if($cou->coupon_status == 1){
+                        ?>
+                            Đang kích hoạt
+                        <?php
+                        }    
+                        else{
+                        ?>
+                            Đã khóa
+                        <?php
+                        }
+                        ?>
+                    </span></td>
+
+                    <td>
+                        @if($cou->coupon_date_end >= $today)
+                            <span style="color: green;">Còn hạn</span>
+                        @else
+                            <span style="color: red;">Hết hạn</span>
+                        @endif
+                    </td>
                     
                     <td>
                         {{-- <a href="{{ URL::to('/edit-coupon/'.$cou->coupon_id) }}" class="active styling-edit" ui-toggle-class="">

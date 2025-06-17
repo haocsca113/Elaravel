@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\Coupon;
+use Carbon\Carbon;
 session_start();
 
 class CouponController extends Controller
@@ -38,6 +39,8 @@ class CouponController extends Controller
         $coupon = new Coupon;
         $coupon->coupon_name = $data['coupon_name'];
         $coupon->coupon_code = $data['coupon_code'];
+        $coupon->coupon_date_start = $data['coupon_date_start'];
+        $coupon->coupon_date_end = $data['coupon_date_end'];
         $coupon->coupon_time = $data['coupon_time'];
         $coupon->coupon_condition = $data['coupon_condition'];
         $coupon->coupon_number = $data['coupon_number'];
@@ -49,7 +52,8 @@ class CouponController extends Controller
 
     public function list_coupon()
     {
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('d/m/Y');
         $coupon = Coupon::orderBy('coupon_id', 'desc')->get();
-        return view('admin.coupon.list_coupon')->with(compact('coupon'));
+        return view('admin.coupon.list_coupon')->with(compact('coupon', 'today'));
     }
 }

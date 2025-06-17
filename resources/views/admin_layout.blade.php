@@ -158,7 +158,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Mã giảm giá</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{ URL::to('/insert-coupon') }}">Quản lý mã giảm giá</a></li>
+						<li><a href="{{ URL::to('/insert-coupon') }}">Thêm mã giảm giá</a></li>
 						<li><a href="{{ URL::to('/list-coupon') }}">Liệt kê mã giảm giá</a></li>
                     </ul>
                 </li>
@@ -307,6 +307,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
     $(document).ready(function(){
         $('#myTable').DataTable();
+    });
+</script>
+
+
+<script>
+    $(function(){
+        $("#start_coupon").datepicker({
+            prevText: "Tháng trước",
+            nextText: "Tháng sau",
+            dateFormat: "dd/mm/yy",
+            dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+            duration: "slow"
+        });
+        $("#end_coupon").datepicker({
+            prevText: "Tháng trước",
+            nextText: "Tháng sau",
+            dateFormat: "dd/mm/yy",
+            dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+            duration: "slow"
+        });
     });
 </script>
 

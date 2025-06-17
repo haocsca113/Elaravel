@@ -66,6 +66,18 @@ class CheckoutController extends Controller
     public function confirm_order(Request $request)
     {
         $data = $request->all();
+
+        // get coupon
+        $coupon = Coupon::where('coupon_code', $data['order_coupon'])->first();
+        if($coupon)
+        {
+            $coupon->coupon_used = $coupon->coupon_used.','.Session::get('customer_id');
+            $coupon_time = $coupon->coupon_time;
+            $coupon_remain = $coupon_time - 1;
+            $coupon->coupon_time = $coupon_remain;
+            $coupon->save();
+        }
+
         $shipping = new Shipping();
         $shipping->shipping_name = $data['shipping_name'];
         $shipping->shipping_email = $data['shipping_email'];
@@ -103,15 +115,6 @@ class CheckoutController extends Controller
                 $order_details->product_feeship = $data['order_fee'];
                 $order_details->save();
             }
-        }
-
-        $coupon = Coupon::where('coupon_code', $data['order_coupon'])->first();
-        if($coupon)
-        {
-            $coupon_time = $coupon->coupon_time;
-            $coupon_remain = $coupon_time - 1;
-            $coupon->coupon_time = $coupon_remain;
-            $coupon->save();
         }
 
         Session::put('order_code', $checkout_code);
@@ -243,6 +246,11 @@ class CheckoutController extends Controller
         $customer_email = $request->email_account;
         $customer_password = md5($request->password_account);
         $result = DB::table('tbl_customer')->where('customer_email', $customer_email)->where('customer_password', $customer_password)->first();
+
+        if(Session::get('coupon'))
+        {
+            Session::forget('coupon');
+        }
 
         if($result)
         {

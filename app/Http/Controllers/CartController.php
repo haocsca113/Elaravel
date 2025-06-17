@@ -10,6 +10,7 @@ use App\Models\CategoryPost;
 use DB;
 use Session;
 use Cart;
+use Carbon\Carbon;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 session_start();
@@ -19,52 +20,100 @@ class CartController extends Controller
     // Cart Ajax
     public function check_coupon(Request $request)
     {
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('d/m/Y');
+
         $data = $request->all();
-        $coupon = Coupon::where('coupon_code', $data['coupon'])->first();
 
-        if (!$coupon) {
-            return redirect()->back()->with('error', 'Mã giảm giá không tồn tại.');
-        }
+        if(Session::get('customer_id'))
+        {
+            $coupon = Coupon::where('coupon_code', $data['coupon'])->where('coupon_status', 1)->where('coupon_date_end', '>=', $today)->where('coupon_used', 'LIKE', '%'.Session::get('customer_id').'%')->first();
 
-        if ($coupon->coupon_time <= 0) {
-            return redirect()->back()->with('error', 'Mã giảm giá đã hết lượt sử dụng');
-        }
+            if($coupon)
+            {
+                return redirect()->back()->with('error', 'Mã giảm giá đã sử dụng. Vui lòng nhập mã khác');
+            }
+            else
+            {
+                $coupon_login = Coupon::where('coupon_code', $data['coupon'])->where('coupon_status', 1)->where('coupon_date_end', '>=', $today)->first();
 
-        // $coupon_session = Session::get('coupon', []);
-        $coupon_session = Session::get('coupon') ?? [];
+                if (!$coupon_login) {
+                return redirect()->back()->with('error', 'Mã giảm giá không tồn tại hoặc đã hết hạn');
+                }
 
-        // Kiểm tra mã giảm giá đã tồn tại trong session chưa
-        $is_available = false;
-        foreach ($coupon_session as $cou) {
-            if ($cou['coupon_code'] === $coupon->coupon_code) {
-                $is_available = true;
-                break;
+                if ($coupon_login->coupon_time <= 0) {
+                    return redirect()->back()->with('error', 'Mã giảm giá đã hết lượt sử dụng');
+                }
+
+                $coupon_session = Session::get('coupon') ?? [];
+
+                // Kiểm tra mã giảm giá đã tồn tại trong session chưa
+                $is_available = false;
+                foreach ($coupon_session as $cou) {
+                    if ($cou['coupon_code'] === $coupon_login->coupon_code) {
+                        $is_available = true;
+                        break;
+                    }
+                }
+
+                if ($is_available) {
+                    return redirect()->back()->with('error', 'Mã giảm giá này đã được áp dụng.');
+                }
+
+                $coupon_data = [
+                    'coupon_code' => $coupon_login->coupon_code,
+                    'coupon_condition' => $coupon_login->coupon_condition,
+                    'coupon_number' => $coupon_login->coupon_number,
+                ];
+
+                // Chi lay ma giam gia cuoi cung
+                $coupon_session = [$coupon_data];
+                Session::put('coupon', $coupon_session);
+
+                return redirect()->back()->with('message', 'Áp dụng mã giảm giá thành công.');
             }
         }
 
-        if ($is_available) {
-            return redirect()->back()->with('error', 'Mã giảm giá này đã được áp dụng.');
+        // Nguoc lai chua dang nhap
+        else
+        {
+            $coupon = Coupon::where('coupon_code', $data['coupon'])->where('coupon_status', 1)->where('coupon_date_end', '>=', $today)->first();
+
+            if (!$coupon) {
+                return redirect()->back()->with('error', 'Mã giảm giá không tồn tại hoặc đã hết hạn');
+            }
+
+            if ($coupon->coupon_time <= 0) {
+                return redirect()->back()->with('error', 'Mã giảm giá đã hết lượt sử dụng');
+            }
+
+            // $coupon_session = Session::get('coupon', []);
+            $coupon_session = Session::get('coupon') ?? [];
+
+            // Kiểm tra mã giảm giá đã tồn tại trong session chưa
+            $is_available = false;
+            foreach ($coupon_session as $cou) {
+                if ($cou['coupon_code'] === $coupon->coupon_code) {
+                    $is_available = true;
+                    break;
+                }
+            }
+
+            if ($is_available) {
+                return redirect()->back()->with('error', 'Mã giảm giá này đã được áp dụng.');
+            }
+
+            $coupon_data = [
+                'coupon_code' => $coupon->coupon_code,
+                'coupon_condition' => $coupon->coupon_condition,
+                'coupon_number' => $coupon->coupon_number,
+            ];
+
+            // Chi lay ma giam gia cuoi cung
+            $coupon_session = [$coupon_data];
+            Session::put('coupon', $coupon_session);
+
+            return redirect()->back()->with('message', 'Áp dụng mã giảm giá thành công.');
         }
-
-        $coupon_data = [
-            'coupon_code' => $coupon->coupon_code,
-            'coupon_condition' => $coupon->coupon_condition,
-            'coupon_number' => $coupon->coupon_number,
-        ];
-
-        // Thêm mã giảm giá vào session
-        // $coupon_session[] = [
-        //     'coupon_code' => $coupon->coupon_code,
-        //     'coupon_condition' => $coupon->coupon_condition,
-        //     'coupon_number' => $coupon->coupon_number,
-        // ];
-        // Session::put('coupon', $coupon_session);
-
-        // Chi lay ma giam gia cuoi cung
-        $coupon_session = [$coupon_data];
-        Session::put('coupon', $coupon_session);
-
-        return redirect()->back()->with('message', 'Áp dụng mã giảm giá thành công.');
     }
 
     public function gio_hang(Request $request)
