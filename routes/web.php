@@ -276,7 +276,10 @@ Route::get('/read-data', [DocumentController::class, 'read_data']);
 // Send mail
 Route::get('/send-mail', [HomeController::class, 'send_mail']);
 
-Route::get('/send-coupon', [MailController::class, 'send_coupon']);
+Route::get('/send-coupon-vip/{coupon_time}/{coupon_condition}/{coupon_number}/{coupon_code}', [MailController::class, 'send_coupon_vip']);
+
+Route::get('/send-coupon/{coupon_time}/{coupon_condition}/{coupon_number}/{coupon_code}', [MailController::class, 'send_coupon']);
+
 Route::get('/mail-example', [MailController::class, 'mail_example']);
 
 

@@ -55,7 +55,7 @@
 <body>
     <div class="coupon">
         <div class="container">
-            <h3>Mã khuyến mãi khách thường từ shop <a target="_blank" href="https://pogshop.online/">Pogshop</a></h3>
+            <h3>Mã khuyến mãi từ shop <a target="_blank" href="https://pogshop.online/">Pogshop</a></h3>
         </div>
 
         <div class="container" style="background-color: #fff;">

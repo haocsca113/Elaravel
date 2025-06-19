@@ -14,7 +14,7 @@
                     <option value="3">Export</option>
                 </select>
                 <button class="btn btn-sm btn-default">Apply</button> --}}
-                <p><a href="{{ url('/send-coupon') }}" class="btn btn-default">Gửi giảm giá khách vip</a></p>                
+                
             </div>
             <div class="col-sm-4">
             </div>
@@ -53,6 +53,8 @@
                 <th>Số % hoặc tiền giảm</th>
                 <th>Tình trạng</th>
                 <th>Hết hạn</th>
+                <th>Quản lý</th>
+                <th>Gửi mã</th>
             
                 </tr>
             </thead>
@@ -128,6 +130,24 @@
                         <a href="{{ URL::to('/delete-coupon/'.$cou->coupon_id) }}" class="active styling-edit" ui-toggle-class="" onclick="return confirm('Bạn có chắc chắn muốn xóa mã giảm giá này không?')">
                             <i class="fa fa-times text-danger text"></i>
                         </a>
+                    </td>
+
+                    <td>
+                        <p><a href="{{ url('/send-coupon-vip', [
+                            'coupon_time' => $cou->coupon_time,
+                            'coupon_condition' => $cou->coupon_condition,
+                            'coupon_number' => $cou->coupon_number,
+                            'coupon_code' => $cou->coupon_code
+
+                        ]) }}" class="btn btn-primary" style="margin: 5px 0;">Gửi giảm giá khách vip</a></p>
+                
+                        <p><a href="{{ url('/send-coupon', [
+                            'coupon_time' => $cou->coupon_time,
+                            'coupon_condition' => $cou->coupon_condition,
+                            'coupon_number' => $cou->coupon_number,
+                            'coupon_code' => $cou->coupon_code
+                        
+                        ]) }}" class="btn btn-default">Gửi giảm giá khách thường</a></p> 
                     </td>
                 </tr>
                 @endforeach
