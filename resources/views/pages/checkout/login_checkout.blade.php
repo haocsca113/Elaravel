@@ -23,6 +23,10 @@
                             <input type="checkbox" class="checkbox"> 
                             Ghi nhớ đăng nhập
                         </span>
+
+                        <span>
+                            <a href="{{ url('/quen-mat-khau') }}">Quên mật khẩu</a>
+                        </span>
                         <button type="submit" class="btn btn-default">Đăng nhập</button>
                     </form>
                 </div><!--/login form-->

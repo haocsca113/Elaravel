@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 09, 2025 lúc 02:28 PM
+-- Thời gian đã tạo: Th6 24, 2025 lúc 12:11 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -223,10 +223,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2uk7wd4rI9OQyktUFzUD6cC0S3aPqIqDuEY03jQw', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQkdyVWF2b0hHQVUxNmNLZGR3TUhtTzRQZWFWclh1aldkSmtXUVJkcSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZGQtcHJvZHVjdCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo3OiJtZXNzYWdlIjtOO30=', 1749171789),
-('6a3NE0wsd5di9EXxtaAXDZLpHrJ8NNFjpnDipTs9', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiTWptRGdveEhaOWFtNk9HbzhrU3BqblJYMzhuM2RXbnZvQWdESTdMRyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hbGwtcHJvZHVjdCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo3OiJtZXNzYWdlIjtOO30=', 1749089458),
-('BxUJKBmKqtdy75PEeYHpkEDlAjhZ8NFcyaBu4Nd7', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiN3hoZHFDQnN5U0JQNW1kZXp3SkNzN21PYnpYUm9VQTF3aFdqNzhsTiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9lZGl0LXByb2R1Y3QvMzciO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NzoibWVzc2FnZSI7Tjt9', 1749471598),
-('sHG1osZij2iZSnkCnjqJLxwa0ZGBErxB7pJfyyCS', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRW43NnVqTE1xSlltalp4OVdNTTdnMXNkZzRjZGpSSVVLc0FTdzFrZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hbGwtcHJvZHVjdCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1749385980);
+('9MnSmooWpOvuxp70OGvpODJcp6HLtaJjLF8I77Cp', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicXFzM3JXeUlkdEt0TWxRTXNoU0prOW8yM0ZwcHh4Vms3WXdCRkk3SSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9xdWVuLW1hdC1raGF1Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1750294159),
+('zHjIQsN7fLxTVDLKbjJfsVV664qXtjnnAAizXoYL', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoia2x0MjloUlpMMmhNRjIwTUhyUW1ORU5PakRPMWs4TEE4WmZMbG4yeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NzoibWVzc2FnZSI7TjtzOjExOiJjdXN0b21lcl9pZCI7aTo2O3M6MTM6ImN1c3RvbWVyX25hbWUiO3M6MjE6IlRyxrDGoW5nIEh14buzbmggSMOgbyI7fQ==', 1750676652);
 
 -- --------------------------------------------------------
 
@@ -415,9 +413,13 @@ CREATE TABLE `tbl_coupon` (
   `coupon_id` int(10) UNSIGNED NOT NULL,
   `coupon_name` varchar(255) NOT NULL,
   `coupon_code` varchar(255) NOT NULL,
+  `coupon_date_start` varchar(50) NOT NULL,
+  `coupon_date_end` varchar(50) NOT NULL,
   `coupon_time` int(11) NOT NULL,
   `coupon_condition` int(11) NOT NULL,
   `coupon_number` int(11) NOT NULL,
+  `coupon_status` int(11) NOT NULL DEFAULT 1,
+  `coupon_used` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -426,9 +428,10 @@ CREATE TABLE `tbl_coupon` (
 -- Đang đổ dữ liệu cho bảng `tbl_coupon`
 --
 
-INSERT INTO `tbl_coupon` (`coupon_id`, `coupon_name`, `coupon_code`, `coupon_time`, `coupon_condition`, `coupon_number`, `created_at`, `updated_at`) VALUES
-(1, 'Giảm giá 30/4', 'VN30T4', 9, 1, 10, NULL, NULL),
-(2, 'Giảm giá Aniversary 2025', 'ANI2025', 4, 2, 100000, NULL, NULL);
+INSERT INTO `tbl_coupon` (`coupon_id`, `coupon_name`, `coupon_code`, `coupon_date_start`, `coupon_date_end`, `coupon_time`, `coupon_condition`, `coupon_number`, `coupon_status`, `coupon_used`, `created_at`, `updated_at`) VALUES
+(1, 'Giảm giá vip', 'VN30T4', '10/06/2025', '30/06/2025', 9, 1, 10, 1, NULL, NULL, NULL),
+(2, 'Giảm giá Aniversary 2025', 'ANI2025', '10/06/2025', '15/06/2025', 4, 2, 100000, 1, NULL, NULL, NULL),
+(3, 'Giảm giá đặc biệt', 'SPE06', '15/06/2025', '30/06/2025', 98, 1, 20, 1, ',5,4', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -442,6 +445,8 @@ CREATE TABLE `tbl_customer` (
   `customer_email` varchar(255) NOT NULL,
   `customer_password` varchar(255) NOT NULL,
   `customer_phone` varchar(255) NOT NULL,
+  `customer_vip` int(11) DEFAULT NULL,
+  `customer_token` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -450,9 +455,11 @@ CREATE TABLE `tbl_customer` (
 -- Đang đổ dữ liệu cho bảng `tbl_customer`
 --
 
-INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`, `created_at`, `updated_at`) VALUES
-(4, 'xavierpena', 'pena@gmail.com', '25f9e794323b453885f5181f1b624d0b', '123456789', NULL, NULL),
-(5, 'heisenberg', 'heisenberg@gmail.com', '25f9e794323b453885f5181f1b624d0b', '012345678', NULL, NULL);
+INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`, `customer_vip`, `customer_token`, `created_at`, `updated_at`) VALUES
+(4, 'xavierpena', 'pena@gmail.com', '25f9e794323b453885f5181f1b624d0b', '123456789', NULL, NULL, NULL, NULL),
+(5, 'heisenberg', 'heisenberg@gmail.com', '25f9e794323b453885f5181f1b624d0b', '012345678', NULL, NULL, NULL, NULL),
+(6, 'Trương Huỳnh Hào', 'huynhhaopy2001@gmail.com', '25d55ad283aa400af464c76d713c07ad', '0988820943', 1, 'ffbIo7idFHs7ze2j', NULL, NULL),
+(7, 'DoubleH', 'haotruonghuynh113@gmail.com', '25f9e794323b453885f5181f1b624d0b', '0988820942', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -510,11 +517,7 @@ INSERT INTO `tbl_gallery` (`gallery_id`, `product_id`, `gallery_name`, `gallery_
 (23, 21, 'xboxelite30.jpg', 'xboxelite30.jpg', NULL, NULL),
 (24, 20, 'xboxseriesxxanh50.jpg', 'xboxseriesxxanh50.jpg', NULL, NULL),
 (25, 19, 'xboxones2ndden56.jpg', 'xboxones2ndden56.jpg', NULL, NULL),
-(26, 18, 'xboxones2ndtrang46.jpg', 'xboxones2ndtrang46.jpg', NULL, NULL),
-(27, 35, '338.jpg', '338.jpg', NULL, NULL),
-(28, 35, '397.jpg', '397.jpg', NULL, NULL),
-(29, 35, 'argylle-sieu-diep-vien98.jpg', 'argylle-sieu-diep-vien98.jpg', NULL, NULL),
-(31, 37, 'bong-ma-anh-quoc-phan-179.jpg', 'bong-ma-anh-quoc-phan-179.jpg', NULL, NULL);
+(26, 18, 'xboxones2ndtrang46.jpg', 'xboxones2ndtrang46.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -592,7 +595,9 @@ CREATE TABLE `tbl_order` (
 
 INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status`, `order_code`, `order_date`, `created_at`, `updated_at`) VALUES
 (1, 5, 70, '2', '8a75f', '2025-04-02', '2025-04-02 08:16:48', NULL),
-(2, 5, 71, '2', '9cba9', '2025-04-28', '2025-04-28 12:10:42', NULL);
+(2, 5, 71, '2', '9cba9', '2025-04-28', '2025-04-28 12:10:42', NULL),
+(3, 5, 72, '1', '6b97c', '2025-06-16', '2025-06-16 12:06:11', NULL),
+(4, 4, 73, '1', '32b6b', '2025-06-16', '2025-06-16 12:08:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -620,7 +625,10 @@ CREATE TABLE `tbl_order_details` (
 INSERT INTO `tbl_order_details` (`order_details_id`, `order_code`, `product_id`, `product_name`, `product_price`, `product_sales_quantity`, `product_coupon`, `product_feeship`, `created_at`, `updated_at`) VALUES
 (1, '8a75f', 29, 'Tay Cầm Flydigi APEX 4', 1899000, 1, 'no', '20000', NULL, NULL),
 (2, '8a75f', 31, 'Tay Cầm EasySMX X05', 439000, 2, 'no', '20000', NULL, NULL),
-(3, '9cba9', 31, 'Tay Cầm EasySMX X05', 439000, 2, 'no', '20000', NULL, NULL);
+(3, '9cba9', 31, 'Tay Cầm EasySMX X05', 439000, 2, 'no', '20000', NULL, NULL),
+(4, '6b97c', 34, 'Tay Cầm EasySMX X15 Chính Hãng Không Dây', 680000, 1, 'SPE06', '20000', NULL, NULL),
+(5, '6b97c', 32, 'Tay Cầm EasySMX X10', 699000, 1, 'SPE06', '20000', NULL, NULL),
+(6, '32b6b', 31, 'Tay Cầm EasySMX X05', 439000, 3, 'SPE06', '20000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -741,9 +749,7 @@ INSERT INTO `tbl_product` (`product_id`, `category_id`, `brand_id`, `product_nam
 (31, 7, 8, 'Tay Cầm EasySMX X05', '', '47', 3, 'Tay Cầm EasySMX X05 Chính Hãng Không Dây 2.4G, Hall Effect Joysticks Chơi FCO, PC, IOS, Android, Switch – MÀU ĐEN', 'Tay Cầm EasySMX X05 Chính Hãng Không Dây 2.4G, Hall Effect Joysticks Chơi FCO, PC, IOS, Android, Switch – MÀU ĐEN', 439000, '300000', 'x05den.jpg', NULL, 1, '3', 'tay cam, tay cam choi game, tay cam easysmx, X05, easysmx X05 mau den', NULL, NULL),
 (32, 7, 8, 'Tay Cầm EasySMX X10', NULL, '35', 5, '<p>Tay Cầm EasySMX X10 Ch&iacute;nh H&atilde;ng Kh&ocirc;ng D&acirc;y 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch &ndash; M&Agrave;U X&Aacute;M SILVER</p>', '<p>Tay Cầm EasySMX X10 Ch&iacute;nh H&atilde;ng Kh&ocirc;ng D&acirc;y 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch &ndash; M&Agrave;U X&Aacute;M SILVER</p>', 699000, '430000', 'x10.jpg', NULL, 1, '4', 'tay cam, tay cam choi game, tay cam easysmx, X10, easysmx X10', NULL, NULL),
 (33, 7, 8, 'Tay Cầm EasySMX D05', '', '30', NULL, 'Tay Cầm EasySMX D05 Chính Hãng Không Dây 2.4G, 1000Hz, Hall Effect, Led RGB Chơi FCO, PC, IOS, Android, Switch', 'Tay Cầm EasySMX D05 Chính Hãng Không Dây 2.4G, 1000Hz, Hall Effect, Led RGB Chơi FCO, PC, IOS, Android, Switch', 629000, '400000', 'd05.jpg', NULL, 1, NULL, 'tay cam, tay cam choi game, tay cam easysmx, D05, easysmx D05 ', NULL, NULL),
-(34, 7, 8, 'Tay Cầm EasySMX X15 Chính Hãng Không Dây', 'tay cầm,tay cầm giá rẻ,tay cầm chơi game,tay cầm easysmx', '20', NULL, '<p>Tay Cầm EasySMX X15 Ch&iacute;nh H&atilde;ng Kh&ocirc;ng D&acirc;y 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch</p>\r\n\r\n<p><img alt=\"motataycameasysmx\" src=\"https://ucarecdn.com/5359aa8d-8b47-4890-84dd-242da0b3e49d/-/format/auto/-/preview/3000x3000/-/quality/lighter/EasySMX-X15-PC-Controller-With-RGB-and-Hall-Joysticks-Hall-Trigger-1.jpg\" style=\"height:169px; width:300px\" /></p>\r\n\r\n<p><img alt=\"vandijk\" src=\"http://127.0.0.1:8000/upload/ckeditor/vandijk1_1746517102.webp\" style=\"height:169px; width:300px\" /></p>', '<p>Tay Cầm EasySMX X15 Ch&iacute;nh H&atilde;ng Kh&ocirc;ng D&acirc;y 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch</p>', 680000, '450000', 'smx_x1582.jpg', NULL, 1, '9', 'easy smx, smx 15', NULL, NULL),
-(35, 7, 8, 'San pham 123', 'aasdasd', '20', NULL, '<p>aaaaaaaaaa</p>', '<p>aaaaaaaaaaaaaa</p>', 500000, '350000', '338.jpg', NULL, 1, '1', 'aaaaaaaaaaa', NULL, NULL),
-(37, 7, 8, 'gggggggggg', 'jllll', '35', NULL, '<p>jjjjjjjjjjj</p>', '<p>llllllllj</p>', 80000, '50000', 'bong-ma-anh-quoc-phan-171.jpg', 'Dai-viet-su-ki-toan-thu40.pdf', 1, NULL, 'jllllllll', NULL, NULL);
+(34, 7, 8, 'Tay Cầm EasySMX X15 Chính Hãng Không Dây', 'tay cầm,tay cầm giá rẻ,tay cầm chơi game,tay cầm easysmx', '20', NULL, '<p>Tay Cầm EasySMX X15 Ch&iacute;nh H&atilde;ng Kh&ocirc;ng D&acirc;y 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch</p>\r\n\r\n<p><img alt=\"motataycameasysmx\" src=\"https://ucarecdn.com/5359aa8d-8b47-4890-84dd-242da0b3e49d/-/format/auto/-/preview/3000x3000/-/quality/lighter/EasySMX-X15-PC-Controller-With-RGB-and-Hall-Joysticks-Hall-Trigger-1.jpg\" style=\"height:169px; width:300px\" /></p>\r\n\r\n<p><img alt=\"vandijk\" src=\"http://127.0.0.1:8000/upload/ckeditor/vandijk1_1746517102.webp\" style=\"height:169px; width:300px\" /></p>', '<p>Tay Cầm EasySMX X15 Ch&iacute;nh H&atilde;ng Kh&ocirc;ng D&acirc;y 2.4G, Hall Effect, 1000Hz Chơi FCO, PC, IOS, Android, Switch</p>', 680000, '450000', 'smx_x1582.jpg', NULL, 1, '9', 'easy smx, smx 15', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1598,7 +1604,9 @@ INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_email`, `s
 (68, 'Walter White', 'heisenb@gmail.com', 'stone 2/4 7:32', 'Albuquerque', '987654321', 2, NULL, NULL),
 (69, 'Walter White', 'heisenb@gmail.com', 'stone 2/4 7:41', 'Mexico', '0988820943', 3, NULL, NULL),
 (70, 'Walter White', 'heisenb@gmail.com', 'stone 2/4 15:16', 'Albuquerque', '987654321', 0, NULL, NULL),
-(71, 'Walter White', 'heisenb@gmail.com', 'stone 28/4/2025 19h10', 'Albuquerque', '0988820942', 3, NULL, NULL);
+(71, 'Walter White', 'heisenb@gmail.com', 'stone 28/4/2025 19h10', 'Albuquerque', '0988820942', 3, NULL, NULL),
+(72, 'Walter White', 'heisenb@gmail.com', 'stone 1 16/6/2025', 'Albuquerque', '0988820942', 0, NULL, NULL),
+(73, 'Xavier Pena', 'pena@gmail.com', 'pena xavier 16/6', 'New Mexico', '987654321', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13388,13 +13396,13 @@ ALTER TABLE `tbl_comment`
 -- AUTO_INCREMENT cho bảng `tbl_coupon`
 --
 ALTER TABLE `tbl_coupon`
-  MODIFY `coupon_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `coupon_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_customer`
 --
 ALTER TABLE `tbl_customer`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_feeship`
@@ -13424,13 +13432,13 @@ ALTER TABLE `tbl_momo`
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  MODIFY `order_details_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `order_details_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_payment`
@@ -13466,7 +13474,7 @@ ALTER TABLE `tbl_roles`
 -- AUTO_INCREMENT cho bảng `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
-  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_social`

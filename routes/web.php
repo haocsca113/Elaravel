@@ -282,6 +282,13 @@ Route::get('/send-coupon/{coupon_time}/{coupon_condition}/{coupon_number}/{coupo
 
 Route::get('/mail-example', [MailController::class, 'mail_example']);
 
+Route::get('/quen-mat-khau', [MailController::class, 'quen_mat_khau']);
+Route::get('/update-new-pass', [MailController::class, 'update_new_pass']);
+Route::post('/recover-pass', [MailController::class, 'recover_pass']);
+Route::post('/reset-new-pass', [MailController::class, 'reset_new_pass']);
+
+
+
 
 
 
