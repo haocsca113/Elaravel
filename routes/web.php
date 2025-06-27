@@ -207,6 +207,10 @@ Route::get('/admin/callback', [AdminController::class, 'callback_facebook']);
 //Login google
 Route::get('/login-google', [AdminController::class, 'login_google']);
 Route::get('/google/callback', [AdminController::class, 'callback_google']);
+// Login customer google
+Route::get('/login-customer-google', [AdminController::class, 'login_customer_google']);
+Route::get('/customer/google/callback', [AdminController::class, 'callback_customer_google']);
+
 
 // Delivery
 Route::get('/delivery', [DeliveryController::class, 'delivery']);

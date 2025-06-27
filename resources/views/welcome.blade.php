@@ -140,6 +140,7 @@
 								<?php
 									$customer_id = Session::get('customer_id');
 									$customer_name = Session::get('customer_name');
+									$customer_picture = Session::get('customer_picture');
 								?>
 
 								<li class="dropdown">
@@ -147,7 +148,11 @@
 										if($customer_id != NULL){
 									?>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-										<i class="fa fa-user"></i> {{ $customer_name }} <b class="caret"></b>
+										@if($customer_picture)
+											<img width="15%" src="{{ $customer_picture }}" alt=""> {{ $customer_name }} <b class="caret"></b>
+										@else
+											<i class="fa fa-user"></i> {{ $customer_name }} <b class="caret"></b>
+										@endif
 									</a>
 									<ul class="dropdown-menu">
 										<li><a href="{{ URL::to('/my-order') }}"><i class="fa fa-list"></i> Đơn hàng của tôi</a></li>

@@ -3,19 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-// use Login;
 
-class Social extends Model
+class SocialCustomers extends Model
 {
     public $timestamps = false;
     protected $fillable = [
         'provider_user_id', 'provider_user_email', 'provider', 'user'
     ];
     protected $primaryKey = 'user_id';
-    protected $table = 'tbl_social';
+    protected $table = 'tbl_social_customers';
 
-    public function login()
+    public function customer()
     {
-        return $this->belongsTo(\App\Models\Login::class, 'user'); // Cột user trong bảng tbl_social chứa khóa ngoại bảng tbl_admin
+        return $this->belongsTo(\App\Models\Customer::class, 'user'); 
     }
 }

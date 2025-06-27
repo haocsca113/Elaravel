@@ -29,6 +29,24 @@
                         </span>
                         <button type="submit" class="btn btn-default">Đăng nhập</button>
                     </form>
+
+                    <style>
+                        ul.list-login
+                        {
+                            margin: 10px;
+                            padding: 0;
+                        }
+                        ul.list-login li
+                        {
+                            display: inline;
+                            margin: 5px;
+                        }
+                    </style>
+                    <ul class="list-login">
+                        <li><a href="{{ url('login-customer-google') }}"><img width="10%" src="{{ asset('frontend/images/gg.png') }}" alt="Đăng nhập bằng tài khoản google"></a></li>
+
+                        <li><a href=""><img width="10%" src="{{ asset('frontend/images/fb.png') }}" alt="Đăng nhập bằng tài khoản facebook"></a></li>
+                    </ul>
                 </div><!--/login form-->
             </div>
             <div class="col-sm-1">

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Login;
-use App\Models\Social;
 use Laravel\Socialite\Facades\Socialite;
 use App\Rules\Captcha;
 use Validator;
@@ -14,6 +12,9 @@ use Carbon\Carbon;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Login;
+use App\Models\Social;
+use App\Models\SocialCustomers;
 use App\Models\Statistic;
 use App\Models\Visitors;
 use App\Models\Product;
@@ -68,6 +69,7 @@ class AdminController extends Controller
 
         $customer_new = new Social([
             'provider_user_id' => $users->id,
+            'provider_user_email' => $users->email,
             'provider' => strtoupper($provider),
         ]);
         $customer_new->login()->associate($orang);
@@ -76,6 +78,69 @@ class AdminController extends Controller
         return $customer_new;
     }
 
+    public function login_customer_google()
+    {
+        config(['services.google.redirect' => env('GOOGLE_CLIENT_URL')]);
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function callback_customer_google()
+    {
+        config(['services.google.redirect' => env('GOOGLE_CLIENT_URL')]);
+        $users = Socialite::driver('google')->stateless()->user(); 
+        
+        $authUser = $this->findOrCreateCustomer($users,'google'); // Lấy tài khoản từ DB hoặc tạo mới
+        if($authUser)
+        {
+            $account_name = Customer::where('customer_id',$authUser->user)->first();
+            if($account_name)
+            {
+                Session::put('customer_id',$account_name->customer_id);
+                Session::put('customer_name',$account_name->customer_name);
+                Session::put('customer_picture',$account_name->customer_picture);
+            }
+            else if($customer_new)
+            {
+                Session::put('customer_id',$account_name->customer_id);
+                Session::put('customer_name',$account_name->customer_name);
+                Session::put('customer_picture',$account_name->customer_picture);
+            }
+        }
+        return redirect('/login-checkout')->with('message', 'Đăng nhập bằng tài khoản google <span style="color: red;">'.$account_name->customer_email.'</span> thành công');
+    }
+
+    public function findOrCreateCustomer($users, $provider)
+    {
+        $authUser = SocialCustomers ::where('provider_user_id', $users->id)->where('provider_user_email', $users->email)->first();
+
+        if ($authUser) {
+            return $authUser; 
+        }
+        else
+        {
+            $customer_new = new SocialCustomers([
+                'provider_user_id' => $users->id,
+                'provider_user_email' => $users->email,
+                'provider' => strtoupper($provider)
+            ]);
+
+            $customer = Customer::where('customer_email', $users->email)->first();
+            if(!$customer)
+            {
+                $customer = Customer::create([
+                    'customer_name' => $users->name,
+                    'customer_email' => $users->email,
+                    'customer_picture' => $users->avatar,
+                    'customer_password' => '', 
+                    'customer_phone' => '',
+                ]);
+            }
+
+            $customer_new->customer()->associate($customer);
+            $customer_new->save();
+            return $customer_new;
+        }
+    }
 
     public function login_facebook(){
         return Socialite::driver('facebook')->redirect();
