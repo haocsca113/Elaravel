@@ -26,6 +26,20 @@ session_start();
 
 class AdminController extends Controller
 {
+    public function AuthLogin()
+    {
+        // $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
+        if($admin_id)
+        {
+            return Redirect::to('dashboard');
+        }
+        else
+        {
+            return Redirect::to('admin')->send();
+        }
+    }
+
     public function login_google()
     {
         return Socialite::driver('google')->redirect();
@@ -149,17 +163,20 @@ class AdminController extends Controller
     public function callback_facebook()
     {
         $provider = Socialite::driver('facebook')->user();
-        $account = Social::where('provider', 'facebook')
-                        ->where('provider_user_id', $provider->getId())
-                        ->first();
-
-        if ($account) {
+        $account = Social::where('provider', 'facebook')->where('provider_user_id', $provider->getId())->first();
+                        
+        if ($account != NULL) {
             $account_name = Login::where('admin_id', $account->user)->first();
+            Session::put('admin_name', $account_name->admin_name);
+            Session::put('login_normal', true);
+            Session::put('admin_id', $account_name->admin_id);
+            return redirect('/dashboard')->with('message', 'Đăng nhập Admin thành công');
         } 
-        else 
+        else if($account == NULL)
         {
-            $customer_new = new Social([
+            $admin_login = new Social([
                 'provider_user_id' => $provider->getId(),
+                'provider_user_email' => $provider->getEmail(),
                 'provider' => 'facebook'
             ]);
 
@@ -175,30 +192,68 @@ class AdminController extends Controller
             }
 
             // Liên kết tài khoản Facebook với tài khoản Login
-            $customer_new->login()->associate($orang);
-            $customer_new->save();
+            $admin_login->login()->associate($orang);
+            $admin_login->save();
 
-            $account_name = $orang;
+            $account_name = Login::where('admin_id', $admin_login->user)->first();
+            Session::put('admin_name', $admin_login->admin_name);
+            Session::put('login_normal', true);
+            Session::put('admin_id', $admin_login->admin_id);
+
+            return redirect('/dashboard')->with('message', 'Đăng nhập Admin thành công');
         }
-
-        Session::put('admin_name', $account_name->admin_name);
-        Session::put('admin_id', $account_name->admin_id);
-
-        return redirect('/dashboard')->with('message', 'Đăng nhập Admin thành công');
     }
 
-
-    public function AuthLogin()
+    public function login_customer_facebook()
     {
-        // $admin_id = Session::get('admin_id');
-        $admin_id = Auth::id();
-        if($admin_id)
+        config(['services.facebook.redirect' => env('FACEBOOK_CLIENT_REDIRECT')]);
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function callback_customer_facebook()
+    {
+        config(['services.facebook.redirect' => env('FACEBOOK_CLIENT_REDIRECT')]);
+        $provider = Socialite::driver('facebook')->user();
+
+        $account = SocialCustomers::where('provider', 'facebook')->where('provider_user_id', $provider->getId())->first();
+                        
+        if($account != NULL)
         {
-            return Redirect::to('dashboard');
+            $account_name = Customer::where('customer_id', $account->user)->first();
+            Session::put('customer_id',$account_name->customer_id);
+            Session::put('customer_name',$account_name->customer_name);
+
+            return redirect('/login-checkout')->with('message', 'Đăng nhập bằng tài khoản facebook <span style="color: red;">'.$account_name->customer_email.'</span> thành công');
         }
-        else
+        else if($account == NULL)
         {
-            return Redirect::to('admin')->send();
+            $customer_login = new SocialCustomers([
+                'provider_user_id' => $provider->getId(),
+                'provider_user_email' => $provider->getEmail(),
+                'provider' => 'facebook'
+            ]);
+
+            $customer = Customer::where('customer_email', $provider->getEmail())->first();
+
+            if(!$customer)
+            {
+                $customer = Customer::create([
+                    'customer_name' => $provider->getName(),
+                    'customer_email' => $provider->getEmail(),
+                    'customer_picture' => '',
+                    'customer_password' => '', 
+                    'customer_phone' => '',
+                ]);
+            }
+
+            $customer_login->customer()->associate($customer);
+            $customer_login->save();
+            
+            $account_new = Customer::where('customer_id', $customer_login->user)->first();
+            Session::put('customer_id',$account_new->customer_id);
+            Session::put('customer_name',$account_new->customer_name);
+
+            return redirect('/login-checkout')->with('message', 'Đăng nhập bằng tài khoản facebook <span style="color: red;">'.$account_new->customer_email.'</span> thành công');
         }
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 24, 2025 lúc 12:11 PM
+-- Thời gian đã tạo: Th6 28, 2025 lúc 02:21 AM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -189,7 +189,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (28, '2025_04_29_120730_create_tbl_comment_table', 23),
 (29, '2025_05_05_002011_create_tbl_rating_table', 24),
 (30, '2025_05_05_065438_create_tbl_information_table', 25),
-(31, '2025_05_16_120443_create_tbl_visitors_table', 26);
+(31, '2025_05_16_120443_create_tbl_visitors_table', 26),
+(32, '2025_06_26_103212_create_tbl_social_customers', 27);
 
 -- --------------------------------------------------------
 
@@ -223,8 +224,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('9MnSmooWpOvuxp70OGvpODJcp6HLtaJjLF8I77Cp', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicXFzM3JXeUlkdEt0TWxRTXNoU0prOW8yM0ZwcHh4Vms3WXdCRkk3SSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9xdWVuLW1hdC1raGF1Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1750294159),
-('zHjIQsN7fLxTVDLKbjJfsVV664qXtjnnAAizXoYL', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoia2x0MjloUlpMMmhNRjIwTUhyUW1ORU5PakRPMWs4TEE4WmZMbG4yeCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NzoibWVzc2FnZSI7TjtzOjExOiJjdXN0b21lcl9pZCI7aTo2O3M6MTM6ImN1c3RvbWVyX25hbWUiO3M6MjE6IlRyxrDGoW5nIEh14buzbmggSMOgbyI7fQ==', 1750676652);
+('HqkJFNpDjEW2eZapMbISOb9kYyOetdkvbahYPQCg', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo3OntzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3RyYW5nLWNodSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NjoiX3Rva2VuIjtzOjQwOiJ6RXVYWjlkaHZtaFptczdtTm8xNTNJZkpQVHlUTzQ0ZzZxeVBuc2Y5IjtzOjU6InN0YXRlIjtzOjQwOiJERzAxR0FETjhkZDhzT2kzNGZ4dm9hNmdqSTJUTmoxSXRSRzFQVHdKIjtzOjExOiJjdXN0b21lcl9pZCI7aTo5O3M6MTM6ImN1c3RvbWVyX25hbWUiO3M6MjE6IkjDoG8gVHLGsMahbmcgSHXhu7NuaCI7czoxNjoiY3VzdG9tZXJfcGljdHVyZSI7czo5ODoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS2FNaUZSeS1tNFREQmF3OVRRU2dfd3I0RWN6UGJZYTMxTmRzTUMteUxGZG1wRGJvT0Q9czk2LWMiO30=', 1750982731),
+('Kxieeuw30uWw65trZmy8vnR2YblXABXF8fdRnpRi', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicTZFYll3S05BcTJ1bTA3MDJmSEM3UHRFSTVaZmlybUlQeXdLbFFrbyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbi1jaGVja291dCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NToic3RhdGUiO3M6NDA6Ikc3bkZLaTlCdERXRTBFVnFIcGhLUlhpSmJYYk5iNzZVdjFLMmhRRnUiO30=', 1751068788),
+('U8qV5sSqBqAdvDiNiTRrYK6rrahLeYBWOpQMlNOO', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidkdUMUFEUzlkOTI3OWtjTUUxc2dTTm1OUnNLOGJtT1cwOFhqWjlOaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1751019790);
 
 -- --------------------------------------------------------
 
@@ -445,6 +447,7 @@ CREATE TABLE `tbl_customer` (
   `customer_email` varchar(255) NOT NULL,
   `customer_password` varchar(255) NOT NULL,
   `customer_phone` varchar(255) NOT NULL,
+  `customer_picture` varchar(255) DEFAULT NULL,
   `customer_vip` int(11) DEFAULT NULL,
   `customer_token` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -455,11 +458,12 @@ CREATE TABLE `tbl_customer` (
 -- Đang đổ dữ liệu cho bảng `tbl_customer`
 --
 
-INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`, `customer_vip`, `customer_token`, `created_at`, `updated_at`) VALUES
-(4, 'xavierpena', 'pena@gmail.com', '25f9e794323b453885f5181f1b624d0b', '123456789', NULL, NULL, NULL, NULL),
-(5, 'heisenberg', 'heisenberg@gmail.com', '25f9e794323b453885f5181f1b624d0b', '012345678', NULL, NULL, NULL, NULL),
-(6, 'Trương Huỳnh Hào', 'huynhhaopy2001@gmail.com', '25d55ad283aa400af464c76d713c07ad', '0988820943', 1, 'ffbIo7idFHs7ze2j', NULL, NULL),
-(7, 'DoubleH', 'haotruonghuynh113@gmail.com', '25f9e794323b453885f5181f1b624d0b', '0988820942', NULL, NULL, NULL, NULL);
+INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_email`, `customer_password`, `customer_phone`, `customer_picture`, `customer_vip`, `customer_token`, `created_at`, `updated_at`) VALUES
+(4, 'xavierpena', 'pena@gmail.com', '25f9e794323b453885f5181f1b624d0b', '123456789', NULL, NULL, NULL, NULL, NULL),
+(5, 'heisenberg', 'heisenberg@gmail.com', '25f9e794323b453885f5181f1b624d0b', '012345678', NULL, NULL, NULL, NULL, NULL),
+(6, 'Trương Huỳnh Hào', 'huynhhaopy2001@gmail.com', '25d55ad283aa400af464c76d713c07ad', '0988820943', NULL, 1, 'ffbIo7idFHs7ze2j', NULL, NULL),
+(7, 'DoubleH', 'haotruonghuynh113@gmail.com', '25f9e794323b453885f5181f1b624d0b', '0988820942', NULL, NULL, NULL, NULL, NULL),
+(9, 'Hào Trương Huỳnh', 'haocsca113@gmail.com', '', '', 'https://lh3.googleusercontent.com/a/ACg8ocKaMiFRy-m4TDBaw9TQSg_wr4EczPbYa31NdsMC-yLFdmpDboOD=s96-c', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1617,11 +1621,35 @@ INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_email`, `s
 CREATE TABLE `tbl_social` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `provider_user_id` varchar(255) NOT NULL,
+  `provider_user_email` varchar(255) NOT NULL,
   `provider` varchar(255) NOT NULL,
   `user` int(11) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_social_customers`
+--
+
+CREATE TABLE `tbl_social_customers` (
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `provider_user_id` varchar(255) NOT NULL,
+  `provider_user_email` varchar(255) NOT NULL,
+  `provider` varchar(255) NOT NULL,
+  `user` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_social_customers`
+--
+
+INSERT INTO `tbl_social_customers` (`user_id`, `provider_user_id`, `provider_user_email`, `provider`, `user`, `created_at`, `updated_at`) VALUES
+(2, '115868358498485712861', 'haocsca113@gmail.com', 'GOOGLE', 9, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -13286,6 +13314,12 @@ ALTER TABLE `tbl_social`
   ADD KEY `user` (`user`);
 
 --
+-- Chỉ mục cho bảng `tbl_social_customers`
+--
+ALTER TABLE `tbl_social_customers`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- Chỉ mục cho bảng `tbl_statistical`
 --
 ALTER TABLE `tbl_statistical`
@@ -13354,7 +13388,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_admin`
@@ -13402,7 +13436,7 @@ ALTER TABLE `tbl_coupon`
 -- AUTO_INCREMENT cho bảng `tbl_customer`
 --
 ALTER TABLE `tbl_customer`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_feeship`
@@ -13481,6 +13515,12 @@ ALTER TABLE `tbl_shipping`
 --
 ALTER TABLE `tbl_social`
   MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_social_customers`
+--
+ALTER TABLE `tbl_social_customers`
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_statistical`

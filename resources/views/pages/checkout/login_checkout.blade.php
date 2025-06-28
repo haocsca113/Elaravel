@@ -45,7 +45,7 @@
                     <ul class="list-login">
                         <li><a href="{{ url('login-customer-google') }}"><img width="10%" src="{{ asset('frontend/images/gg.png') }}" alt="Đăng nhập bằng tài khoản google"></a></li>
 
-                        <li><a href=""><img width="10%" src="{{ asset('frontend/images/fb.png') }}" alt="Đăng nhập bằng tài khoản facebook"></a></li>
+                        <li><a href="{{ url('login-customer-facebook') }}"><img width="10%" src="{{ asset('frontend/images/fb.png') }}" alt="Đăng nhập bằng tài khoản facebook"></a></li>
                     </ul>
                 </div><!--/login form-->
             </div>

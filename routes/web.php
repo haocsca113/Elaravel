@@ -203,6 +203,10 @@ Route::post('/cancel-order/{order_code}', [OrderController::class, 'cancel_order
 //Login facebook
 Route::get('/login-facebook', [AdminController::class, 'login_facebook']);
 Route::get('/admin/callback', [AdminController::class, 'callback_facebook']);
+// Login customer facebok
+Route::get('/login-customer-facebook', [AdminController::class, 'login_customer_facebook']);
+Route::get('/customer/facebook/callback', [AdminController::class, 'callback_customer_facebook']);
+
 
 //Login google
 Route::get('/login-google', [AdminController::class, 'login_google']);
